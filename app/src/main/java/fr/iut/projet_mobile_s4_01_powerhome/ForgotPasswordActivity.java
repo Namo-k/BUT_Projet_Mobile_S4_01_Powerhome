@@ -32,7 +32,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private String question_;
     private String reponse_;
     private DatabaseManager databaseManager;
-    private TextView errorTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forgotpassword);
 
         databaseManager = new DatabaseManager(getApplicationContext());
-        errorTextView = findViewById(R.id.errorTextView);
 
         Spinner questionSpinner = findViewById(R.id.question);
         List<String> maListe = new ArrayList<>();
@@ -98,7 +96,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
             else {
                 error = response.getString("error");
-                errorTextView.setText(error);
+                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
             }
         }
         catch (JSONException e) {
@@ -122,7 +120,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                errorTextView.setText(error.toString());
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });

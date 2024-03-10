@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     private String mail;
     private String password;
     private DatabaseManager databaseManager;
-    private TextView errorTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         TextView forgotPasseword = findViewById(R.id.forgotPasseword);
         EditText mailET = findViewById(R.id.mailET);
         EditText mdpET = findViewById(R.id.mdpET);
-        errorTextView = findViewById(R.id.errorTextView);
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,19 +96,27 @@ public class LoginActivity extends AppCompatActivity {
     public void onApiResponse(JSONObject response) {
         Boolean success = null;
         String error = "";
+        String firstTime = "";
 
         try {
             success = response.getBoolean("success");
 
             if (success == true) {
-                Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
+                firstTime = response.getString("firstTime");
+                Intent intent;
+                if (firstTime.equals("YES")) {
+                    intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                }
+                else {
+                    intent = new Intent(getApplicationContext(), AccueilActivity.class);
+                }
                 intent.putExtra("id", response.getInt("id"));
                 startActivity(intent);
                 finish();
             }
             else {
                 error = response.getString("error");
-                errorTextView.setText(error);
+                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
             }
         }
         catch (JSONException e) {

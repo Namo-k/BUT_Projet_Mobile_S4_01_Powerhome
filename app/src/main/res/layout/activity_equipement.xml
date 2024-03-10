@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- ========== ENTETE =========== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.23"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="456dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-118dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="200dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ovale_shape" />
+
+            <ImageView
+                android:id="@+id/sedeconnecterBtn"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="38dp"
+                android:src="@drawable/deconnexion" />
+
+            <ImageView
+                android:id="@+id/logoIV"
+                android:layout_width="170dp"
+                android:layout_height="90.92dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="147dp"
+                android:layout_marginTop="55dp"
+                android:src="@drawable/logo" />
+
+            <ImageView
+                android:id="@+id/notifBtn"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="355dp"
+                android:layout_marginTop="38dp"
+                android:src="@drawable/cloche" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="385dp"
+                android:layout_marginTop="23dp"
+                android:alpha="0.8"
+                app:cardBackgroundColor="@color/lightGrey"
+                app:cardCornerRadius="10dp">
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- ========== FIN ENTETE =========== -->
+
+    <!-- ========== PAGE =========== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <!-- ========== DEBUT ACCUEIL =========== -->
+
+            <TextView
+                android:id="@+id/equipement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/sansita_regular"
+                android:text=" Mes équipements"
+                android:textColor="@color/darkGreen"
+                android:textSize="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/ligne1"
+                android:layout_width="185dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/equipement" />
+
+            <ImageView
+                android:id="@+id/equipement_logo"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/maison_icone"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/blocHabitat"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="28dp"
+                app:cardBackgroundColor="@color/lightGreen"
+                app:cardCornerRadius="20dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/equipement">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/nbEquipements"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="3dp"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Vous avez x équipements"
+                        android:textColor="@color/grey"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/puissanceLabelTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_below="@id/nbEquipements"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Ma puissance totale  : "
+                        android:textColor="@color/grey"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/puissanceTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/nbEquipements"
+                        android:layout_toRightOf="@+id/puissanceLabelTV"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/inter"
+                        android:textColor="@color/darkGreen"
+                        android:textSize="14dp" />
+
+
+                    <TextView
+                        android:id="@+id/puissanceLabelMAX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_below="@id/puissanceTV"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Ma puissance maximale : "
+                        android:textColor="@color/grey"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/puissanceMAX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/puissanceTV"
+                        android:layout_toRightOf="@id/puissanceLabelMAX"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="3dp"
+                        android:text="10 000W"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/inter"
+                        android:textColor="@color/darkGreen"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:id="@+id/equipementSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/puissanceMAX"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginLeft="3dp"
+                            android:gravity="center">
+
+                            <ListView
+                                android:id="@+id/equipementPrincipauxlistView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="0dp"
+                                android:paddingLeft="15dp"
+                                android:paddingBottom="5dp"
+                                android:divider="@color/lightGreen"
+                                android:dividerHeight="3dp"
+                                android:gravity="center"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_below="@id/equipementSection"
+                        android:layout_centerHorizontal="true"
+                        app:cardBackgroundColor="@color/darkGreen"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="10dp">
+
+
+                        <TextView
+                            android:id="@+id/btnAjouterEquipement"
+                            android:layout_width="200dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/darkGreen"
+                            android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="Ajouter un équipement"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- ========== FIN ACCUEIL =========== -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <!-- ========== FIN PAGE =========== -->
+
+    <!-- ========== NAVBAR =========== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="@color/darkGreen"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ancienneBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/deconnexion" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="84dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="40dp"
+            app:cardBackgroundColor="@color/hover"
+            app:cardCornerRadius="17dp">
+
+            <ImageView
+                android:id="@+id/homeBtn"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/maison" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/modifProfilBtn"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/identite"
+            android:background="@color/white"/>
+
+    </LinearLayout>
+    <!-- ========== FIN NAVBAR =========== -->
+
+</LinearLayout>

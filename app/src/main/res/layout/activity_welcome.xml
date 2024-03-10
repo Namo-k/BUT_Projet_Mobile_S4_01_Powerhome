@@ -54,15 +54,6 @@
                 android:src="@drawable/logo_principal"
                 />
 
-            <ImageView
-                android:id="@+id/btnRetour"
-                android:layout_width="25dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="25dp"
-                android:src="@drawable/retour"
-                />
-
             <TextView
                 android:id="@+id/titre"
                 android:text="Bienvenue"
@@ -77,59 +68,58 @@
 
             <TextView
                 android:id="@+id/text1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
                 android:gravity="center"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="65dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="25dp"
-                android:text="Selectionnez votre résidence :"
+                android:text="Votre étage :"
                 android:textColor="@color/grey"
                 android:textSize="15.5dp"
                 android:layout_below="@+id/titre"
                 />
 
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="Votre appart :"
+                android:textColor="@color/grey"
+                android:textSize="15.5dp"
+                android:layout_below="@+id/titre"
+                android:layout_toRightOf="@+id/text1"
+                />
+
             <Spinner
-                android:id="@+id/residence"
-                android:layout_width="300dp"
-                android:layout_height="47dp"
+                android:id="@+id/floor"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="53dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_login"
                 android:fontFamily="@font/inter"
-                android:inputType="text"
                 android:paddingLeft="45dp"
                 android:textSize="16dp"
                 android:layout_below="@+id/text1"
                 />
 
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
-                android:gravity="center"
-                android:layout_marginRight="80dp"
-                android:layout_marginTop="25dp"
-                android:text="Sélectionnez votre habitat"
-                android:textColor="@color/grey"
-                android:textSize="15.5dp"
-                android:layout_below="@+id/residence"
-                />
-
             <Spinner
-                android:id="@+id/habitat"
-                android:layout_width="300dp"
-                android:layout_height="47dp"
-                android:layout_marginLeft="53dp"
+                android:id="@+id/area"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_login"
                 android:fontFamily="@font/inter"
-                android:hint="Mon habitat..."
-                android:inputType="text"
                 android:paddingLeft="45dp"
                 android:textSize="16dp"
                 android:layout_below="@+id/text2"
+                android:layout_toRightOf="@+id/floor"
                 />
 
             <TextView
@@ -144,7 +134,7 @@
                 android:text="Choisissez vos équipements initiaux :"
                 android:textColor="@color/grey"
                 android:textSize="15dp"
-                android:layout_below="@+id/habitat"
+                android:layout_below="@+id/floor"
                 />
 
             <CheckBox
@@ -198,7 +188,7 @@
                 />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/btnSuite"
+                android:id="@+id/btnEnregistrer"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 app:cardBackgroundColor="@color/darkGreen"
