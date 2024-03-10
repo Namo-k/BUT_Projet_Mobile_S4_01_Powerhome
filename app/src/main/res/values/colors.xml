@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="darkGreen">#2E7575</color>
+    <color name="lightGreen">#d9edec</color>
+
+    <color name="grey">#505050</color>
+    <color name="lightGrey">#D4D4D4</color>
+    <color name="darkGrey">#535353</color>
+    <color name="red">#A90B0B</color>
+
+    <color name="hover">#9197C6</color>
+
+</resources>
