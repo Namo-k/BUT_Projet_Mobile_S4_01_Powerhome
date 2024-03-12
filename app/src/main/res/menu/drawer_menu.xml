@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/home"
+        android:title="Mon Habitat"
+        />
+
+    <item
+        android:id="@+id/menu_residence"
+        android:icon="@drawable/baseline_add_location_alt_24"
+        android:title="Ma Residence"
+        />
+
+    <item
+        android:id="@+id/menu_equipement"
+        android:icon="@drawable/baseline_add_home_work_24"
+        android:title="Mes Equipements"
+        />
+
+    <item
+        android:id="@+id/menu_creneau"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Choisir un créneau"
+        />
+
+    <item
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/menu_notification"
+        android:icon="@drawable/baseline_announcement_24"
+        android:title="Notification"
+        />
+
+
+    <item
+        android:id="@+id/menu_preference"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Preference"
+        />
+
+    <item
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:icon="@drawable/user"
+        android:title="Modifier le Profil"
+        />
+
+    <item
+        android:id="@+id/menu_deconnexion"
+        android:icon="@drawable/deconnexion"
+        android:title="Deconnexion"
+        />
+
+</menu>
