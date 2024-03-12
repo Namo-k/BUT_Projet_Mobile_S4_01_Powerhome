@@ -148,6 +148,7 @@ public class AccueilActivity extends AppCompatActivity {
                     puissance += wattage;
                     equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
                 }
+
                 EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(this, equipementPrincipaux);
                 listView.setAdapter(adapter);
 

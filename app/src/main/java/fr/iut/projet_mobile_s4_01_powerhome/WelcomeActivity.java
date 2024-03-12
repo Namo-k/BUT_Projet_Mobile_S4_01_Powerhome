@@ -28,6 +28,10 @@ public class WelcomeActivity extends AppCompatActivity {
     private Integer floor;
     private Integer area;
     private Integer id;
+    private String wattage;
+    private String name;
+    private String reference;
+    private Integer puissanceMAX = 10000;
     private DatabaseManager databaseManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,36 +57,48 @@ public class WelcomeActivity extends AppCompatActivity {
         Spinner areaSpinner = findViewById(R.id.area);
         areaSpinner.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, maListe));
 
+
+        Spinner equipementSpinner = findViewById(R.id.nomET);
+
+        List<String> maListe3 = new ArrayList<>();
+        maListe3.add("Sélectionnez un équipement");
+        maListe3.add("Aspirateur");
+        maListe3.add("Climatiseur");
+        maListe3.add("Television");
+        maListe3.add("Fer à repasser");
+        maListe3.add("Machine à laver");
+        maListe3.add("Four électrique");
+        maListe3.add("Radiateur électrique");
+        equipementSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, maListe3));
+
         databaseManager = new DatabaseManager(getApplicationContext());
         btnEnregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 floor = (Integer) floorSpinner.getSelectedItem();
                 area = (Integer) areaSpinner.getSelectedItem();
-                //Toast.makeText(getApplicationContext(), String.valueOf(floor) + String.valueOf(area), Toast.LENGTH_SHORT).show();
-                updateHabitat();
+
+                EditText reference_ = findViewById(R.id.referenceET);
+                EditText wattage_ = findViewById(R.id.wattageET);
+                reference = reference_.getText().toString().trim();
+                wattage = wattage_.getText().toString().trim();
+                name = equipementSpinner.getSelectedItem().toString();
+
+                if(name.equals("Sélectionnez un équipement")){
+                    Toast.makeText(WelcomeActivity.this, "Veuillez selectionner un équipement", Toast.LENGTH_SHORT).show();
+                }
+                if (reference.isEmpty() || wattage.isEmpty()){
+                    Toast.makeText(WelcomeActivity.this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
+                }
+                else if (puissanceMAX < Integer.parseInt(wattage)) {
+                    Toast.makeText(WelcomeActivity.this, "Vous ne pouvez pas dépasser la puissance maximale totale de votre habitat", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    updateHabitat();
+                    ajouterEquipement();
+                }
             }
         });
-    }
-
-    public void onApiResponse(JSONObject response) {
-        Boolean success = null;
-        String error = "";
-
-        try {
-            success = response.getBoolean("success");
-
-            if (success == true) {
-                Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
-                intent.putExtra("id", id);
-                startActivity(intent);
-                finish();
-            }
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void updateHabitat() {
@@ -96,6 +112,70 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 onApiResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+
+    public void onApiResponse(JSONObject response) {
+        Boolean success = null;
+        String error = "";
+
+        try {
+            success = response.getBoolean("success");
+
+            if (success == true) {
+                //Toast.makeText(getApplicationContext(), "Insertion réussi", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onApiResponseAjout(JSONObject response) {
+        Boolean success = null;
+        String error = "";
+
+        try {
+            success = response.getBoolean("success");
+            if (success == true) {
+                Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                error = response.getString("error");
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void ajouterEquipement() {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipement.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("name", name);
+        params.put("reference", reference);
+        params.put("wattage", wattage);
+        params.put("id", String.valueOf(id));
+        //Toast.makeText(getApplicationContext(), name + reference + wattage + String.valueOf(id), Toast.LENGTH_SHORT).show();
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                onApiResponseAjout(response);
             }
         }, new Response.ErrorListener() {
             @Override

@@ -203,7 +203,7 @@
                         android:layout_toRightOf="@id/puissanceLabelMAX"
                         android:layout_marginTop="13dp"
                         android:layout_marginEnd="3dp"
-                        android:text="10 000W"
+                        android:text="10000W"
                         android:layout_marginBottom="3dp"
                         android:fontFamily="@font/inter"
                         android:textColor="@color/darkGreen"
@@ -223,7 +223,7 @@
                         android:textColor="@color/grey"
                         android:textSize="14dp" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/nomET"
                         android:layout_width="300dp"
                         android:layout_height="40dp"
@@ -232,10 +232,9 @@
                         android:layout_marginRight="30dp"
                         android:background="@drawable/round_login"
                         android:fontFamily="@font/inter"
-                        android:hint=" Nom..."
                         android:inputType="text"
                         android:paddingLeft="53dp"
-                        android:textSize="15dp"
+                        android:textSize="14.5dp"
                         android:layout_below="@id/textInformatif"
                         />
 
@@ -260,7 +259,7 @@
                         android:hint="Référence..."
                         android:inputType="text"
                         android:paddingLeft="51dp"
-                        android:textSize="15dp"
+                        android:textSize="14.5dp"
                         android:layout_below="@+id/nomET"
                         />
 
@@ -287,7 +286,7 @@
                         android:maxLength="5"
                         android:inputType="number"
                         android:paddingLeft="55dp"
-                        android:textSize="14dp"
+                        android:textSize="14.5dp"
                         android:layout_below="@+id/referenceET"
                         />
 

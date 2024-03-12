@@ -1,15 +1,10 @@
 package fr.iut.projet_mobile_s4_01_powerhome;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,7 +18,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,19 +39,27 @@ public class EquipementAddActivity extends AppCompatActivity {
     private Integer puissanceMAX = 10000;
     private TextView errorTextView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipements_ajout);
 
-        findViewById(R.id.btnAnnulerAjoutEquipement).setOnClickListener(v -> {
-            retournerAuFragmentEquipement();
-        });
-
         CardView btnAjouterEquipement = (CardView) findViewById(R.id.btnAjouterEquipement);
         TextView puissance_ = findViewById(R.id.puissanceTV);
         errorTextView = (TextView) findViewById(R.id.errorTextView);
+
+        Spinner equipementSpinner = findViewById(R.id.nomET);
+
+        List<String> maListe = new ArrayList<>();
+        maListe.add("Sélectionnez un équipement");
+        maListe.add("Aspirateur");
+        maListe.add("Climatiseur");
+        maListe.add("Television");
+        maListe.add("Fer à repasser");
+        maListe.add("Machine à laver");
+        maListe.add("Four électrique");
+        maListe.add("Radiateur électrique");
+        equipementSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, maListe));
 
         databaseManager = new DatabaseManager(getApplicationContext());
 
@@ -71,14 +73,17 @@ public class EquipementAddActivity extends AppCompatActivity {
         btnAjouterEquipement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText name_ = findViewById(R.id.nomET);
                 EditText reference_ = findViewById(R.id.referenceET);
                 EditText wattage_ = findViewById(R.id.wattageET);
-                name = name_.getText().toString().trim();
                 reference = reference_.getText().toString().trim();
                 wattage = wattage_.getText().toString().trim();
+                name = equipementSpinner.getSelectedItem().toString();
 
-                if (name.isEmpty() || reference.isEmpty() || wattage.isEmpty()){
+                if(name.equals("Sélectionnez un équipement")){
+                    errorTextView.setVisibility(View.VISIBLE);
+                    errorTextView.setText("Veuillez selectionner un équipement");
+                }
+                if (reference.isEmpty() || wattage.isEmpty()){
                     errorTextView.setVisibility(View.VISIBLE);
                     errorTextView.setText("Veuillez remplir tous les champs");
                 }
@@ -91,11 +96,7 @@ public class EquipementAddActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
-
-
     public void onApiResponseAjout(JSONObject response) {
         Boolean success = null;
         String error = "";
@@ -104,7 +105,7 @@ public class EquipementAddActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EquipementActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
@@ -142,11 +143,5 @@ public class EquipementAddActivity extends AppCompatActivity {
             }
         });
         databaseManager.queue.add(jsonObjectRequest);
-    }
-    private void retournerAuFragmentEquipement() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("id", id);
-        startActivity(intent);
-        finish();
     }
 }

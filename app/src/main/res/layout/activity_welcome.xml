@@ -48,7 +48,7 @@
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_marginTop="20dp"
                 android:paddingRight="20dp"
                 android:src="@drawable/logo_principal"
@@ -59,7 +59,7 @@
                 android:text="Bienvenue"
                 android:fontFamily="@font/sansita_regular"
                 android:textColor="@color/darkGreen"
-                android:textSize="30dp"
+                android:textSize="27dp"
                 android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,76 +126,129 @@
                 android:id="@+id/text4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/inter_semibold"
                 android:gravity="center"
-                android:lineHeight="22dp"
-                android:layout_marginTop="25dp"
-                android:paddingHorizontal="50dp"
-                android:text="Choisissez vos équipements initiaux :"
-                android:textColor="@color/grey"
-                android:textSize="15dp"
+                android:layout_marginTop="35dp"
+                android:paddingHorizontal="30dp"
+                android:text="Commencez par ajouter un équipement !"
+                android:textColor="@color/darkGreen"
+                android:textSize="15.5dp"
                 android:layout_below="@+id/floor"
                 />
 
-            <CheckBox
-                android:id="@+id/check1"
+            <TextView
+                android:id="@+id/puissanceLabelMAX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Lave-linge"
-                android:fontFamily="@font/inter"
-                android:textColor="@color/grey"
-                android:layout_marginLeft="60dp"
-                android:textSize="15.5dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="10dp"
                 android:layout_below="@id/text4"
-                />
+                android:fontFamily="@font/inter_medium"
+                android:text="Ma puissance maximale : "
+                android:textColor="@color/grey"
+                android:textSize="14.5dp" />
 
-            <CheckBox
-                android:id="@+id/check2"
+            <TextView
+                android:id="@+id/puissanceMAX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Radiateur"
-                android:fontFamily="@font/inter"
-                android:textColor="@color/grey"
-                android:textSize="15.5dp"
                 android:layout_below="@id/text4"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@id/check1"
+                android:layout_toRightOf="@id/puissanceLabelMAX"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="3dp"
+                android:text="10000W"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/darkGreen"
+                android:textSize="14.5dp" />
+
+            <Spinner
+                android:id="@+id/nomET"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/round_login"
+                android:fontFamily="@font/inter"
+                android:inputType="text"
+                android:paddingLeft="53dp"
+                android:textSize="14.5dp"
+                android:layout_below="@id/puissanceLabelMAX"
                 />
 
-            <CheckBox
-                android:id="@+id/check3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Télévision"
-                android:layout_marginLeft="60dp"
-                android:fontFamily="@font/inter"
-                android:textColor="@color/grey"
-                android:textSize="15.5dp"
-                android:layout_below="@id/check1"
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/identite"
+                android:layout_marginLeft="97dp"
+                android:layout_marginTop="-36dp"
+                android:layout_below="@id/nomET"
                 />
 
-            <CheckBox
-                android:id="@+id/check4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Réfrégirateur"
+            <EditText
+                android:id="@+id/referenceET"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/round_login"
                 android:fontFamily="@font/inter"
-                android:textColor="@color/grey"
-                android:textSize="15.5dp"
-                android:layout_below="@id/check1"
-                android:layout_marginLeft="33dp"
-                android:layout_toRightOf="@id/check3"
+                android:hint="Référence..."
+                android:inputType="text"
+                android:paddingLeft="55dp"
+                android:textSize="14.5dp"
+                android:layout_below="@+id/nomET"
+                />
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/utilisateur"
+                android:layout_marginLeft="101dp"
+                android:layout_marginTop="-32dp"
+                android:layout_below="@id/referenceET"
+                />
+
+
+            <EditText
+                android:id="@+id/wattageET"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/round_login"
+                android:fontFamily="@font/inter"
+                android:hint="Wattage..."
+                android:maxLength="5"
+                android:inputType="number"
+                android:paddingLeft="55dp"
+                android:textSize="14.5dp"
+                android:layout_below="@+id/referenceET"
+                />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/enveloppe"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="-32.5dp"
+                android:layout_below="@id/wattageET"
                 />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btnEnregistrer"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 app:cardBackgroundColor="@color/darkGreen"
                 app:cardCornerRadius="6dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginLeft="102dp"
-                android:layout_below="@+id/check3">
+                android:layout_below="@+id/wattageET">
 
                 <TextView
                     android:layout_width="match_parent"

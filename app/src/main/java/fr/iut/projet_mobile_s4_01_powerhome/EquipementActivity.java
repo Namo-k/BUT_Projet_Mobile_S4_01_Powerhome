@@ -68,6 +68,7 @@ public class EquipementActivity extends AppCompatActivity {
     public void onApiResponseEquipement(JSONObject response) {
         Boolean success = null;
         Integer puissanceCalculee = 0;
+        Integer nbEquipements = 0;
 
         try {
             success = response.getBoolean("success");
@@ -79,8 +80,8 @@ public class EquipementActivity extends AppCompatActivity {
                     int id = applianceObject.getInt("id");
                     String name = applianceObject.getString("name");
                     int wattage = applianceObject.getInt("wattage");
-                    //Toast.makeText(getApplicationContext(), String.valueOf(id) + String.valueOf(wattage) + name, Toast.LENGTH_SHORT).show();
                     puissanceCalculee += wattage;
+                    ++nbEquipements;
                     equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
                 }
                 EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(this, equipementPrincipaux);
@@ -88,6 +89,10 @@ public class EquipementActivity extends AppCompatActivity {
 
                 TextView puissance_ = findViewById(R.id.puissanceTV);
                 puissance_.setText(String.valueOf(puissanceCalculee) + "W");
+
+                TextView nbEquipements_ = findViewById(R.id.nbEquipements);
+                nbEquipements_.setText("Vous avez " + String.valueOf(nbEquipements) + " équipements !");
+
                 puissance = puissanceCalculee;
             }
         }

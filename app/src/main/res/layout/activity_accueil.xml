@@ -269,7 +269,7 @@
                             android:layout_toRightOf="@id/puissanceLabelMAX"
                             android:layout_marginTop="2dp"
                             android:layout_marginEnd="3dp"
-                            android:text="10 000W"
+                            android:text="10000W"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
                             android:textColor="@color/darkGreen"

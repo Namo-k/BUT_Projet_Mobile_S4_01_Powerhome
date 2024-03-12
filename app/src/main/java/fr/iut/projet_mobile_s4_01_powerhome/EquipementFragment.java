@@ -35,6 +35,9 @@ public class EquipementFragment extends Fragment {
     private ListView listView;
     private Integer puissance;
 
+    private TextView puissance_;
+    private TextView nbEquipements_;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +49,10 @@ public class EquipementFragment extends Fragment {
 
         equipementPrincipaux = new ArrayList<>();
         databaseManager = new DatabaseManager(requireContext());
+
+        puissance_ = view.findViewById(R.id.puissanceTV);
+        nbEquipements_ = view.findViewById(R.id.nbEquipements);
+
 
         // Obtenez l'id de l'intent parent (si disponible)
         Bundle bundle = getArguments();
@@ -72,10 +79,11 @@ public class EquipementFragment extends Fragment {
     public void onApiResponseEquipement(JSONObject response) {
         Boolean success = null;
         Integer puissanceCalculee = 0;
+        Integer nbEquipements = 0;
 
         try {
             success = response.getBoolean("success");
-            if (success != null && success) {
+            if (success == true) {
                 JSONArray appliancesArray = response.getJSONArray("appliances");
 
                 for (int i = 0; i < appliancesArray.length(); i++) {
@@ -83,15 +91,16 @@ public class EquipementFragment extends Fragment {
                     int id = applianceObject.getInt("id");
                     String name = applianceObject.getString("name");
                     int wattage = applianceObject.getInt("wattage");
-                    //Toast.makeText(requireContext(), String.valueOf(id) + String.valueOf(wattage) + name, Toast.LENGTH_SHORT).show();
                     puissanceCalculee += wattage;
+                    ++nbEquipements;
                     equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
                 }
                 EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux);
                 listView.setAdapter(adapter);
 
-                TextView puissance_ = requireView().findViewById(R.id.puissanceTV);
                 puissance_.setText(String.valueOf(puissanceCalculee) + "W");
+                nbEquipements_.setText("Vous avez " + String.valueOf(nbEquipements) + " équipements !");
+
                 puissance = puissanceCalculee;
             }
         } catch (JSONException e) {

@@ -14,7 +14,7 @@ public class Habitant {
 
     private int consoTotal;
 
-    public Habitant(int id, String habitantName, List<Appliance> appliances, int ecoCoin) {
+    public Habitant(int id, String habitantName, List<Appliance> appliances, int ecoCoin, int consoTotal) {
         this.id = id;
         this.habitantName = habitantName;
         this.appliances = appliances;
