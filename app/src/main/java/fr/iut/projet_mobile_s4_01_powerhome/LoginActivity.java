@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         EditText mailET = findViewById(R.id.mailET);
         EditText mdpET = findViewById(R.id.mdpET);
 
+        mailET.setText("k@gmail.com");
+        mdpET.setText("Namodacane77!!");
+
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                 }
                 else {
-                    intent = new Intent(getApplicationContext(), AccueilActivity.class);
+                    intent = new Intent(getApplicationContext(), MainActivity.class);
                 }
                 intent.putExtra("id", response.getInt("id"));
                 startActivity(intent);

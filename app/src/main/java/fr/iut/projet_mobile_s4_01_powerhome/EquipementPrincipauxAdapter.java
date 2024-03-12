@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +23,10 @@ public class EquipementPrincipauxAdapter extends ArrayAdapter<EquipementPrincipa
         applianceImageMap = createApplianceImageMap();
     }
 
+
     private Map<Integer, Integer> createApplianceImageMap() {
         Map<Integer, Integer> map = new HashMap<>();
-//        map.put(1, R.drawable.ic_aspirateur);
-//        map.put(2, R.drawable.ic_climatiseur);
-//        map.put(3, R.drawable.ic_fer_a_repasser);
+        // Ajoutez vos images et leurs correspondances ici
         map.put(4, R.drawable.ic_machine_a_laver);
         return map;
     }
@@ -48,7 +45,6 @@ public class EquipementPrincipauxAdapter extends ArrayAdapter<EquipementPrincipa
 
         TextView floorTV = itemView.findViewById(R.id.puissanceTV);
         floorTV.setText(String.valueOf(currentEquipementPrincipaux.getWattage() + " W"));
-
 
         ImageView equipementImage = itemView.findViewById(R.id.imageEquipementIV);
         equipementImage.setVisibility(View.VISIBLE);

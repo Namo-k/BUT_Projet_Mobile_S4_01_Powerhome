@@ -1,0 +1,22 @@
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <solid android:color="#FFDAB9" />
+    <size
+        android:width="15dp"
+        android:height="15dp"
+        app:cardCornerRadius="17dp"
+    />
+</shape>-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:width="15dp"
+        android:height="15dp"
+    />
+    <solid android:color="#FFDAB9" />
+
+</shape>

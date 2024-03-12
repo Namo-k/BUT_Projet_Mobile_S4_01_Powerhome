@@ -1,0 +1,197 @@
+package fr.iut.projet_mobile_s4_01_powerhome;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class MonHabitatFragment extends Fragment {
+    private Integer id;
+    private DatabaseManager databaseManager;
+    private List<EquipementPrincipaux> equipementPrincipaux;
+    private ListView listView;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_mon_habitat, container, false);
+
+        listView = rootView.findViewById(R.id.equipementPrincipauxlistView);
+/*
+        ImageView modifProfilBtn = rootView.findViewById(R.id.modifProfilBtn);
+*/
+        TextView btnVoirEquipementTV = rootView.findViewById(R.id.btnVoirEquipementTV);
+
+        equipementPrincipaux = new ArrayList<>();
+        databaseManager = new DatabaseManager(requireContext());
+
+        Intent intent = requireActivity().getIntent();
+        if (intent != null) {
+            id = intent.getIntExtra("id", 0);
+        }
+
+        getInformations(rootView);
+        getEquipements(rootView);
+
+
+        btnVoirEquipementTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EquipementFragment equipementFragment = new EquipementFragment();
+                Bundle args = new Bundle();
+                args.putInt("id", id);
+                equipementFragment.setArguments(args);
+
+                // Appelez la méthode de l'activité pour remplacer le fragment et sélectionner l'élément de la barre de navigation inférieure
+                ((MainActivity) getActivity()).replaceFragment(equipementFragment, id, R.id.menu_equipement);
+
+            }
+        });
+
+       /* modifProfilBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), EditProfileActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });*/
+
+        return rootView;
+    }
+
+    public void onApiResponse(JSONObject response, View rootView) {
+        Boolean success = null;
+        String prenom = "";
+        Integer numeroHabitat = 0;
+        Integer bonus = 0;
+        Integer total = 0;
+        Integer malus = 0;
+
+        try {
+            success = response.getBoolean("success");
+            if (success) {
+
+                TextView prenom_ = rootView.findViewById(R.id.prenom);
+                TextView numeroHabitat_ = rootView.findViewById(R.id.habitatTV);
+                TextView bonus_ = rootView.findViewById(R.id.bonusTV);
+                TextView total_ = rootView.findViewById(R.id.totalTV);
+                TextView malus_ = rootView.findViewById(R.id.malusTV);
+
+                prenom = response.getString("prenom");
+                numeroHabitat = response.getInt("habitat");
+                bonus = response.getInt("bonus");
+                malus = response.getInt("malus");
+                total = bonus - malus;
+
+                prenom_.setText(prenom);
+                numeroHabitat_.setText("Appartement n°" + numeroHabitat);
+                bonus_.setText(String.valueOf(bonus));
+                total_.setText(String.valueOf(total));
+                malus_.setText(String.valueOf(malus));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void getInformations(View rootView) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/getInformationsHabitat.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("id", String.valueOf(id));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                onApiResponse(response, rootView);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+
+    public void onApiResponseEquipement(JSONObject response, View rootView) {
+        Boolean success = null;
+        String prenom = "";
+        Integer puissance = 0;
+
+        try {
+            success = response.getBoolean("success");
+            if (success == true) {
+                JSONArray appliancesArray = response.getJSONArray("appliances");
+
+                for (int i = 0; i < appliancesArray.length(); i++) {
+                    JSONObject applianceObject = appliancesArray.getJSONObject(i);
+                    int id = applianceObject.getInt("id");
+                    String name = applianceObject.getString("name");
+                    int wattage = applianceObject.getInt("wattage");
+                    //Toast.makeText(getApplicationContext(), String.valueOf(id) + String.valueOf(wattage) + name, Toast.LENGTH_SHORT).show();
+                    puissance += wattage;
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
+                }
+                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux);
+                listView.setAdapter(adapter);
+
+                TextView puissance_ = rootView.findViewById(R.id.puissanceTV);
+                puissance_.setText(String.valueOf(puissance) + "W");
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void getEquipements(View rootView) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/getEquipements.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("id", String.valueOf(id));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                onApiResponseEquipement(response, rootView);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+}

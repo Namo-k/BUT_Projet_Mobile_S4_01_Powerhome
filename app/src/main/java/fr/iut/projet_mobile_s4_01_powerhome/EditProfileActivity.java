@@ -154,7 +154,8 @@ public class EditProfileActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Vos informations ont bien été enregistré !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", response.getInt("id"));
                 startActivity(intent);
                 finish();
