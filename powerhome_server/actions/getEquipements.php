@@ -3,17 +3,19 @@
 header('Content-Type: application/json');
 include_once '../config/Database.php';
 $json = json_decode(file_get_contents('php://input'), true);
-
 if(isset($json['id'])) {
     $id = intval($json['id']);
 
-    $getUser = $bdd->prepare("SELECT * FROM appliance WHERE habitat_id = ?");
-    $getUser->execute(array($id));
+    $getHabitatInfo = $bdd->prepare("SELECT appliance.id, appliance.name, appliance.wattage, habitat.consommation 
+                                      FROM appliance 
+                                      INNER JOIN habitat ON appliance.habitat_id = habitat.id 
+                                      WHERE appliance.habitat_id = ?");
+    $getHabitatInfo->execute(array($id));
 
-    if($getUser->rowCount() > 0) {
-        $user = $getUser->fetch(); 
+    if($getHabitatInfo->rowCount() > 0) {
+        $appliances = array(); 
 
-        while($row = $getUser->fetch(PDO::FETCH_ASSOC)) {
+        while($row = $getHabitatInfo->fetch(PDO::FETCH_ASSOC)) {
             $appliance = array(
                 "id" => $row['id'],
                 "name" => $row['name'],
@@ -21,10 +23,14 @@ if(isset($json['id'])) {
             );
 
             $appliances[] = $appliance;
+
+            // Get consommation of the habitat
+            $consommation = $row['consommation'];
         }
 
         $result["success"] = true;
         $result["appliances"] = $appliances;
+        $result["consommation"] = $consommation;
     }
     else {
         $result["success"] = false;

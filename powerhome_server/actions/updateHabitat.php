@@ -17,7 +17,7 @@ if(isset($json['id']) and isset($json['floor']) and isset($json['area'])) {
         $user = $getUser->fetch(); 
 
         try {
-            $createAccount = $bdd->prepare("INSERT INTO `habitat` (`id`, `floor`, `area`) VALUES (?, ?, ?);");
+            $createAccount = $bdd->prepare("INSERT INTO `habitat` (`id`, `floor`, `area`, `consommation`) VALUES (?, ?, ?, 0);");
             $createAccount->execute(array($id, $floor, $area));
             $createAccount = $bdd->prepare("UPDATE users SET habitat_id = ?, firstTime = ? WHERE id = ?");
             $createAccount->execute(array($id, "NO", $id));

@@ -4,9 +4,6 @@ header('Content-Type: application/json');
 
 include_once '../config/Database.php';
 $json = json_decode(file_get_contents('php://input'), true);
-// au moment où appelé php, récupère liste param d'android studio (en array) et fait lien php / android
-// quand applicaton appelle json, on passe en param du json
-// $json["mail"] = "mail";
 
 if(isset($json['mail']) and isset($json['password']) and isset($json['nom']) and isset($json['prenom']) and isset($json['naissance']) and isset($json['question']) and isset($json['reponse'])) { 
     $mail = htmlspecialchars($json['mail']); // je les mets dans variables
