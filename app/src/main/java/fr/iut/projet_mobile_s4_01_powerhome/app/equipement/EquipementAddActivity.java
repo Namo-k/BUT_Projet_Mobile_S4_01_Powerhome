@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
-import fr.iut.projet_mobile_s4_01_powerhome.app.MainActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 
 public class EquipementAddActivity extends AppCompatActivity {
@@ -74,7 +73,8 @@ public class EquipementAddActivity extends AppCompatActivity {
         btnAnnuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
@@ -116,10 +116,11 @@ public class EquipementAddActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),  fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
+
             }
             else {
                 error = response.getString("error");

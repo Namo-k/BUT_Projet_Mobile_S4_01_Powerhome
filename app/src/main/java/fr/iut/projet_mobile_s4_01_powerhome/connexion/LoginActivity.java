@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
-import fr.iut.projet_mobile_s4_01_powerhome.app.MainActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.WelcomeActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity;
@@ -51,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         EditText mailET = findViewById(R.id.mailET);
         EditText mdpET = findViewById(R.id.mdpET);
 
+
+        mailET.setText("k@gmail.com");
+        mdpET.setText("Namodacane77!!");
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

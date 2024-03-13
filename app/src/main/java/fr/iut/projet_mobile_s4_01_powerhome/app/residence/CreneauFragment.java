@@ -1,4 +1,4 @@
-package fr.iut.projet_mobile_s4_01_powerhome.app;
+package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ public class CreneauFragment extends Fragment {
 
 
     public CreneauFragment() {
+
     }
 
     @Override

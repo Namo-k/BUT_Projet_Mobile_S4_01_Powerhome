@@ -1,5 +1,6 @@
 package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -15,14 +16,15 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import fr.iut.projet_mobile_s4_01_powerhome.R;
-import fr.iut.projet_mobile_s4_01_powerhome.app.CreneauFragment;
-import fr.iut.projet_mobile_s4_01_powerhome.app.MonHabitatFragment;
-import fr.iut.projet_mobile_s4_01_powerhome.app.NotificationFragment;
-import fr.iut.projet_mobile_s4_01_powerhome.app.PreferenceFragment;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.EditProfileActivity;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.PreferenceFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementFragment;
+import fr.iut.projet_mobile_s4_01_powerhome.connexion.LoginActivity;
 
 public class TestActivity extends AppCompatActivity {
 
+    Integer id;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
@@ -36,6 +38,11 @@ public class TestActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            id = intent.getIntExtra("id", 0);
+        }
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -85,13 +92,14 @@ public class TestActivity extends AppCompatActivity {
                             .commit();
                 }
                 else if (itemId == R.id.menu_profile) {
-                    fm.beginTransaction()
-                            .replace(R.id.frame_layout, new ResidenceFragment())
-                            .commit();
+                    Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                    finish();
                 }else if (itemId == R.id.menu_deconnexion) {
-                    fm.beginTransaction()
-                            .replace(R.id.frame_layout, new ResidenceFragment())
-                            .commit();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
 
@@ -99,8 +107,10 @@ public class TestActivity extends AppCompatActivity {
                 return true;
             }
         });
-        navigationView.getMenu().performIdentifierAction(R.id.menu_preference, 0);
+        navigationView.getMenu().performIdentifierAction(R.id.menu_home, 0);
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

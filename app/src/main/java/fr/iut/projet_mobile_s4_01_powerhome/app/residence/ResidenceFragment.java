@@ -25,7 +25,7 @@ import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
-import fr.iut.projet_mobile_s4_01_powerhome.app.NotificationFragment;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.Appliance;
 
 public class ResidenceFragment extends Fragment {

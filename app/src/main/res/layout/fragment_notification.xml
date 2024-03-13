@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGreen"
-    tools:context=".app.NotificationFragment">
+    tools:context=".app.user.NotificationFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

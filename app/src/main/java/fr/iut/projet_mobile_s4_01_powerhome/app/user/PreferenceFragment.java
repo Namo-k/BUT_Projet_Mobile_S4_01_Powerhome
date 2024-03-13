@@ -1,4 +1,4 @@
-package fr.iut.projet_mobile_s4_01_powerhome.app;
+package fr.iut.projet_mobile_s4_01_powerhome.app.user;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 
-public class NotificationFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class PreferenceFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -20,7 +17,7 @@ public class NotificationFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public NotificationFragment() {
+    public PreferenceFragment() {
         // Required empty public constructor
     }
 
@@ -33,8 +30,8 @@ public class NotificationFragment extends Fragment {
      * @return A new instance of fragment MyHabitatFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static PreferenceFragment newInstance(String param1, String param2) {
+        PreferenceFragment fragment = new PreferenceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -55,6 +52,6 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+        return inflater.inflate(R.layout.fragment_preference, container, false);
     }
 }

@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -30,7 +29,7 @@ import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
-import fr.iut.projet_mobile_s4_01_powerhome.app.NotificationFragment;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
 
 public class EquipementFragment extends Fragment {
     private Integer id;
@@ -83,10 +82,10 @@ public class EquipementFragment extends Fragment {
         puissance_ = view.findViewById(R.id.puissanceTV);
         nbEquipements_ = view.findViewById(R.id.nbEquipements);
 
-       /* Bundle bundle = getArguments();
-        if (bundle != null) {
-            id = bundle.getInt("id", 0);
-        }*/
+        Intent intent = requireActivity().getIntent();
+        if (intent != null) {
+            id = intent.getIntExtra("id", 0);
+        }
 
         getEquipements();
 

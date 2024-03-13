@@ -110,7 +110,7 @@
 
 
         <activity
-            android:name=".app.EditProfileActivity"
+            android:name=".app.user.EditProfileActivity"
             android:exported="true">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -147,6 +147,7 @@
 
         <activity
             android:name=".app.equipement.EquipementAddActivity"
+            android:parentActivityName=".app.residence.TestActivity"
             android:exported="true">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGreen"
-    tools:context=".app.CreneauFragment">
+    tools:context=".app.residence.CreneauFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -482,6 +482,26 @@
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/inter_medium"
                                     android:text="Enregistrer"
+                                    android:padding="5dp"
+                                    android:textColor="@color/white"
+                                    android:textSize="12dp" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/btnAnnulerCreneau"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardBackgroundColor="@color/darkGreen"
+                                app:cardCornerRadius="6dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_toRightOf="@id/equipement3ET">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Annuler"
                                     android:padding="5dp"
                                     android:textColor="@color/white"
                                     android:textSize="12dp" />

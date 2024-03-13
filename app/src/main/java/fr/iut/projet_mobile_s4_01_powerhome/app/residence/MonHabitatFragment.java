@@ -1,4 +1,4 @@
-package fr.iut.projet_mobile_s4_01_powerhome.app;
+package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +29,7 @@ import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementAddActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipaux;
@@ -79,6 +80,7 @@ public class MonHabitatFragment extends Fragment {
 */
         TextView btnVoirEquipementTV = rootView.findViewById(R.id.btnVoirEquipementTV);
         TextView btnAjouterEquipementTV = rootView.findViewById(R.id.btnAjouterEquipementTV);
+        TextView btnModiferConsoTV = rootView.findViewById(R.id.btnModifierConsoTV);
 
         equipementPrincipaux = new ArrayList<>();
         databaseManager = new DatabaseManager(requireContext());
@@ -97,13 +99,22 @@ public class MonHabitatFragment extends Fragment {
             public void onClick(View v) {
 
                 EquipementFragment equipementFragment = new EquipementFragment();
-                Bundle args = new Bundle();
-                args.putInt("id", id);
-                equipementFragment.setArguments(args);
 
-                // Appelez la méthode de l'activité pour remplacer le fragment et sélectionner l'élément de la barre de navigation inférieure
-                ((MainActivity) getActivity()).replaceFragment(equipementFragment, id, R.id.menu_equipement);
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, equipementFragment)
+                        .commit();
+            }
+        });
 
+        btnModiferConsoTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CreneauFragment creneauFragment = new CreneauFragment();
+
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, creneauFragment)
+                        .commit();
             }
         });
 

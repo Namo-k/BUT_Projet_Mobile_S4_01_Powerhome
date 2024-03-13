@@ -1,4 +1,4 @@
-package fr.iut.projet_mobile_s4_01_powerhome.app;
+package fr.iut.projet_mobile_s4_01_powerhome.app.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,6 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         databaseManager = new DatabaseManager(getApplicationContext());
         CardView btnEnregistrer = (CardView) findViewById(R.id.btnEnregistrer);
+        CardView btnAnnuler = (CardView) findViewById(R.id.btnAnnuler);
 
         Spinner questionSpinner = findViewById(R.id.question);
         List<String> maListe = new ArrayList<>();
@@ -98,6 +99,17 @@ public class EditProfileActivity extends AppCompatActivity {
                 else {
                     updateInformations();
                 }
+            }
+        });
+
+        btnAnnuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -158,10 +170,11 @@ public class EditProfileActivity extends AppCompatActivity {
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Vos informations ont bien été enregistré !", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
                 intent.putExtra("id", response.getInt("id"));
                 startActivity(intent);
                 finish();
+
             }
         }
         catch (JSONException e) {
