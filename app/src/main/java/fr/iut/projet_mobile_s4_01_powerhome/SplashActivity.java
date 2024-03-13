@@ -1,18 +1,15 @@
 package fr.iut.projet_mobile_s4_01_powerhome;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.InputStream;
 import java.util.Random;
+
+import fr.iut.projet_mobile_s4_01_powerhome.connexion.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/toolbar">
+    android:layout_height="wrap_content"
+    android:id="@+id/toolbar_layout">
 
     <!-- ENTETE -->
     <androidx.cardview.widget.CardView
@@ -21,14 +22,14 @@
             android:layout_height="match_parent"
             android:src="@drawable/ovale_shape" />
 
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/menuD"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="38dp"
-            android:src="@drawable/menu_logo" />
+            android:src="@drawable/menu_logo" />-->
 
         <ImageView
             android:id="@+id/logoIV"
@@ -49,5 +50,8 @@
             android:src="@drawable/deconnexion" />
 
     </androidx.cardview.widget.CardView>
+
+
+
 
 </LinearLayout>

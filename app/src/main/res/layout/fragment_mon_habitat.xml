@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGreen"
-    tools:context=".MonHabitatFragment">
+    tools:context=".app.MonHabitatFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
                     android:id="@+id/accueil_phrase"
                     android:layout_width="156dp"
                     android:layout_height="20dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginLeft="70dp"
                     android:backgroundTint="@color/darkGrey"
                     android:fontFamily="@font/inter"
@@ -41,10 +42,11 @@
 
                 <TextView
                     android:id="@+id/prenom"
+                    android:text="Alexandre"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:layout_marginStart="227.5dp"
-                    android:layout_marginTop="-1dp"
+                    android:layout_marginStart="227.7dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/inter_semibold"
                     android:textColor="@color/darkGreen"
                     android:textSize="18dp"
@@ -52,7 +54,7 @@
                     app:layout_constraintRight_toRightOf="@id/accueil_phrase"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteY="0dp" />
+                    />
 
                 <TextView
                     android:id="@+id/habitat"
@@ -209,7 +211,7 @@
                             android:layout_toRightOf="@id/puissanceLabelMAX"
                             android:layout_marginTop="2dp"
                             android:layout_marginEnd="3dp"
-                            android:text="10 000W"
+                            android:text="10000W"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
                             android:textColor="@color/darkGreen"
@@ -286,10 +288,10 @@
 
 
                                     <TextView
-                                        android:id="@+id/btnModifierEquipementTV"
+                                        android:id="@+id/btnAjouterEquipementTV"
                                         android:layout_width="124dp"
                                         android:layout_height="45dp"
-                                        android:text="Modifier mes \néquipements"
+                                        android:text="Ajouter un \néquipement"
                                         android:textColor="@color/white"
                                         android:fontFamily="@font/inter_medium"
                                         android:background="@color/darkGreen"

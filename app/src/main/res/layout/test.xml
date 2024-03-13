@@ -7,67 +7,77 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".TestActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="end">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        app:headerLayout="@layout/header_menu"
-        app:menu="@menu/drawer_menu"
-    />
+
+    <!--<androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        app:navigationIcon="@drawable/menu_logo2">
+    </androidx.appcompat.widget.Toolbar>-->
+
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/toolbar">
+        android:layout_height="match_parent">
 
-        <!-- ENTETE -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="456dp"
-            android:layout_height="240dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-118dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="200dp"
-            app:cardElevation="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <ImageView
+            <include
+                android:id="@+id/custom_toolbar_layout"
+                layout="@layout/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ovale_shape" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"/>
 
-            <ImageView
-                android:id="@+id/menuD"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="38dp"
-                android:src="@drawable/menu_logo" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/menu_logo"
+                app:title=""
+                android:layout_alignParentTop="true"/>
+        </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/logoIV"
-                android:layout_width="170dp"
-                android:layout_height="90.92dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="147dp"
-                android:layout_marginTop="55dp"
-                android:src="@drawable/logo" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/frame_layout"/>
 
-            <ImageView
-                android:id="@+id/sedeconnecterBtn"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="355dp"
-                android:layout_marginTop="38dp"
-                android:src="@drawable/deconnexion" />
+       <!-- <com.google.android.material.bottomappbar.BottomAppBar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/darkGreen"
+            tools:ignore="BottomAppBar">
 
-        </androidx.cardview.widget.CardView>
-
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bottomNavigationView"
+                app:labelVisibilityMode="unlabeled"
+                app:itemIconSize="35dp"
+                android:background="@android:color/transparent"
+                app:itemIconTint="@android:color/white"
+                style="@style/BottomNavigationViewNoAnimation"
+                app:itemBackground="@drawable/bottom_nav_item_background"
+                app:menu="@menu/bottom_nav_menu"/>
+        </com.google.android.material.bottomappbar.BottomAppBar>
+-->
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="start">
+
+        <include layout="@layout/nav_drawer"/>
+
+    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
