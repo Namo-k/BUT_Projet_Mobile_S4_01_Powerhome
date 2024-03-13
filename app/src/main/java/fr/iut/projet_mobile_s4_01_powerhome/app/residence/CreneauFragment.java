@@ -24,12 +24,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Date;
-import java.sql.Time;
+
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
@@ -49,8 +56,8 @@ public class CreneauFragment extends Fragment {
 
     private DatabaseManager databaseManager;
 
-    private Map<String, Integer> equipementConsoMap = new HashMap<>();
-    private List<TimeSlot> timeSlots = new ArrayList<>();
+    private final Map<String, Integer> equipementConsoMap = new HashMap<>();
+    private final List<TimeSlot> timeSlots = new ArrayList<>();
 
     public CreneauFragment() {
         // Required empty public constructor
@@ -93,6 +100,10 @@ public class CreneauFragment extends Fragment {
             maListe.add(heure);
         }
 
+        TextView debutdateJourET = view.findViewById(R.id.debutdateJourET);
+        TextView debutdateMoisET = view.findViewById(R.id.debutdateMoisET);
+        TextView debutdateAnneeET = view.findViewById(R.id.debutdateAnneeET);
+
         Spinner debutSpinner = view.findViewById(R.id.debutET);
         debutSpinner.setAdapter(new ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, maListe));
         Spinner finSpinner = view.findViewById(R.id.finET);
@@ -103,12 +114,12 @@ public class CreneauFragment extends Fragment {
         Spinner equipementSpinner = view.findViewById(R.id.equipement1Spinner);
         TextView consoEquipement = view.findViewById(R.id.equipement1ConsoTV);
         TextView consoCreneau = view.findViewById(R.id.consoCreneauTV);
+        TextView msgTV = view.findViewById(R.id.msgTV);
         CardView btnVerifierCreneau = view.findViewById(R.id.btnVerifier);
         CardView btnEnregistrerCreneau = view.findViewById(R.id.btnEnregistrerCreneau);
         CardView btnAnnulerCreneau = view.findViewById(R.id.btnAnnulerCreneau);
 
         getEquipements(view);
-        //remplirTimeSlot();
         getTimeSlot(view);
         equipementSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -129,9 +140,112 @@ public class CreneauFragment extends Fragment {
         btnVerifierCreneau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                consoCreneau.setText("20W");
+                String debutTime = debutSpinner.getSelectedItem().toString();
+                String finTime = finSpinner.getSelectedItem().toString();
+                String jour = debutdateJourET.getText().toString();
+                String mois = debutdateMoisET.getText().toString();
+                String annee = debutdateAnneeET.getText().toString();
+
+
+                Calendar calendar = Calendar.getInstance();
+                int currentYear = calendar.get(Calendar.YEAR);
+                int currentMonth = calendar.get(Calendar.MONTH) + 1;
+                int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+                int selectedYear = Integer.parseInt(annee);
+                int selectedMonth = Integer.parseInt(mois);
+                int selectedDay = Integer.parseInt(jour);
+
+                if (jour.isEmpty() || mois.isEmpty() || annee.isEmpty()) {
+                    Toast.makeText(requireContext(), "Veuillez remplir tous les champs de la date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (debutTime.equals("Sélectionnez l'heure de début") || finTime.equals("Sélectionnez l'heure de fin")) {
+                    Toast.makeText(requireContext(), "Veuillez sélectionner une heure de début et de fin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+                    int day = Integer.parseInt(jour);
+                    int month = Integer.parseInt(mois);
+                    int year = Integer.parseInt(annee);
+                    if (day < 1 || day > 31 || month < 1 || month > 12 || year < 2023) {
+                        Toast.makeText(requireContext(), "Format de date invalide", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(requireContext(), "Format de date invalide", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || (selectedYear == currentYear && selectedMonth == currentMonth && selectedDay < currentDay)) {
+                    Toast.makeText(requireContext(), "La date doit être supérieure à aujourd'hui", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH'h'", Locale.FRANCE);
+                try {
+                    Date debutDate = sdf.parse(debutTime);
+                    Date finDate = sdf.parse(finTime);
+                    if (debutDate.compareTo(finDate) >= 0) {
+                        Toast.makeText(requireContext(), "L'heure de début doit être strictement supérieure à l'heure de fin", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                String dateDebutComplete = annee + "-" + mois + "-" + jour + " " + debutTime.replace("h", ":00:00");
+                String dateFinComplete = annee + "-" + mois + "-" + jour + " " + finTime.replace("h", ":00:00");
+
+                if (equipementSpinner.getSelectedItemPosition() <= 0) {
+                    Toast.makeText(requireContext(), "Veuillez sélectionner un équipement pour vérifier", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String equipementName = equipementSpinner.getSelectedItem().toString();
+                Integer equipementConso = equipementConsoMap.getOrDefault(equipementName, 0);
+
+                boolean creneauFound = false;
+                for (TimeSlot slot : timeSlots) {
+                    if (slot.getBegin().equals(dateDebutComplete) && slot.getEnd().equals(dateFinComplete)) {
+                        creneauFound = true;
+                        int totalConso = slot.getWattageUsed() + equipementConso;
+                        if (totalConso > slot.getMaxWattage()) {
+                            msgTV.setVisibility(View.VISIBLE);
+                            msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                        } else {
+                            msgTV.setVisibility(View.VISIBLE);
+                            msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
+                            msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                        }
+                        consoCreneau.setText(slot.getWattageUsed() + "W");
+/*
+                        ajouterEquipementAuCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementName);
+*/
+                        break;
+                    }
+                }
+
+                if (!creneauFound) {
+                    int maxWattage = 10000;
+                    int totalConso = equipementConso;
+                    if (totalConso > maxWattage) {
+                        msgTV.setVisibility(View.VISIBLE);
+                        msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                    } else {
+                        msgTV.setVisibility(View.VISIBLE);
+                        msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
+                        msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                    }
+                    consoCreneau.setText("0W");
+/*
+                    ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementName);
+*/
+                }
             }
         });
+
 
         btnAnnulerCreneau.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,8 +262,15 @@ public class CreneauFragment extends Fragment {
             }
         });
 
-
         return view;
+    }
+    private String convertSpinnerTimeToDate(String spinnerTime) {
+        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
+        DateFormat currentDateFormatter = new SimpleDateFormat("yyyy-MM-dd ", Locale.FRANCE);
+        String currentDate = currentDateFormatter.format(new Date());
+        String time = spinnerTime.replace("h", "") + ":00:00";
+
+        return currentDate + time;
     }
 
     public void getConsoEquipement(String equipementName, TextView consoEquipement) {
@@ -239,24 +360,6 @@ public class CreneauFragment extends Fragment {
 
                 }
 
-                /*Spinner debutSpinner = rootView.findViewById(R.id.debutET);
-                Spinner finSpinner = rootView.findViewById(R.id.finET);
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item);
-
-                adapter.add("Selectionnez : ");
-                for (TimeSlot timeSlot : timeSlots) {
-                    adapter.add(timeSlot.getBegin());
-                }
-                debutSpinner.setAdapter(adapter);
-
-                adapter.clear();
-                adapter.add("Selectionnez : ");
-                for (TimeSlot timeSlot : timeSlots) {
-                    adapter.add(timeSlot.getEnd());
-                }
-                finSpinner.setAdapter(adapter);*/
-
             } else {
                 Toast.makeText(requireContext(), "La requête n'a pas réussi", Toast.LENGTH_SHORT).show();
             }
@@ -284,21 +387,62 @@ public class CreneauFragment extends Fragment {
         databaseManager.queue.add(jsonObjectRequest);
     }
 
-    /*public void remplirTimeSlot() {
-        String url = "http://10.0.2.2:2000/powerhome_server/actions/remplirTimeSlot.php";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+    public void ajouterEquipementAuCreneau(String dateDebut, String dateFin, int consommationEquipement, String equipementName) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipementAuCreneau.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("date_debut", dateDebut);
+        params.put("date_fin", dateFin);
+        params.put("consommation", String.valueOf(consommationEquipement));
+        params.put("equipement_name", equipementName);
+        params.put("id", String.valueOf(id));
 
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, response -> {
+            try {
+                boolean success = response.getBoolean("success");
+                if (success) {
+                    Toast.makeText(requireContext(), "Équipement ajouté au créneau avec succès!", Toast.LENGTH_SHORT).show();
+                } else {
+                    String errorMessage = response.has("error") ? response.getString("error") : "Une erreur s'est produite lors de l'ajout de l'équipement.";
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(requireContext(), "Erreur lors du traitement de la réponse du serveur.", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        }, error -> Toast.makeText(requireContext(), "Erreur de communication avec le serveur: " + error.toString(), Toast.LENGTH_SHORT).show());
 
-            }
-        });
         databaseManager.queue.add(jsonObjectRequest);
-    }*/
+    }
+
+    public void ajouterEquipementAuNouveauCreneau(String dateDebut, String dateFin, int consommationEquipement, String equipementName) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipementAuNouveauCreneau.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("date_debut", dateDebut);
+        params.put("date_fin", dateFin);
+        params.put("consommation", String.valueOf(consommationEquipement));
+        params.put("equipement_name", equipementName);
+        params.put("id", String.valueOf(id));
+
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, response -> {
+            try {
+                boolean success = response.getBoolean("success");
+                if (success) {
+                    Toast.makeText(requireContext(), "Équipement ajouté au créneau avec succès!", Toast.LENGTH_SHORT).show();
+                } else {
+                    String errorMessage = response.has("error") ? response.getString("error") : "Une erreur s'est produite lors de l'ajout de l'équipement.";
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(requireContext(), "Erreur lors du traitement de la réponse du serveur.", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> Toast.makeText(requireContext(), "Erreur de communication avec le serveur: " + error.toString(), Toast.LENGTH_SHORT).show());
+
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+
 
 
 

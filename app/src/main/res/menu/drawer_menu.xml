@@ -10,13 +10,13 @@
     <item
         android:id="@+id/menu_residence"
         android:icon="@drawable/baseline_add_location_alt_24"
-        android:title="Ma Residence"
+        android:title="Ma Résidence"
         />
 
     <item
         android:id="@+id/menu_equipement"
         android:icon="@drawable/baseline_add_home_work_24"
-        android:title="Mes Equipements"
+        android:title="Mes Équipements"
         />
 
     <item
@@ -32,14 +32,14 @@
     <item
         android:id="@+id/menu_notification"
         android:icon="@drawable/baseline_announcement_24"
-        android:title="Notification"
+        android:title="Notifications"
         />
 
 
     <item
         android:id="@+id/menu_preference"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Preference"
+        android:title="Préférences"
         />
 
     <item
@@ -49,13 +49,13 @@
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/user"
-        android:title="Modifier le Profil"
+        android:title="Modifier le profil"
         />
 
     <item
         android:id="@+id/menu_deconnexion"
         android:icon="@drawable/baseline_exit_to_app_24"
-        android:title="Deconnexion"
+        android:title="Déconnexion"
         />
 
 </menu>

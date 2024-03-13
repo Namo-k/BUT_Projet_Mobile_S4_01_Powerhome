@@ -139,6 +139,62 @@
                         android:paddingBottom="6dp">
 
                         <TextView
+                            android:id="@+id/debutDateLabelTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Date : "
+                            android:textColor="@color/grey"
+                            android:textSize="13.5dp"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/debutdateJourET"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:layout_toRightOf="@+id/debutLabelTV"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/round_login"
+                            android:fontFamily="@font/inter"
+                            android:inputType="text"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                        />
+                        <EditText
+                            android:id="@+id/debutdateMoisET"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:layout_toRightOf="@+id/debutdateJourET"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/round_login"
+                            android:fontFamily="@font/inter"
+                            android:inputType="text"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            />
+                        <EditText
+                            android:id="@+id/debutdateAnneeET"
+                            android:layout_width="75dp"
+                            android:layout_height="23dp"
+                            android:layout_toRightOf="@+id/debutdateMoisET"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/round_login"
+                            android:fontFamily="@font/inter"
+                            android:inputType="text"
+
+                            android:gravity="center"
+                            android:textSize="11dp"
+                        />
+
+                        <TextView
                             android:id="@+id/debutLabelTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -146,6 +202,7 @@
                             android:layout_marginTop="3dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/debutDateLabelTV"
                             android:fontFamily="@font/inter_medium"
                             android:text="De  : "
                             android:textColor="@color/grey"
@@ -160,6 +217,7 @@
                             android:layout_toRightOf="@+id/debutLabelTV"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
+                            android:layout_below="@+id/debutDateLabelTV"
                             android:background="@drawable/round_login"
                             android:fontFamily="@font/inter"
                             android:inputType="text"
@@ -172,6 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_toRightOf="@id/debutET"
+                            android:layout_below="@+id/debutDateLabelTV"
                             android:layout_marginTop="3dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
@@ -186,6 +245,7 @@
                             android:layout_width="70dp"
                             android:layout_height="23dp"
                             android:layout_toRightOf="@+id/finLabelTV"
+                            android:layout_below="@+id/debutDateLabelTV"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:background="@drawable/round_login"
@@ -194,24 +254,7 @@
                             android:textSize="16dp"
                             />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/btnVerifier"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/darkGreen"
-                            app:cardCornerRadius="6dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_toRightOf="@id/finET">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/inter_medium"
-                                android:text="Verfifier"
-                                android:padding="5dp"
-                                android:textColor="@color/white"
-                                android:textSize="12dp" />
-                        </androidx.cardview.widget.CardView>
 
                         <!--<ImageView
                             android:id="@+id/graphe"
@@ -229,7 +272,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
-                            android:layout_below="@+id/btnVerifier"
+                            android:layout_below="@+id/finET"
                             android:fontFamily="@font/inter_medium"
                             android:text="Conso sur ce créneau :"
                             android:textColor="@color/grey"
@@ -239,9 +282,9 @@
                             android:id="@+id/consoCreneauTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/btnVerifier"
+                            android:layout_below="@+id/finET"
                             android:layout_toRightOf="@+id/consoCreneauLabelTV"
-                            android:layout_marginStart="3dp"
+                            android:layout_marginStart="5dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
@@ -252,7 +295,8 @@
 
 
                         <TextView
-                            android:id="@+id/msgLabel"
+                            android:id="@+id/msgTV"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/consoCreneauLabelTV"
@@ -261,7 +305,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau"
+                            android:text=""
                             android:textColor="@color/red"
                             android:textSize="14dp"
                             android:layout_centerHorizontal="true"
@@ -272,7 +316,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:layout_below="@id/msgLabel"
+                            android:layout_below="@id/msgTV"
                             android:layout_marginTop="13dp"
                             android:layout_marginLeft="3dp"
                             android:gravity="top|center">
@@ -438,6 +482,24 @@
 
                             </RelativeLayout>-->
 
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/btnVerifier"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardBackgroundColor="@color/darkGreen"
+                                app:cardCornerRadius="6dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_toRightOf="@id/finET">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Verfifier"
+                                    android:padding="5dp"
+                                    android:textColor="@color/white"
+                                    android:textSize="12dp" />
+                            </androidx.cardview.widget.CardView>
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/btnEnregistrerCreneau"
                                 android:layout_width="wrap_content"
