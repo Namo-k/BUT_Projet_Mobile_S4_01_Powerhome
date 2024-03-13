@@ -23,8 +23,6 @@ if(isset($json['id'])) {
             );
 
             $appliances[] = $appliance;
-
-            // Get consommation of the habitat
             $consommation = $row['consommation'];
         }
 
