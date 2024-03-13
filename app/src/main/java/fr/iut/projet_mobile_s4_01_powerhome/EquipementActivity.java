@@ -82,9 +82,9 @@ public class EquipementActivity extends AppCompatActivity {
                     int wattage = applianceObject.getInt("wattage");
                     puissanceCalculee += wattage;
                     ++nbEquipements;
-                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage));
                 }
-                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(this, equipementPrincipaux);
+                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(this, equipementPrincipaux, R.layout.item_equipements_principaux);
                 listView.setAdapter(adapter);
 
                 TextView puissance_ = findViewById(R.id.puissanceTV);

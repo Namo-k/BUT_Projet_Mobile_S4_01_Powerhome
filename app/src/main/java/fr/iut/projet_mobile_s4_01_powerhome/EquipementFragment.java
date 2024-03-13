@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -45,7 +46,7 @@ public class EquipementFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_equipement, container, false);
 
         listView = view.findViewById(R.id.equipementPrincipauxlistView);
-        TextView btnAjouterEquipement = view.findViewById(R.id.btnAjouterEquipement);
+        CardView btnAjouterEquipement = view.findViewById(R.id.btnAjouterEquipement);
 
         equipementPrincipaux = new ArrayList<>();
         databaseManager = new DatabaseManager(requireContext());
@@ -93,9 +94,9 @@ public class EquipementFragment extends Fragment {
                     int wattage = applianceObject.getInt("wattage");
                     puissanceCalculee += wattage;
                     ++nbEquipements;
-                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage));
                 }
-                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux);
+                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux, R.layout.item_equipements_principaux2);
                 listView.setAdapter(adapter);
 
                 puissance_.setText(String.valueOf(puissanceCalculee) + "W");

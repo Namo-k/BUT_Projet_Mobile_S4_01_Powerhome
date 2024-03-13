@@ -37,6 +37,7 @@ public class MonHabitatFragment extends Fragment {
     private DatabaseManager databaseManager;
     private List<EquipementPrincipaux> equipementPrincipaux;
     private ListView listView;
+    private Integer puissance;
 
     @Nullable
     @Override
@@ -48,6 +49,7 @@ public class MonHabitatFragment extends Fragment {
         ImageView modifProfilBtn = rootView.findViewById(R.id.modifProfilBtn);
 */
         TextView btnVoirEquipementTV = rootView.findViewById(R.id.btnVoirEquipementTV);
+        TextView btnAjouterEquipementTV = rootView.findViewById(R.id.btnAjouterEquipementTV);
 
         equipementPrincipaux = new ArrayList<>();
         databaseManager = new DatabaseManager(requireContext());
@@ -76,15 +78,16 @@ public class MonHabitatFragment extends Fragment {
             }
         });
 
-       /* modifProfilBtn.setOnClickListener(new View.OnClickListener() {
+       btnAjouterEquipementTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), EditProfileActivity.class);
+                Intent intent = new Intent(requireContext(), EquipementAddActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("puissance", puissance);
                 startActivity(intent);
                 requireActivity().finish();
             }
-        });*/
+        });
 
         return rootView;
     }
@@ -147,7 +150,7 @@ public class MonHabitatFragment extends Fragment {
     public void onApiResponseEquipement(JSONObject response, View rootView) {
         Boolean success = null;
         String prenom = "";
-        Integer puissance = 0;
+        Integer puissanceCalculee = 0;
 
         try {
             success = response.getBoolean("success");
@@ -159,15 +162,17 @@ public class MonHabitatFragment extends Fragment {
                     int id = applianceObject.getInt("id");
                     String name = applianceObject.getString("name");
                     int wattage = applianceObject.getInt("wattage");
-                    //Toast.makeText(getApplicationContext(), String.valueOf(id) + String.valueOf(wattage) + name, Toast.LENGTH_SHORT).show();
-                    puissance += wattage;
-                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
+                    puissanceCalculee += wattage;
+
+                    int imageResourceId = EquipementPrincipaux.getImageResourceIdByName(name);
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage));
                 }
-                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux);
+                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux, R.layout.item_equipements_principaux);
                 listView.setAdapter(adapter);
 
                 TextView puissance_ = rootView.findViewById(R.id.puissanceTV);
-                puissance_.setText(String.valueOf(puissance) + "W");
+                puissance_.setText(String.valueOf(puissanceCalculee) + "W");
+                puissance = puissanceCalculee;
             }
         }
         catch (JSONException e) {

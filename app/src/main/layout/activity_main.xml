@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+
+    <!-- ENTETE -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="456dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-118dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="200dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ovale_shape" />
+
+        <!--<ImageView
+            android:id="@+id/sedeconnecterBtn"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="38dp"
+            android:src="@drawable/deconnexion" />-->
+
+        <ImageView
+            android:id="@+id/logoIV"
+            android:layout_width="170dp"
+            android:layout_height="90.92dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="147dp"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/sedeconnecterBtn"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="355dp"
+            android:layout_marginTop="38dp"
+            android:src="@drawable/deconnexion" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- FIN ENTETE -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/frame_layout"/>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/darkGreen"
+        tools:ignore="BottomAppBar">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottomNavigationView"
+            app:labelVisibilityMode="unlabeled"
+            app:itemIconSize="35dp"
+            android:background="@android:color/transparent"
+            app:itemIconTint="@android:color/white"
+            style="@style/BottomNavigationViewNoAnimation"
+            app:itemBackground="@drawable/bottom_nav_item_background"
+            app:menu="@menu/bottom_nav_menu"/>
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+</LinearLayout>

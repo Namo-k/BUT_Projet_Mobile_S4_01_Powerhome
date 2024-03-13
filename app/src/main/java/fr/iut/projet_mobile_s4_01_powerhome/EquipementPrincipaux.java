@@ -1,18 +1,29 @@
 package fr.iut.projet_mobile_s4_01_powerhome;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EquipementPrincipaux {
 
-    int id;
-    String name;
-    int wattage;
+    private int id;
+    private String name;
+    private int wattage;
+    private static final Map<String, Integer> equipementImageMap = new HashMap<>();
 
-    int imageId;
+    static {
+        equipementImageMap.put("aspirateur", R.drawable.ic_aspirateur);
+        equipementImageMap.put("climatiseur", R.drawable.ic_climatiseur);
+        equipementImageMap.put("fer à repasser", R.drawable.ic_fer_a_repasser);
+        equipementImageMap.put("machine à laver", R.drawable.ic_machine_a_laver);
+        equipementImageMap.put("television", R.drawable.ic_television);
+        equipementImageMap.put("radiateur électrique", R.drawable.ic_radiateur);
+        equipementImageMap.put("four électrique", R.drawable.ic_four);
+    }
 
-    public EquipementPrincipaux(int id, String name, int wattage, int imageId) {
+    public EquipementPrincipaux(int id, String name, int wattage) {
         this.id = id;
         this.name = name;
         this.wattage = wattage;
-        this.imageId = imageId;
     }
 
     public int getId() {
@@ -27,7 +38,8 @@ public class EquipementPrincipaux {
         return wattage;
     }
 
-    public int getImageId() {
-        return imageId;
+    protected static int getImageResourceIdByName(String equipementName) {
+        Integer resourceId = equipementImageMap.get(equipementName.toLowerCase());
+        return resourceId != null ? resourceId : 0;
     }
 }

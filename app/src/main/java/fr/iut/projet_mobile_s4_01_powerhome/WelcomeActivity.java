@@ -147,7 +147,7 @@ public class WelcomeActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), AccueilActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();

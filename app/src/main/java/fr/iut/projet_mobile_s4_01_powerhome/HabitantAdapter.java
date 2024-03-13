@@ -30,6 +30,9 @@ public class HabitantAdapter extends ArrayAdapter<Habitant> {
         map.put(2, R.drawable.ic_climatiseur);
         map.put(3, R.drawable.ic_fer_a_repasser);
         map.put(4, R.drawable.ic_machine_a_laver);
+        map.put(5, R.drawable.ic_television);
+        map.put(6, R.drawable.ic_four);
+        map.put(7, R.drawable.ic_radiateur);
         return map;
     }
 

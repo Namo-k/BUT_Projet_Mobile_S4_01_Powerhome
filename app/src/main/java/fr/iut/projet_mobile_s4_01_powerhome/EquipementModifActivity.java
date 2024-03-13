@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EquipementAddActivity extends AppCompatActivity {
+public class EquipementModifActivity extends AppCompatActivity {
     private Integer id;
     private DatabaseManager databaseManager;
     private String wattage;
@@ -42,10 +42,11 @@ public class EquipementAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equipements_ajout);
+        setContentView(R.layout.activity_equipements_modif);
 
-        CardView btnAjouterEquipement = (CardView) findViewById(R.id.btnAjouterEquipement);
-        CardView btnAnnuler = (CardView) findViewById(R.id.btnAnnulerAjoutEquipement);
+        CardView btnModif = (CardView) findViewById(R.id.btnModifier);
+        CardView btnSupprimer = (CardView) findViewById(R.id.btnSupprimer);
+
         TextView puissance_ = findViewById(R.id.puissanceTV);
         errorTextView = (TextView) findViewById(R.id.errorTextView);
 
@@ -71,17 +72,18 @@ public class EquipementAddActivity extends AppCompatActivity {
             puissance_.setText(String.valueOf(puissance) + "W");
         }
 
-        btnAnnuler.setOnClickListener(new View.OnClickListener() {
+        btnSupprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                supprimerEquipement();
+                Intent intent = new Intent(getApplicationContext(), EquipementFragment.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
             }
         });
 
-        btnAjouterEquipement.setOnClickListener(new View.OnClickListener() {
+        btnModif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText reference_ = findViewById(R.id.referenceET);
@@ -103,12 +105,12 @@ public class EquipementAddActivity extends AppCompatActivity {
                     errorTextView.setText("Vous ne pouvez pas dépasser la puissance maximale totale de votre habitat");
                 }
                 else {
-                    ajouterEquipement();
+                    modifEquipement();
                 }
             }
         });
     }
-    public void onApiResponseAjout(JSONObject response) {
+    public void onApiResponseModif(JSONObject response) {
         Boolean success = null;
         String error = "";
 
@@ -116,7 +118,7 @@ public class EquipementAddActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EquipementActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
@@ -133,7 +135,7 @@ public class EquipementAddActivity extends AppCompatActivity {
         }
     }
 
-    public void ajouterEquipement() {
+    public void modifEquipement() {
         String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipement.php";
         Map<String, String> params = new HashMap<>();
         params.put("name", name);
@@ -145,7 +147,55 @@ public class EquipementAddActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                onApiResponseAjout(response);
+                onApiResponseModif(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+
+    public void onApiResponseSupp(JSONObject response) {
+        Boolean success = null;
+        String error = "";
+
+        try {
+            success = response.getBoolean("success");
+            if (success == true) {
+                Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), EquipementActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                error = response.getString("error");
+                errorTextView.setVisibility(View.VISIBLE);
+                errorTextView.setText(error);
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void supprimerEquipement() {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/suppEquipement.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("name", name);
+        params.put("reference", reference);
+        params.put("wattage", wattage);
+        params.put("id", String.valueOf(id));
+        //Toast.makeText(getApplicationContext(), name + reference + wattage + String.valueOf(id), Toast.LENGTH_SHORT).show();
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                onApiResponseSupp(response);
             }
         }, new Response.ErrorListener() {
             @Override

@@ -52,25 +52,32 @@ public class ResidenceFragment extends Fragment {
             if (success == true) {
                 JSONArray habitantsArray = response.getJSONArray("users");
 
-                List<Appliance> a1 = new ArrayList<>();
-                a1.add(new Appliance(1, "Aspirateur",  600));
-                a1.add(new Appliance(4, "Machine à laver", 50));
-                a1.add(new Appliance(2, "Climatiseur", 450));
-
                 for (int i = 0; i < habitantsArray.length(); i++) {
-                    JSONObject applianceObject = habitantsArray.getJSONObject(i);
-                    Integer habitat_id = applianceObject.getInt("habitat_id");
-                    String nomprenom = applianceObject.getString("nom") + " " + applianceObject.getString("prenom");;
-                    Integer ecocoin = applianceObject.getInt("bonus") - applianceObject.getInt("malus");
-                    Integer consoTotal = applianceObject.getInt("consommation");
+                    JSONObject habitantObject = habitantsArray.getJSONObject(i);
+                    Integer habitat_id = habitantObject.getInt("habitat_id");
+                    String nomprenom = habitantObject.getString("prenom") + " " + habitantObject.getString("nom");
+                    Integer ecocoin = habitantObject.getInt("bonus") - habitantObject.getInt("malus");
+                    Integer consoTotal = habitantObject.getInt("consommation");
+                    List<Appliance> equipementsPrincipaux = new ArrayList<>();
 
-                    Habitants.add(new Habitant(habitat_id, nomprenom, a1, ecocoin, consoTotal));
+                    //JSONArray equipementsArray = habitantObject.getJSONArray("equipements_principaux");
+                    //List<Appliance> equipementsPrincipaux = new ArrayList<>();
+
+                    //for (int j = 0; j < equipementsArray.length(); j++) {
+                    //    JSONObject equipementObject = equipementsArray.getJSONObject(j);
+                    //    Integer equipement_id = equipementObject.getInt("id");
+                    //    String equipement_nom = equipementObject.getString("nom");
+                    //    Integer equipement_wattage = equipementObject.getInt("wattage");
+                    //    equipementsPrincipaux.add(new Appliance(equipement_id, equipement_nom, equipement_wattage));
+                    //}
+
+                    Habitants.add(new Habitant(habitat_id, nomprenom, equipementsPrincipaux, ecocoin, consoTotal));
                 }
+
                 HabitantAdapter adapter = new HabitantAdapter(requireContext(), Habitants);
                 listView.setAdapter(adapter);
             }
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }

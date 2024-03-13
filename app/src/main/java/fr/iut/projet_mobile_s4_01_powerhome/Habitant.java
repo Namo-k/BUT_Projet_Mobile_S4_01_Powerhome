@@ -19,16 +19,9 @@ public class Habitant {
         this.habitantName = habitantName;
         this.appliances = appliances;
         this.ecoCoin = ecoCoin;
-        this.consoTotal = consoTotal(appliances);
+        this.consoTotal = consoTotal;
     }
 
-    public int consoTotal(List<Appliance> appliances){
-        int c = 0;
-        for(int i = 0; i < appliances.size(); ++i){
-            c = c + appliances.get(i).getWattage();
-        }
-        return c;
-    }
     public int getId() {
         return id;
     }
@@ -49,10 +42,6 @@ public class Habitant {
 
     public int getConsoTotal() {
         return consoTotal;
-    }
-
-    public void setConsoTotal(int consoTotal) {
-        this.consoTotal = consoTotal;
     }
 
 }

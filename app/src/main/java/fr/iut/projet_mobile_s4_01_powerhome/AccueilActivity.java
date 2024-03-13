@@ -32,11 +32,14 @@ public class AccueilActivity extends AppCompatActivity {
     private DatabaseManager databaseManager;
     private List<EquipementPrincipaux> equipementPrincipaux;
     private ListView listView;
+    private Map<Integer, Integer> images;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
+
+        Toast.makeText(this, "HEY", Toast.LENGTH_SHORT).show();
 
         listView = findViewById(R.id.equipementPrincipauxlistView);
         ImageView modifProfilBtn = (ImageView) findViewById(R.id.modifProfilBtn);
@@ -44,7 +47,6 @@ public class AccueilActivity extends AppCompatActivity {
 
         equipementPrincipaux = new ArrayList<>();
         databaseManager = new DatabaseManager(getApplicationContext());
-
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -134,10 +136,14 @@ public class AccueilActivity extends AppCompatActivity {
         String prenom = "";
         Integer puissance = 0;
 
+
         try {
             success = response.getBoolean("success");
             if (success == true) {
                 JSONArray appliancesArray = response.getJSONArray("appliances");
+
+                //Map<Integer, Integer> createApplianceImageMap()
+
 
                 for (int i = 0; i < appliancesArray.length(); i++) {
                     JSONObject applianceObject = appliancesArray.getJSONObject(i);
@@ -146,10 +152,11 @@ public class AccueilActivity extends AppCompatActivity {
                     int wattage = applianceObject.getInt("wattage");
                     //Toast.makeText(getApplicationContext(), String.valueOf(id) + String.valueOf(wattage) + name, Toast.LENGTH_SHORT).show();
                     puissance += wattage;
-                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage, 4));
+
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage));
                 }
 
-                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(this, equipementPrincipaux);
+                EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(this, equipementPrincipaux, R.layout.item_equipements_principaux);
                 listView.setAdapter(adapter);
 
                 TextView puissance_ = findViewById(R.id.puissanceTV);
