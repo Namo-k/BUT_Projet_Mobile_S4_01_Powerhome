@@ -66,30 +66,36 @@ public class TestActivity extends AppCompatActivity {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new MonHabitatFragment())
                             .commit();
+                    setTitle("");
                 } else if (itemId == R.id.menu_residence) {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new ResidenceFragment())
                             .commit();
+                    setTitle("");
                 }
                 else if (itemId == R.id.menu_equipement) {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new EquipementFragment())
                             .commit();
+                    setTitle("");
                 }
                 else if (itemId == R.id.menu_creneau) {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new CreneauFragment())
                             .commit();
+                    setTitle("");
                 }
                 else if (itemId == R.id.menu_notification) {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new NotificationFragment())
                             .commit();
+                    setTitle("");
                 }
                 else if (itemId == R.id.menu_preference) {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new PreferenceFragment())
                             .commit();
+                    setTitle("");
                 }
                 else if (itemId == R.id.menu_profile) {
                     Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
@@ -102,7 +108,6 @@ public class TestActivity extends AppCompatActivity {
                     finish();
                 }
 
-
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -110,7 +115,6 @@ public class TestActivity extends AppCompatActivity {
         navigationView.getMenu().performIdentifierAction(R.id.menu_home, 0);
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
