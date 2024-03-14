@@ -38,8 +38,4 @@ public class TimeSlot {
         return wattageUsed;
     }
 
-    public void setWattageUsed(Integer wattageUsed) {
-        this.wattageUsed = wattageUsed;
-    }
-
 }

@@ -94,17 +94,6 @@ public class ResidenceFragment extends Fragment {
                     Integer consoTotal = habitantObject.getInt("consommation");
                     List<Appliance> equipementsPrincipaux = new ArrayList<>();
 
-                    //JSONArray equipementsArray = habitantObject.getJSONArray("equipements_principaux");
-                    //List<Appliance> equipementsPrincipaux = new ArrayList<>();
-
-                    //for (int j = 0; j < equipementsArray.length(); j++) {
-                    //    JSONObject equipementObject = equipementsArray.getJSONObject(j);
-                    //    Integer equipement_id = equipementObject.getInt("id");
-                    //    String equipement_nom = equipementObject.getString("nom");
-                    //    Integer equipement_wattage = equipementObject.getInt("wattage");
-                    //    equipementsPrincipaux.add(new Appliance(equipement_id, equipement_nom, equipement_wattage));
-                    //}
-
                     Habitants.add(new Habitant(habitat_id, nomprenom, equipementsPrincipaux, ecocoin, consoTotal));
                 }
 

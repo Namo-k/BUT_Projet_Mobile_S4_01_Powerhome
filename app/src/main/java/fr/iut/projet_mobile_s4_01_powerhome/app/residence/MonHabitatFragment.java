@@ -75,9 +75,6 @@ public class MonHabitatFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_mon_habitat, container, false);
 
         listView = rootView.findViewById(R.id.equipementPrincipauxlistView);
-/*
-        ImageView modifProfilBtn = rootView.findViewById(R.id.modifProfilBtn);
-*/
         TextView btnVoirEquipementTV = rootView.findViewById(R.id.btnVoirEquipementTV);
         TextView btnAjouterEquipementTV = rootView.findViewById(R.id.btnAjouterEquipementTV);
         TextView btnModiferConsoTV = rootView.findViewById(R.id.btnModifierConsoTV);

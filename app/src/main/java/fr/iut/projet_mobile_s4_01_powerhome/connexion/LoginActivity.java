@@ -26,7 +26,7 @@ import java.util.Map;
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.WelcomeActivity;
-import fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity;
+import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.connexion.Register.RegisterActivity1;
 import fr.iut.projet_mobile_s4_01_powerhome.connexion.forgotPassword.ForgotPasswordActivity;
 
@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                 }
                 else {
-                    intent = new Intent(getApplicationContext(), TestActivity.class);
+                    intent = new Intent(getApplicationContext(), MainActivity.class);
                 }
                 intent.putExtra("id", response.getInt("id"));
                 startActivity(intent);

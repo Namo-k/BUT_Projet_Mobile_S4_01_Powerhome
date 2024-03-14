@@ -16,8 +16,6 @@ import fr.iut.projet_mobile_s4_01_powerhome.R;
 public class PreferenceFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -25,15 +23,6 @@ public class PreferenceFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyHabitatFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static PreferenceFragment newInstance(String param1, String param2) {
         PreferenceFragment fragment = new PreferenceFragment();
         Bundle args = new Bundle();
@@ -55,27 +44,7 @@ public class PreferenceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_preference, container, false);
 
-        //CardView buttonChangeLanguage;
-
-        //buttonChangeLanguage = (CardView) rootView.findViewById(R.id.btnFrancais);
-        //buttonChangeLanguage.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        //setLocale("fr");
-        //    }
-        //});
-        //}
-
-        //private void setLocale(String languageCode) {
-        //    Locale locale = new Locale(languageCode);
-        //    Locale.setDefault(locale);
-        //    Configuration configuration = new Configuration();
-        //    configuration.locale = locale;
-        //    getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
-        //    recreate();
-        //}
     }
 }

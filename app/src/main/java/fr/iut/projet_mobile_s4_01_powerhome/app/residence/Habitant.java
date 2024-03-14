@@ -38,9 +38,6 @@ public class Habitant {
     public int getEcoCoin() {
         return ecoCoin;
     }
-    public void setEcoCoin(int ecoCoin) {
-        this.ecoCoin = ecoCoin;
-    }
 
     public int getConsoTotal() {
         return consoTotal;

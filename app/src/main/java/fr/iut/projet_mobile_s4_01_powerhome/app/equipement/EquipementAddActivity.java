@@ -27,6 +27,7 @@ import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
 
 public class EquipementAddActivity extends AppCompatActivity {
     private Integer id;
@@ -74,7 +75,7 @@ public class EquipementAddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
@@ -116,7 +117,7 @@ public class EquipementAddActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),  fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
+                Intent intent = new Intent(getApplicationContext(),  MainActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
@@ -141,7 +142,6 @@ public class EquipementAddActivity extends AppCompatActivity {
         params.put("reference", reference);
         params.put("wattage", wattage);
         params.put("id", String.valueOf(id));
-        //Toast.makeText(getApplicationContext(), name + reference + wattage + String.valueOf(id), Toast.LENGTH_SHORT).show();
         JSONObject parameters = new JSONObject(params);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override

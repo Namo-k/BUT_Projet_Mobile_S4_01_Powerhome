@@ -28,6 +28,7 @@ import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
 
 public class EditProfileActivity extends AppCompatActivity {
     private Integer id;
@@ -106,7 +107,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();
@@ -170,7 +171,7 @@ public class EditProfileActivity extends AppCompatActivity {
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Vos informations ont bien été enregistré !", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", response.getInt("id"));
                 startActivity(intent);
                 finish();

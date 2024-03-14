@@ -180,10 +180,10 @@ public class CreneauFragment extends Fragment {
                     return;
                 }
 
-                /*if (selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || (selectedYear == currentYear && selectedMonth == currentMonth && selectedDay < currentDay)) {
+                if (selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || (selectedYear == currentYear && selectedMonth == currentMonth && selectedDay < currentDay)) {
                     Toast.makeText(requireContext(), "La date doit être supérieure à aujourd'hui", Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
 
                 SimpleDateFormat sdf = new SimpleDateFormat("HH'h'", Locale.FRANCE);
                 try {
@@ -227,10 +227,7 @@ public class CreneauFragment extends Fragment {
 
                         ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
 
-
                     }
-
-
 
                 }
 
@@ -324,8 +321,6 @@ public class CreneauFragment extends Fragment {
         }
     }
 
-
-
     public void getEquipements(View rootView) {
         String url = "http://10.0.2.2:2000/powerhome_server/actions/getEquipements.php";
         Map<String, String> params = new HashMap<>();
@@ -364,7 +359,6 @@ public class CreneauFragment extends Fragment {
 
                     TimeSlot timeSlot = new TimeSlot(id, begin, end, maxWattage, wattageUsed);
                     timeSlots.add(timeSlot);
-
                 }
 
             } else {
@@ -421,9 +415,5 @@ public class CreneauFragment extends Fragment {
 
         databaseManager.queue.add(jsonObjectRequest);
     }
-
-
-
-
 }
 
