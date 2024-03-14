@@ -57,11 +57,11 @@
 
                 <ImageView
                     android:id="@+id/equipement_logo"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="41dp"
+                    android:layout_height="41dp"
                     android:layout_marginTop="22dp"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/maison_icone"
+                    android:layout_marginRight="33dp"
+                    android:src="@drawable/equipement_logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="MissingConstraints" />
 
@@ -108,7 +108,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_below="@id/nbEquipements"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Ma puissance totale  : "
+                            android:text="Ma puissance totale :"
                             android:textColor="@color/grey"
                             android:textSize="14dp" />
 

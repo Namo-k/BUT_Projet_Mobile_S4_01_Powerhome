@@ -38,15 +38,6 @@
                 android:layout_marginTop="55dp"
                 android:src="@drawable/logo" />
 
-            <ImageView
-                android:id="@+id/sedeconnecterBtn"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="355dp"
-                android:layout_marginTop="38dp"
-                android:src="@drawable/deconnexion" />
-
 
         </androidx.cardview.widget.CardView>
 
@@ -111,9 +102,11 @@
 
                     <ImageView
                         android:id="@+id/alertes_logo"
-                        android:layout_width="47dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/deconnexion"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="7dp"
+                        android:src="@drawable/icone_profil"
                         android:layout_gravity="end"
                         />
 

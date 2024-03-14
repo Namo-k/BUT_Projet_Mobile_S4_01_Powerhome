@@ -39,15 +39,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:navigationIcon="@drawable/menu_logo"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
                 app:title=""
                 android:layout_alignParentTop="true"/>
         </RelativeLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:id="@+id/frame_layout"/>
+
+        <ImageView
+            android:id="@+id/vague"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:src="@drawable/vague"
+            android:layout_gravity="bottom"/>
 
        <!-- <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"

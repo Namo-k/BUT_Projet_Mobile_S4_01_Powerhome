@@ -47,7 +47,7 @@
                             android:layout_height="22dp"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/sansita_regular"
-                            android:text=" Selectionner un créneau"
+                            android:text=" Réserver un créneau"
                             android:textColor="@color/darkGreen"
                             android:textSize="21dp" />
 
@@ -70,9 +70,11 @@
 
                         <ImageView
                             android:id="@+id/alertes_logo"
-                            android:layout_width="47dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/deconnexion"
+                            android:layout_width="42dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_height="42dp"
+                            android:src="@drawable/maison_icone"
                             android:layout_gravity="end"
                             />
 
@@ -115,14 +117,14 @@
                                 android:id="@+id/creneauLabelTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
-                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="30dp"
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/inter_medium"
                                 android:text="Selectionner mon créneau :"
                                 android:textColor="@color/grey"
-                                android:textSize="14dp"
+                                android:textSize="15dp"
                                 />
 
                         </LinearLayout>
@@ -143,22 +145,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginTop="19dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/inter_medium"
                             android:text="Date : "
                             android:textColor="@color/grey"
-                            android:textSize="13.5dp"
+                            android:textSize="14.5dp"
                             />
 
 
                         <EditText
                             android:id="@+id/debutdateJourET"
-                            android:layout_width="50dp"
-                            android:layout_height="23dp"
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutLabelTV"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:hint="JJ"
                             android:layout_marginRight="5dp"
                             android:background="@drawable/round_login"
                             android:fontFamily="@font/inter"
@@ -168,10 +172,12 @@
                         />
                         <EditText
                             android:id="@+id/debutdateMoisET"
-                            android:layout_width="50dp"
-                            android:layout_height="23dp"
+                            android:layout_width="65dp"
+                            android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutdateJourET"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="15dp"
+                            android:hint="MM"
                             android:layout_marginRight="5dp"
                             android:background="@drawable/round_login"
                             android:fontFamily="@font/inter"
@@ -181,15 +187,16 @@
                             />
                         <EditText
                             android:id="@+id/debutdateAnneeET"
-                            android:layout_width="75dp"
-                            android:layout_height="23dp"
+                            android:layout_width="85dp"
+                            android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutdateMoisET"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="15dp"
                             android:layout_marginRight="5dp"
                             android:background="@drawable/round_login"
                             android:fontFamily="@font/inter"
                             android:inputType="text"
-
+                            android:hint="AAAA"
                             android:gravity="center"
                             android:textSize="11dp"
                         />
@@ -199,23 +206,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginTop="21dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
                             android:layout_below="@+id/debutDateLabelTV"
                             android:fontFamily="@font/inter_medium"
                             android:text="De  : "
                             android:textColor="@color/grey"
-                            android:textSize="13.5dp"
+                            android:textSize="14.5dp"
                             />
 
 
                         <Spinner
                             android:id="@+id/debutET"
-                            android:layout_width="70dp"
-                            android:layout_height="23dp"
+                            android:layout_width="95dp"
+                            android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutLabelTV"
                             android:layout_marginLeft="5dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginRight="5dp"
                             android:layout_below="@+id/debutDateLabelTV"
                             android:background="@drawable/round_login"
@@ -231,7 +239,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_toRightOf="@id/debutET"
                             android:layout_below="@+id/debutDateLabelTV"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginTop="21dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/inter_medium"
@@ -242,11 +250,12 @@
 
                         <Spinner
                             android:id="@+id/finET"
-                            android:layout_width="70dp"
-                            android:layout_height="23dp"
+                            android:layout_width="95dp"
+                            android:layout_height="30dp"
                             android:layout_toRightOf="@+id/finLabelTV"
                             android:layout_below="@+id/debutDateLabelTV"
                             android:layout_marginLeft="5dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginRight="5dp"
                             android:background="@drawable/round_login"
                             android:fontFamily="@font/inter"
@@ -269,14 +278,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
                             android:layout_below="@+id/finET"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Conso sur ce créneau :"
+                            android:text="Consommation sur ce créneau :"
                             android:textColor="@color/grey"
-                            android:textSize="14dp" />
+                            android:textSize="14.5dp" />
 
                         <TextView
                             android:id="@+id/consoCreneauTV"
@@ -290,7 +299,7 @@
                             android:fontFamily="@font/inter"
                             android:text=""
                             android:textColor="@color/darkGreen"
-                            android:textSize="14dp" />
+                            android:textSize="14.5dp" />
 
 
 
@@ -324,8 +333,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Equipement"
-                                android:layout_marginBottom="10dp"
+                                android:text="Choisir mon équipement :"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="@font/inter"
+                                android:textSize="15dp"
                                 android:gravity="center"/>
 
                             <RelativeLayout
@@ -342,7 +353,6 @@
                                     android:layout_marginEnd="3dp"
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/inter_medium"
-                                    android:text="Equipement 1 : "
                                     android:textColor="@color/grey"
                                     android:textSize="13.5dp"
                                     />
@@ -364,9 +374,11 @@
                                 <Spinner
                                     android:id="@+id/equipement1Spinner"
                                     android:layout_width="200dp"
-                                    android:layout_height="30dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginStart="50dp"
                                     android:layout_toEndOf="@+id/equipement1Label"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="5dp"
                                     android:background="@drawable/round_login"
                                     android:fontFamily="@font/inter"
@@ -484,8 +496,8 @@
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/btnVerifier"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="150dp"
+                                android:layout_height="30dp"
                                 app:cardBackgroundColor="@color/darkGreen"
                                 app:cardCornerRadius="6dp"
                                 android:layout_marginLeft="2dp"
@@ -496,14 +508,16 @@
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/inter_medium"
                                     android:text="Verfifier"
+                                    android:textAlignment="center"
                                     android:padding="5dp"
                                     android:textColor="@color/white"
-                                    android:textSize="12dp" />
+                                    android:textSize="13dp" />
                             </androidx.cardview.widget.CardView>
+
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/btnEnregistrerCreneau"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="150dp"
+                                android:layout_height="30dp"
                                 app:cardBackgroundColor="@color/darkGreen"
                                 app:cardCornerRadius="6dp"
                                 android:layout_marginLeft="2dp"
@@ -515,15 +529,16 @@
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/inter_medium"
                                     android:text="Enregistrer"
+                                    android:textAlignment="center"
                                     android:padding="5dp"
                                     android:textColor="@color/white"
-                                    android:textSize="12dp" />
+                                    android:textSize="13dp" />
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/btnAnnulerCreneau"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="150dp"
+                                android:layout_height="30dp"
                                 app:cardBackgroundColor="@color/darkGreen"
                                 app:cardCornerRadius="6dp"
                                 android:layout_marginLeft="2dp"
@@ -535,9 +550,10 @@
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/inter_medium"
                                     android:text="Annuler"
+                                    android:textAlignment="center"
                                     android:padding="5dp"
                                     android:textColor="@color/white"
-                                    android:textSize="12dp" />
+                                    android:textSize="13dp" />
                             </androidx.cardview.widget.CardView>
 
 

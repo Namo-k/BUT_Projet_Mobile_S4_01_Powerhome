@@ -58,4 +58,10 @@
         android:title="Déconnexion"
         />
 
+    <item
+        android:id="@+id/menu_apropos"
+        android:icon="@drawable/baseline_announcement_24"
+        android:title="A propos"
+        />
+
 </menu>

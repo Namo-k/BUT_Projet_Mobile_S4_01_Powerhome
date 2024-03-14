@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Powerhome</string>
+
+    <string name="hello">Bonjour</string>
+    <string name="signup">Inscrivez-vous</string>
+    <string name="surname_hint">Nom de famille...</string>
+    <string name="firstname_hint">Prénom...</string>
+    <string name="day_hint">JJ</string>
+    <string name="month_hint">MM</string>
+    <string name="year_hint">AAAA</string>
+    <string name="next_button">Passer à la suite</string>
+    <string name="or">OU</string>
+    <string name="already_have_account">Vous avez déjà un compte ?</string>
+    <string name="login">Connectez-vous !</string>
+    <string name="email_hint">Adresse e-mail...</string>
+    <string name="password_hint">Mot de passe...</string>
+    <string name="password_requirements">Votre mot de passe doit contenir :</string>
+    <string name="password_1">- 8 caractères       - un symbole</string>
+    <string name="password_2">- une majuscule       - un chiffre</string>
+    <string name="text_selection_question">Sélectionnez une question :</string>
+    <string name="text_ecrivez_reponse">Écrivez votre réponse secrète :</string>
+    <string name="text_info_recuperer_mot_passe">Ces informations serviront à récupérer votre mot de passe oublié.</string>
+    <string name="hint_reponse">Ma réponse secrète...</string>
+
+    <string name="login_btn">Se connecter</string>
+    <string name="googl">Se connecter avec Google</string>
+    <string name="you_are_neww">Vous êtes nouveau ?</string>
+
+    <string name="auteurs"> <b> Auteurs : </b> Namodacane KALIAMOORTHY 203 et Alexandre CAROUNANITHI 204 </string>
+    <string name="contexte"> <b> Contexte : </b> Projet universitaire en 2ème année de BUT Informatique </string>
+    <string name="annee"> <b> Année : </b> 2023-2024 </string>
+    <string name="version"> <b> Version : </b> 1.1 </string>
+
+    <string name="open">open !</string>
+    <string name="close">close !</string>
+</resources>

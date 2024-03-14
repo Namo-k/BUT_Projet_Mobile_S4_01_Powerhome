@@ -1,6 +1,39 @@
 <resources>
     <string name="app_name">Powerhome</string>
 
+    <string name="hello">Hello</string>
+    <string name="signup">Sign up</string>
+    <string name="surname_hint">Last name...</string>
+    <string name="firstname_hint">First name...</string>
+    <string name="day_hint">DD</string>
+    <string name="month_hint">MM</string>
+    <string name="year_hint">YYYY</string>
+    <string name="next_button">Next</string>
+    <string name="email_hint">Email address...</string>
+    <string name="password_hint">Password...</string>
+    <string name="or">OR</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="login">Log in!</string>
+
+    <string name="password_requirements">Your password must contain:</string>
+    <string name="password_1">- 8 characters       - a symbol</string>
+    <string name="password_2">- an uppercase letter  - a number</string>
+
+    <string name="text_selection_question">Select a question:</string>
+    <string name="text_ecrivez_reponse">Write your secret answer:</string>
+    <string name="text_info_recuperer_mot_passe">This information will be used to recover your forgotten password.</string>
+
+    <string name="hint_reponse">My secret answer...</string>
+
+    <string name="login_btn">Login</string>
+    <string name="googl">Sign in with Google</string>
+    <string name="you_are_neww">Are you new here?</string>
+
+    <string name="auteurs"> <b> Auteurs : </b> Namodacane KALIAMOORTHY 203 et Alexandre CAROUNANITHI 204 </string>
+    <string name="contexte"> <b> Contexte : </b> Projet universitaire en 2ème année de BUT Informatique </string>
+    <string name="annee"> <b> Année : </b> 2023-2024 </string>
+    <string name="version"> <b> Version : </b> 1.1 </string>
+
     <string name="open">open !</string>
     <string name="close">close !</string>
 </resources>

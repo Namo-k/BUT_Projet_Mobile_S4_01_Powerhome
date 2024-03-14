@@ -40,14 +40,6 @@
             android:layout_marginTop="55dp"
             android:src="@drawable/logo" />
 
-        <ImageView
-            android:id="@+id/sedeconnecterBtn"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="355dp"
-            android:layout_marginTop="38dp"
-            android:src="@drawable/deconnexion" />
 
     </androidx.cardview.widget.CardView>
 
