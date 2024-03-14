@@ -1,10 +1,14 @@
 package fr.iut.projet_mobile_s4_01_powerhome.app.user;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import java.util.Locale;
+import android.widget.Button;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import fr.iut.projet_mobile_s4_01_powerhome.R;
@@ -53,5 +57,25 @@ public class PreferenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_preference, container, false);
+
+        //CardView buttonChangeLanguage;
+
+        //buttonChangeLanguage = (CardView) rootView.findViewById(R.id.btnFrancais);
+        //buttonChangeLanguage.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        //setLocale("fr");
+        //    }
+        //});
+        //}
+
+        //private void setLocale(String languageCode) {
+        //    Locale locale = new Locale(languageCode);
+        //    Locale.setDefault(locale);
+        //    Configuration configuration = new Configuration();
+        //    configuration.locale = locale;
+        //    getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+        //    recreate();
+        //}
     }
 }

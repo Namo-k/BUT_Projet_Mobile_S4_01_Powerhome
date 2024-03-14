@@ -30,7 +30,6 @@ public class SplashActivity extends AppCompatActivity {
         int nombreAleatoire = random.nextInt(4);
         citation.setText(tabQuote[nombreAleatoire]);
 
-        //redigirer la page aprés 3.5 secondes
         Runnable runnable = new Runnable() {
             @Override
             public void run() {

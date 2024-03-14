@@ -99,15 +99,6 @@
             </intent-filter>-->
         </activity>
 
-        <activity
-            android:name=".app.MainActivity"
-            android:exported="true">
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-
 
         <activity
             android:name=".app.user.EditProfileActivity"
@@ -118,32 +109,6 @@
             </intent-filter>-->
         </activity>
 
-        <activity
-            android:name=".ResidenceActivity"
-            android:exported="true">
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>-->
-        </activity>
-
-        <activity
-            android:name=".AccueilActivity"
-            android:exported="true">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-
-        <activity
-            android:name=".app.equipement.EquipementActivity"
-            android:exported="true">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
 
         <activity
             android:name=".app.equipement.EquipementAddActivity"

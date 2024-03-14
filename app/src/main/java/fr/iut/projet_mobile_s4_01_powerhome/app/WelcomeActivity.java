@@ -27,6 +27,7 @@ import java.util.Map;
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.MainActivity;
+import fr.iut.projet_mobile_s4_01_powerhome.app.residence.TestActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     private Integer floor;
@@ -151,7 +152,7 @@ public class WelcomeActivity extends AppCompatActivity {
             success = response.getBoolean("success");
             if (success == true) {
                 Toast.makeText(getApplicationContext(), "Votre équipement a bien été ajouté !", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 finish();

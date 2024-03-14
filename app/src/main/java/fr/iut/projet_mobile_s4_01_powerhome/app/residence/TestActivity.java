@@ -1,12 +1,16 @@
 package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -106,6 +110,22 @@ public class TestActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
+                } else if (itemId == R.id.menu_apropos) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TestActivity.this);
+                    LayoutInflater inflater = getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.dialogue_apropos, null);
+                    builder.setView(dialogView);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(TestActivity.this, TestActivity.class);
+                            intent.putExtra("id", id);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

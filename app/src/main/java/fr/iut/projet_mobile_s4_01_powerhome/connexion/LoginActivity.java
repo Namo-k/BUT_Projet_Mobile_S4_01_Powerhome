@@ -51,8 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText mdpET = findViewById(R.id.mdpET);
 
 
-        mailET.setText("k@gmail.com");
-        mdpET.setText("Namodacane77!!");
+
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
