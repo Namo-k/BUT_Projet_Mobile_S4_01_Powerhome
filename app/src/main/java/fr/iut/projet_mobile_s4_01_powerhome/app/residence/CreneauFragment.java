@@ -38,6 +38,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
+
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipaux;
@@ -54,6 +55,7 @@ public class CreneauFragment extends Fragment {
 
     private Integer id;
 
+    private boolean verificationReussie = false;
     private DatabaseManager databaseManager;
 
     private final Map<String, Integer> equipementConsoMap = new HashMap<>();
@@ -115,7 +117,6 @@ public class CreneauFragment extends Fragment {
         TextView consoEquipement = view.findViewById(R.id.equipement1ConsoTV);
         TextView consoCreneau = view.findViewById(R.id.consoCreneauTV);
         TextView msgTV = view.findViewById(R.id.msgTV);
-        CardView btnVerifierCreneau = view.findViewById(R.id.btnVerifier);
         CardView btnEnregistrerCreneau = view.findViewById(R.id.btnEnregistrerCreneau);
         CardView btnAnnulerCreneau = view.findViewById(R.id.btnAnnulerCreneau);
 
@@ -137,9 +138,10 @@ public class CreneauFragment extends Fragment {
             }
         });
 
-        btnVerifierCreneau.setOnClickListener(new View.OnClickListener() {
+        btnEnregistrerCreneau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String debutTime = debutSpinner.getSelectedItem().toString();
                 String finTime = finSpinner.getSelectedItem().toString();
                 String jour = debutdateJourET.getText().toString();
@@ -178,10 +180,10 @@ public class CreneauFragment extends Fragment {
                     return;
                 }
 
-                if (selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || (selectedYear == currentYear && selectedMonth == currentMonth && selectedDay < currentDay)) {
+                /*if (selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || (selectedYear == currentYear && selectedMonth == currentMonth && selectedDay < currentDay)) {
                     Toast.makeText(requireContext(), "La date doit être supérieure à aujourd'hui", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
 
                 SimpleDateFormat sdf = new SimpleDateFormat("HH'h'", Locale.FRANCE);
                 try {
@@ -204,6 +206,7 @@ public class CreneauFragment extends Fragment {
                 }
 
                 String equipementName = equipementSpinner.getSelectedItem().toString();
+                int equipementId = Integer.parseInt(equipementName.split(" ", 2)[0]);
                 Integer equipementConso = equipementConsoMap.getOrDefault(equipementName, 0);
 
                 boolean creneauFound = false;
@@ -219,16 +222,20 @@ public class CreneauFragment extends Fragment {
                             msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
                             msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                         }
+
                         consoCreneau.setText(slot.getWattageUsed() + "W");
-/*
-                        ajouterEquipementAuCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementName);
-*/
-                        break;
+
+                        ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+
+
                     }
+
+
+
                 }
 
                 if (!creneauFound) {
-                    int maxWattage = 10000;
+                    int maxWattage = 25000;
                     int totalConso = equipementConso;
                     if (totalConso > maxWattage) {
                         msgTV.setVisibility(View.VISIBLE);
@@ -239,10 +246,9 @@ public class CreneauFragment extends Fragment {
                         msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                     }
                     consoCreneau.setText("0W");
-/*
-                    ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementName);
-*/
+                    ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
                 }
+
             }
         });
 
@@ -298,11 +304,12 @@ public class CreneauFragment extends Fragment {
                 for (int i = 0; i < appliancesArray.length(); i++) {
                     JSONObject applianceObject = appliancesArray.getJSONObject(i);
                     String name = applianceObject.getString("name");
+                    int id = applianceObject.getInt("id");
                     int consommation = applianceObject.getInt("wattage");
 
-                    equipementNames.add(name);
+                    equipementNames.add(id + " " + name);
 
-                    equipementConsoMap.put(name, consommation);
+                    equipementConsoMap.put(id + " " + name, consommation);
                 }
 
                 Spinner equipementSpinner = rootView.findViewById(R.id.equipement1Spinner);
@@ -387,41 +394,13 @@ public class CreneauFragment extends Fragment {
         databaseManager.queue.add(jsonObjectRequest);
     }
 
-    public void ajouterEquipementAuCreneau(String dateDebut, String dateFin, int consommationEquipement, String equipementName) {
-        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipementAuCreneau.php";
+    public void ajouterEquipementAuNouveauCreneau(String dateDebut, String dateFin, int consommationEquipement, int equipementId) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipementAuNouveauCreneau_copy.php";
         Map<String, String> params = new HashMap<>();
         params.put("date_debut", dateDebut);
         params.put("date_fin", dateFin);
         params.put("consommation", String.valueOf(consommationEquipement));
-        params.put("equipement_name", equipementName);
-        params.put("id", String.valueOf(id));
-
-        JSONObject parameters = new JSONObject(params);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, response -> {
-            try {
-                boolean success = response.getBoolean("success");
-                if (success) {
-                    Toast.makeText(requireContext(), "Équipement ajouté au créneau avec succès!", Toast.LENGTH_SHORT).show();
-                } else {
-                    String errorMessage = response.has("error") ? response.getString("error") : "Une erreur s'est produite lors de l'ajout de l'équipement.";
-                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Toast.makeText(requireContext(), "Erreur lors du traitement de la réponse du serveur.", Toast.LENGTH_SHORT).show();
-            }
-        }, error -> Toast.makeText(requireContext(), "Erreur de communication avec le serveur: " + error.toString(), Toast.LENGTH_SHORT).show());
-
-        databaseManager.queue.add(jsonObjectRequest);
-    }
-
-    public void ajouterEquipementAuNouveauCreneau(String dateDebut, String dateFin, int consommationEquipement, String equipementName) {
-        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutEquipementAuNouveauCreneau.php";
-        Map<String, String> params = new HashMap<>();
-        params.put("date_debut", dateDebut);
-        params.put("date_fin", dateFin);
-        params.put("consommation", String.valueOf(consommationEquipement));
-        params.put("equipement_name", equipementName);
+        params.put("equipement_id", String.valueOf((equipementId)));
         params.put("id", String.valueOf(id));
 
         JSONObject parameters = new JSONObject(params);

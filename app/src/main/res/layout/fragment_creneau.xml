@@ -495,7 +495,7 @@
                             </RelativeLayout>-->
 
                             <androidx.cardview.widget.CardView
-                                android:id="@+id/btnVerifier"
+                                android:id="@+id/btnEnregistrerCreneau"
                                 android:layout_width="150dp"
                                 android:layout_height="30dp"
                                 app:cardBackgroundColor="@color/darkGreen"
@@ -507,33 +507,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/inter_medium"
-                                    android:text="Verfifier"
-                                    android:textAlignment="center"
-                                    android:padding="5dp"
-                                    android:textColor="@color/white"
-                                    android:textSize="13dp" />
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btnEnregistrerCreneau"
-                                android:layout_width="150dp"
-                                android:layout_height="30dp"
-                                app:cardBackgroundColor="@color/darkGreen"
-                                app:cardCornerRadius="6dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_toRightOf="@id/equipement1Spinner">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:fontFamily="@font/inter_medium"
                                     android:text="Enregistrer"
                                     android:textAlignment="center"
                                     android:padding="5dp"
                                     android:textColor="@color/white"
                                     android:textSize="13dp" />
                             </androidx.cardview.widget.CardView>
+
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/btnAnnulerCreneau"
