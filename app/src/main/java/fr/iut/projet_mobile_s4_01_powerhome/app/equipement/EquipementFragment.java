@@ -75,6 +75,7 @@ public class EquipementFragment extends Fragment {
 
         listView = view.findViewById(R.id.equipementPrincipauxlistView);
         CardView btnAjouterEquipement = view.findViewById(R.id.btnAjouterEquipement);
+        CardView btnModif = view.findViewById(R.id.btnModifier);
 
         equipementPrincipaux = new ArrayList<>();
         databaseManager = new DatabaseManager(requireContext());
@@ -100,6 +101,17 @@ public class EquipementFragment extends Fragment {
             }
         });
 
+        btnModif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), EquipementModifActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("puissance", puissance);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
         return view;
     }
 
@@ -117,10 +129,11 @@ public class EquipementFragment extends Fragment {
                     JSONObject applianceObject = appliancesArray.getJSONObject(i);
                     int id = applianceObject.getInt("id");
                     String name = applianceObject.getString("name");
+                    String reference = applianceObject.getString("reference");
                     int wattage = applianceObject.getInt("wattage");
                     puissanceCalculee += wattage;
                     ++nbEquipements;
-                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage));
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, reference, wattage));
                 }
                 EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux, R.layout.item_equipements_principaux2);
                 listView.setAdapter(adapter);

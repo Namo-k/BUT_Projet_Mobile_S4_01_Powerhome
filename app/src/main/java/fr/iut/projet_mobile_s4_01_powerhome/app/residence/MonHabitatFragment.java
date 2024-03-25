@@ -198,11 +198,12 @@ public class MonHabitatFragment extends Fragment {
                     JSONObject applianceObject = appliancesArray.getJSONObject(i);
                     int id = applianceObject.getInt("id");
                     String name = applianceObject.getString("name");
+                    String reference = applianceObject.getString("reference");
                     int wattage = applianceObject.getInt("wattage");
                     puissanceCalculee += wattage;
 
                     int imageResourceId = EquipementPrincipaux.getImageResourceIdByName(name);
-                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, wattage));
+                    equipementPrincipaux.add(new EquipementPrincipaux(id, name, reference, wattage));
                 }
                 EquipementPrincipauxAdapter adapter = new EquipementPrincipauxAdapter(requireContext(), equipementPrincipaux, R.layout.item_equipements_principaux);
                 listView.setAdapter(adapter);

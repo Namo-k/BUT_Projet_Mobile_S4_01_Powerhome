@@ -36,6 +36,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private String name;
     private String reference;
     private Integer puissanceMAX = 10000;
+    private Boolean ajout;
     private DatabaseManager databaseManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         CardView btnEnregistrer = (CardView) findViewById(R.id.btnEnregistrer);
+        CardView btnPasser = (CardView) findViewById(R.id.btnPasser);
 
         Spinner floorSpinner = findViewById(R.id.floor);
         List<Integer> maListe = new ArrayList<>();
@@ -60,7 +62,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         Spinner areaSpinner = findViewById(R.id.area);
         areaSpinner.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, maListe));
-
 
         Spinner equipementSpinner = findViewById(R.id.nomET);
 
@@ -76,6 +77,16 @@ public class WelcomeActivity extends AppCompatActivity {
         equipementSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, maListe3));
 
         databaseManager = new DatabaseManager(getApplicationContext());
+
+        btnPasser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                floor = (Integer) floorSpinner.getSelectedItem();
+                area = (Integer) areaSpinner.getSelectedItem();
+                ajout = false;
+                updateHabitat();
+            }
+        });
         btnEnregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +109,8 @@ public class WelcomeActivity extends AppCompatActivity {
                     Toast.makeText(WelcomeActivity.this, "Vous ne pouvez pas dépasser la puissance maximale totale de votre habitat", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    ajout = true;
                     updateHabitat();
-                    ajouterEquipement();
                 }
             }
         });
@@ -134,7 +145,15 @@ public class WelcomeActivity extends AppCompatActivity {
             success = response.getBoolean("success");
 
             if (success == true) {
-                //Toast.makeText(getApplicationContext(), "Insertion réussi", Toast.LENGTH_SHORT).show();
+                if (ajout == true) {
+                    ajouterEquipement();
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }
         catch (JSONException e) {

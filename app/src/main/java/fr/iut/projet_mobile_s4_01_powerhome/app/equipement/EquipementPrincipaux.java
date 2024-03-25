@@ -9,6 +9,7 @@ public class EquipementPrincipaux {
 
     private int id;
     private String name;
+    private String reference;
     private int wattage;
     private static final Map<String, Integer> equipementImageMap = new HashMap<>();
 
@@ -22,9 +23,10 @@ public class EquipementPrincipaux {
         equipementImageMap.put("four électrique", R.drawable.ic_four);
     }
 
-    public EquipementPrincipaux(int id, String name, int wattage) {
+    public EquipementPrincipaux(int id, String name, String reference, int wattage) {
         this.id = id;
         this.name = name;
+        this.reference = reference;
         this.wattage = wattage;
     }
 
@@ -35,7 +37,7 @@ public class EquipementPrincipaux {
     public String getName() {
         return name;
     }
-
+    public String getReference() { return reference; }
     public int getWattage() {
         return wattage;
     }

@@ -80,6 +80,12 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".app.equipement.EquipementModifActivity"
+            android:parentActivityName=".app.residence.MainActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

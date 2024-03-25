@@ -28,7 +28,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ovale_shape" />
 
-
             <ImageView
                 android:id="@+id/logoIV"
                 android:layout_width="170dp"
@@ -95,12 +94,13 @@
 
             <ImageView
                 android:id="@+id/equipement_logo"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="22dp"
                 android:layout_marginRight="30dp"
                 android:src="@drawable/equipement_logo"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                />
 
 
             <androidx.cardview.widget.CardView
@@ -132,7 +132,7 @@
                         android:textAlignment="center"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Ajouter un équipement"
+                        android:text="Modifier un équipement"
                         android:textColor="@color/grey"
                         android:textSize="15.5dp" />
 
@@ -201,7 +201,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_below="@id/puissanceMAX"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Remplissez quelques informations :"
+                        android:text="Modifiez quelques informations :"
                         android:textColor="@color/grey"
                         android:textSize="14dp" />
 
@@ -282,7 +282,7 @@
                         />
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/btnAnnulerAjoutEquipement"
+                        android:id="@+id/btnSupprimer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/wattageET"
@@ -300,23 +300,24 @@
                             android:fontFamily="@font/inter_medium"
                             android:gravity="center"
                             android:padding="3dp"
-                            android:text="Annuler"
+                            android:text="Supprimer"
                             android:textColor="@color/white"
                             android:textSize="14dp" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/btnAjouterEquipement"
+                        android:id="@+id/btnModifier"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_below="@id/wattageET"
-                        android:layout_toRightOf="@id/btnAnnulerAjoutEquipement"
+                        android:layout_toRightOf="@id/btnSupprimer"
                         android:layout_centerHorizontal="true"
                         app:cardBackgroundColor="@color/darkGreen"
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp">
+
 
                         <TextView
                             android:layout_width="150dp"
@@ -326,7 +327,7 @@
                             android:fontFamily="@font/inter_medium"
                             android:gravity="center"
                             android:padding="3dp"
-                            android:text="Ajouter"
+                            android:text="Modifier"
                             android:textColor="@color/white"
                             android:textSize="14dp" />
                     </androidx.cardview.widget.CardView>
@@ -337,22 +338,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="3dp"
                         android:layout_marginBottom="10dp"
                         android:textAlignment="center"
                         android:fontFamily="@font/inter_medium"
                         android:text="Message d'erreur"
                         android:textColor="@color/red"
-                        android:layout_below="@id/btnAjouterEquipement"
+                        android:layout_below="@id/btnModifier"
                         android:textSize="15dp"
                         />
+
+                    <TextView
+                        android:id="@+id/idEquipement"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_below="@id/btnModifier"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="@color/grey"
+                        android:textSize="14dp" />
 
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
-
-
 
             <!-- ========== FIN ACCUEIL =========== -->
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -364,10 +377,9 @@
             android:layout_marginTop="-50dp"
             android:src="@drawable/vague"
             android:layout_gravity="bottom"/>
+
     </LinearLayout>
 
     <!-- ========== FIN PAGE =========== -->
-
-
 
 </LinearLayout>

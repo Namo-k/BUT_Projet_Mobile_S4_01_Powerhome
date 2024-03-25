@@ -187,6 +187,29 @@
                             </LinearLayout>
 
                         </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btnModifier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/equipementSection"
+                            app:cardBackgroundColor="@color/darkGreen"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginHorizontal="15dp"
+                            app:cardCornerRadius="10dp">
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:background="@color/darkGreen"
+                                android:fontFamily="@font/inter_medium"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="Modifier"
+                                android:textColor="@color/white"
+                                android:textSize="14dp" />
+                        </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/btnAjouterEquipement"
@@ -194,22 +217,23 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_below="@id/equipementSection"
+                            android:layout_toRightOf="@id/btnModifier"
                             android:layout_centerHorizontal="true"
                             app:cardBackgroundColor="@color/darkGreen"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="5dp"
                             app:cardCornerRadius="10dp">
 
 
                             <TextView
-                                android:layout_width="200dp"
+                                android:layout_width="150dp"
                                 android:layout_height="35dp"
                                 android:layout_alignParentRight="true"
                                 android:background="@color/darkGreen"
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center"
                                 android:padding="3dp"
-                                android:text="Ajouter un équipement"
+                                android:text="Ajouter"
                                 android:textColor="@color/white"
                                 android:textSize="14dp" />
                         </androidx.cardview.widget.CardView>
