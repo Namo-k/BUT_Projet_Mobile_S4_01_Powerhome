@@ -6,7 +6,7 @@ $json = json_decode(file_get_contents('php://input'), true);
 if(isset($json['id'])) {
     $id = intval($json['id']);
 
-    $getHabitatInfo = $bdd->prepare("SELECT appliance.id, appliance.name, appliance.wattage, habitat.consommation 
+    $getHabitatInfo = $bdd->prepare("SELECT appliance.id, appliance.name, appliance.wattage, appliance.reference, habitat.consommation 
                                       FROM appliance 
                                       INNER JOIN habitat ON appliance.habitat_id = habitat.id 
                                       WHERE appliance.habitat_id = ?");
@@ -19,6 +19,7 @@ if(isset($json['id'])) {
             $appliance = array(
                 "id" => $row['id'],
                 "name" => $row['name'],
+                "reference" => $row['reference'],
                 "wattage" => $row['wattage']
             );
 
