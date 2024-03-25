@@ -1,5 +1,7 @@
 package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
@@ -121,8 +125,31 @@ public class CreneauFragment extends Fragment {
         CardView btnVerifierCreneau = view.findViewById(R.id.btnVerifierCreneau);
         CardView btnAnnulerCreneau = view.findViewById(R.id.btnAnnulerCreneau);
 
+        TextView btnCalendar = view.findViewById(R.id.btnCalendarTV);
+
         getEquipements(view);
         getTimeSlot(view);
+
+        btnCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker();
+            }
+
+            private void openDatePicker(){
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        debutdateJourET.setText(String.valueOf(day));
+                        debutdateMoisET.setText(String.valueOf(month));
+                        debutdateAnneeET.setText(String.valueOf(year));
+                    }
+                }, 2024, 03, 25);
+
+                datePickerDialog.show();
+            }
+        });
+
         equipementSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -341,12 +368,13 @@ public class CreneauFragment extends Fragment {
                                     String currentBeginTimeString = sdf.format(currentBeginTime);
                                     String currentEndTimeString = sdf.format(currentEndTime);
 
-                                    Toast.makeText(requireContext(), currentBeginTimeString + " " + currentEndTimeString , Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(requireContext(), currentBeginTimeString + " " + currentEndTimeString , Toast.LENGTH_SHORT).show();
 
                                     dateDebutComplete = annee + "-" + mois + "-" + jour + " " + currentBeginTimeString.replace("h", ":00:00");
                                     dateFinComplete = annee + "-" + mois + "-" + jour + " " + currentEndTimeString.replace("h", ":00:00");
 
                                     ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+
                                 }
                             } else {
                                 ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
@@ -378,13 +406,14 @@ public class CreneauFragment extends Fragment {
                                 String currentBeginTimeString = sdf.format(currentBeginTime);
                                 String currentEndTimeString = sdf.format(currentEndTime);
 
-                                Toast.makeText(requireContext(), currentBeginTimeString + " " + currentEndTimeString , Toast.LENGTH_SHORT).show();
 
                                 dateDebutComplete = annee + "-" + mois + "-" + jour + " " + currentBeginTimeString.replace("h", ":00:00");
                                 dateFinComplete = annee + "-" + mois + "-" + jour + " " + currentEndTimeString.replace("h", ":00:00");
 
                                 ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
                             }
+                           // Toast.makeText(requireContext(), "Équipement ajouté avec succès" , Toast.LENGTH_SHORT).show();
+
                         } else {
                             ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
                         }

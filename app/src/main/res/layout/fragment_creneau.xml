@@ -157,7 +157,7 @@
 
                         <EditText
                             android:id="@+id/debutdateJourET"
-                            android:layout_width="65dp"
+                            android:layout_width="50dp"
                             android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutLabelTV"
                             android:layout_marginLeft="20dp"
@@ -172,10 +172,10 @@
                         />
                         <EditText
                             android:id="@+id/debutdateMoisET"
-                            android:layout_width="65dp"
+                            android:layout_width="50dp"
                             android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutdateJourET"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="15dp"
                             android:hint="MM"
                             android:layout_marginRight="5dp"
@@ -187,10 +187,10 @@
                             />
                         <EditText
                             android:id="@+id/debutdateAnneeET"
-                            android:layout_width="85dp"
+                            android:layout_width="55dp"
                             android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutdateMoisET"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="15dp"
                             android:layout_marginRight="5dp"
                             android:background="@drawable/round_login"
@@ -200,6 +200,21 @@
                             android:gravity="center"
                             android:textSize="11dp"
                         />
+                        <TextView
+                            android:id="@+id/btnCalendarTV"
+                            android:layout_width="55dp"
+                            android:layout_height="30dp"
+                            android:layout_toRightOf="@+id/debutdateAnneeET"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/lightGrey"
+                            android:fontFamily="@font/inter"
+                            android:inputType="text"
+                            android:text="Open"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            />
 
                         <TextView
                             android:id="@+id/debutLabelTV"
@@ -219,7 +234,7 @@
 
                         <Spinner
                             android:id="@+id/debutET"
-                            android:layout_width="95dp"
+                            android:layout_width="100dp"
                             android:layout_height="30dp"
                             android:layout_toRightOf="@+id/debutLabelTV"
                             android:layout_marginLeft="5dp"
@@ -250,7 +265,7 @@
 
                         <Spinner
                             android:id="@+id/finET"
-                            android:layout_width="95dp"
+                            android:layout_width="100dp"
                             android:layout_height="30dp"
                             android:layout_toRightOf="@+id/finLabelTV"
                             android:layout_below="@+id/debutDateLabelTV"
