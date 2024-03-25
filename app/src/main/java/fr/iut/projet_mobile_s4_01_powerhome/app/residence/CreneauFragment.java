@@ -118,6 +118,7 @@ public class CreneauFragment extends Fragment {
         TextView consoCreneau = view.findViewById(R.id.consoCreneauTV);
         TextView msgTV = view.findViewById(R.id.msgTV);
         CardView btnEnregistrerCreneau = view.findViewById(R.id.btnEnregistrerCreneau);
+        CardView btnVerifierCreneau = view.findViewById(R.id.btnVerifierCreneau);
         CardView btnAnnulerCreneau = view.findViewById(R.id.btnAnnulerCreneau);
 
         getEquipements(view);
@@ -135,6 +136,113 @@ public class CreneauFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        btnVerifierCreneau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String debutTime = debutSpinner.getSelectedItem().toString();
+                String finTime = finSpinner.getSelectedItem().toString();
+                String jour = debutdateJourET.getText().toString();
+                String mois = debutdateMoisET.getText().toString();
+                String annee = debutdateAnneeET.getText().toString();
+
+
+                Calendar calendar = Calendar.getInstance();
+                int currentYear = calendar.get(Calendar.YEAR);
+                int currentMonth = calendar.get(Calendar.MONTH) + 1;
+                int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+                int selectedYear = Integer.parseInt(annee);
+                int selectedMonth = Integer.parseInt(mois);
+                int selectedDay = Integer.parseInt(jour);
+
+                if (jour.isEmpty() || mois.isEmpty() || annee.isEmpty()) {
+                    Toast.makeText(requireContext(), "Veuillez remplir tous les champs de la date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (debutTime.equals("Sélectionnez l'heure de début") || finTime.equals("Sélectionnez l'heure de fin")) {
+                    Toast.makeText(requireContext(), "Veuillez sélectionner une heure de début et de fin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+                    int day = Integer.parseInt(jour);
+                    int month = Integer.parseInt(mois);
+                    int year = Integer.parseInt(annee);
+                    if (day < 1 || day > 31 || month < 1 || month > 12 || year < 2023) {
+                        Toast.makeText(requireContext(), "Format de date invalide", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(requireContext(), "Format de date invalide", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (selectedYear < currentYear || (selectedYear == currentYear && selectedMonth < currentMonth) || (selectedYear == currentYear && selectedMonth == currentMonth && selectedDay < currentDay)) {
+                    Toast.makeText(requireContext(), "La date doit être supérieure à aujourd'hui", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                SimpleDateFormat sdf = new SimpleDateFormat("HH'h'", Locale.FRANCE);
+                try {
+                    Date debutDate = sdf.parse(debutTime);
+                    Date finDate = sdf.parse(finTime);
+                    if (debutDate.compareTo(finDate) >= 0) {
+                        Toast.makeText(requireContext(), "L'heure de début doit être strictement supérieure à l'heure de fin", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String dateDebutComplete = annee + "-" + mois + "-" + jour + " " + debutTime.replace("h", ":00:00");
+                    String dateFinComplete = annee + "-" + mois + "-" + jour + " " + finTime.replace("h", ":00:00");
+
+                    if (equipementSpinner.getSelectedItemPosition() <= 0) {
+                        Toast.makeText(requireContext(), "Veuillez sélectionner un équipement pour vérifier", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String equipementName = equipementSpinner.getSelectedItem().toString();
+                    int equipementId = Integer.parseInt(equipementName.split(" ", 2)[0]);
+                    Integer equipementConso = equipementConsoMap.getOrDefault(equipementName, 0);
+
+                    boolean creneauFound = false;
+                    for (TimeSlot slot : timeSlots) {
+                        if (slot.getBegin().equals(dateDebutComplete) && slot.getEnd().equals(dateFinComplete)) {
+                            creneauFound = true;
+                            int totalConso = slot.getWattageUsed() + equipementConso;
+                            if (totalConso > slot.getMaxWattage()) {
+                                msgTV.setVisibility(View.VISIBLE);
+                                msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                            } else {
+                                msgTV.setVisibility(View.VISIBLE);
+                                msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
+                                msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                            }
+
+                            consoCreneau.setText(slot.getWattageUsed() + "W");
+                        }
+
+                    }
+
+                    if (!creneauFound) {
+                        int maxWattage = 25000;
+                        int totalConso = equipementConso;
+                        if (totalConso > maxWattage) {
+                            msgTV.setVisibility(View.VISIBLE);
+                            msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                        } else {
+                            msgTV.setVisibility(View.VISIBLE);
+                            msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
+                            msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                        }
+                        consoCreneau.setText("0W");
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -193,28 +301,64 @@ public class CreneauFragment extends Fragment {
                         Toast.makeText(requireContext(), "L'heure de début doit être strictement supérieure à l'heure de fin", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
 
-                String dateDebutComplete = annee + "-" + mois + "-" + jour + " " + debutTime.replace("h", ":00:00");
-                String dateFinComplete = annee + "-" + mois + "-" + jour + " " + finTime.replace("h", ":00:00");
+                    String dateDebutComplete = annee + "-" + mois + "-" + jour + " " + debutTime.replace("h", ":00:00");
+                    String dateFinComplete = annee + "-" + mois + "-" + jour + " " + finTime.replace("h", ":00:00");
 
-                if (equipementSpinner.getSelectedItemPosition() <= 0) {
-                    Toast.makeText(requireContext(), "Veuillez sélectionner un équipement pour vérifier", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    if (equipementSpinner.getSelectedItemPosition() <= 0) {
+                        Toast.makeText(requireContext(), "Veuillez sélectionner un équipement pour vérifier", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                String equipementName = equipementSpinner.getSelectedItem().toString();
-                int equipementId = Integer.parseInt(equipementName.split(" ", 2)[0]);
-                Integer equipementConso = equipementConsoMap.getOrDefault(equipementName, 0);
+                    String equipementName = equipementSpinner.getSelectedItem().toString();
+                    int equipementId = Integer.parseInt(equipementName.split(" ", 2)[0]);
+                    Integer equipementConso = equipementConsoMap.getOrDefault(equipementName, 0);
 
-                boolean creneauFound = false;
-                for (TimeSlot slot : timeSlots) {
-                    if (slot.getBegin().equals(dateDebutComplete) && slot.getEnd().equals(dateFinComplete)) {
-                        creneauFound = true;
-                        int totalConso = slot.getWattageUsed() + equipementConso;
-                        if (totalConso > slot.getMaxWattage()) {
+                    boolean creneauFound = false;
+                    for (TimeSlot slot : timeSlots) {
+                        if (slot.getBegin().equals(dateDebutComplete) && slot.getEnd().equals(dateFinComplete)) {
+                            creneauFound = true;
+                            int totalConso = slot.getWattageUsed() + equipementConso;
+                            if (totalConso > slot.getMaxWattage()) {
+                                msgTV.setVisibility(View.VISIBLE);
+                                msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                            } else {
+                                msgTV.setVisibility(View.VISIBLE);
+                                msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
+                                msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                            }
+
+                            consoCreneau.setText(slot.getWattageUsed() + "W");
+
+                            long duree = finDate.getTime() - debutDate.getTime();
+                            long uneHeure = 3600000; // 1 heure en millisecondes
+
+                            if (duree > uneHeure) {
+                                for (long currentTime = debutDate.getTime(); currentTime < finDate.getTime(); currentTime += uneHeure) {
+                                    Date currentBeginTime = new Date(currentTime);
+                                    Date currentEndTime = new Date(currentTime + uneHeure);
+
+                                    String currentBeginTimeString = sdf.format(currentBeginTime);
+                                    String currentEndTimeString = sdf.format(currentEndTime);
+
+                                    Toast.makeText(requireContext(), currentBeginTimeString + " " + currentEndTimeString , Toast.LENGTH_SHORT).show();
+
+                                    dateDebutComplete = annee + "-" + mois + "-" + jour + " " + currentBeginTimeString.replace("h", ":00:00");
+                                    dateFinComplete = annee + "-" + mois + "-" + jour + " " + currentEndTimeString.replace("h", ":00:00");
+
+                                    ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+                                }
+                            } else {
+                                ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+                            }
+                        }
+
+                    }
+
+                    if (!creneauFound) {
+                        int maxWattage = 25000;
+                        int totalConso = equipementConso;
+                        if (totalConso > maxWattage) {
                             msgTV.setVisibility(View.VISIBLE);
                             msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
                         } else {
@@ -222,33 +366,35 @@ public class CreneauFragment extends Fragment {
                             msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
                             msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                         }
+                        consoCreneau.setText("0W");
+                        long duree = finDate.getTime() - debutDate.getTime();
+                        long uneHeure = 3600000; // 1 heure en millisecondes
 
-                        consoCreneau.setText(slot.getWattageUsed() + "W");
+                        if (duree > uneHeure) {
+                            for (long currentTime = debutDate.getTime(); currentTime < finDate.getTime(); currentTime += uneHeure) {
+                                Date currentBeginTime = new Date(currentTime);
+                                Date currentEndTime = new Date(currentTime + uneHeure);
 
-                        ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+                                String currentBeginTimeString = sdf.format(currentBeginTime);
+                                String currentEndTimeString = sdf.format(currentEndTime);
 
+                                Toast.makeText(requireContext(), currentBeginTimeString + " " + currentEndTimeString , Toast.LENGTH_SHORT).show();
+
+                                dateDebutComplete = annee + "-" + mois + "-" + jour + " " + currentBeginTimeString.replace("h", ":00:00");
+                                dateFinComplete = annee + "-" + mois + "-" + jour + " " + currentEndTimeString.replace("h", ":00:00");
+
+                                ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+                            }
+                        } else {
+                            ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
+                        }
                     }
 
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-
-                if (!creneauFound) {
-                    int maxWattage = 25000;
-                    int totalConso = equipementConso;
-                    if (totalConso > maxWattage) {
-                        msgTV.setVisibility(View.VISIBLE);
-                        msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
-                    } else {
-                        msgTV.setVisibility(View.VISIBLE);
-                        msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
-                        msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-                    }
-                    consoCreneau.setText("0W");
-                    ajouterEquipementAuNouveauCreneau(dateDebutComplete, dateFinComplete, equipementConso, equipementId);
-                }
-
             }
         });
-
 
         btnAnnulerCreneau.setOnClickListener(new View.OnClickListener() {
             @Override

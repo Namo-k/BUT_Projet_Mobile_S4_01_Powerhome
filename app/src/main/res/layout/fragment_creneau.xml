@@ -294,7 +294,7 @@
                             android:layout_below="@+id/finET"
                             android:layout_toRightOf="@+id/consoCreneauLabelTV"
                             android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
                             android:text=""
@@ -310,7 +310,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/consoCreneauLabelTV"
                             android:layout_marginStart="3dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter_medium"
@@ -334,7 +334,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Choisir mon équipement :"
-                                android:layout_marginBottom="20dp"
+                                android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/inter"
                                 android:textSize="15dp"
                                 android:gravity="center"/>
@@ -351,7 +351,7 @@
                                     android:layout_marginStart="15dp"
                                     android:layout_marginTop="3dp"
                                     android:layout_marginEnd="3dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginBottom="0dp"
                                     android:fontFamily="@font/inter_medium"
                                     android:textColor="@color/grey"
                                     android:textSize="13.5dp"
@@ -378,7 +378,7 @@
                                     android:layout_marginStart="50dp"
                                     android:layout_toEndOf="@+id/equipement1Label"
                                     android:layout_marginLeft="5dp"
-                                    android:layout_marginTop="5dp"
+                                    android:layout_marginTop="0dp"
                                     android:layout_marginRight="5dp"
                                     android:background="@drawable/round_login"
                                     android:fontFamily="@font/inter"
@@ -495,12 +495,33 @@
                             </RelativeLayout>-->
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/btnVerifierCreneau"
+                                android:layout_width="150dp"
+                                android:layout_height="30dp"
+                                app:cardBackgroundColor="@color/darkGreen"
+                                app:cardCornerRadius="6dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_toRightOf="@id/finET">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Vérifier"
+                                    android:textAlignment="center"
+                                    android:padding="5dp"
+                                    android:textColor="@color/white"
+                                    android:textSize="13dp" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
                                 android:id="@+id/btnEnregistrerCreneau"
                                 android:layout_width="150dp"
                                 android:layout_height="30dp"
                                 app:cardBackgroundColor="@color/darkGreen"
                                 app:cardCornerRadius="6dp"
                                 android:layout_marginLeft="2dp"
+                                android:layout_marginTop="20dp"
                                 android:layout_toRightOf="@id/finET">
 
                                 <TextView
