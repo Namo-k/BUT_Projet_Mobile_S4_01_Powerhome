@@ -8,27 +8,27 @@ if (
     isset($json['date_debut']) &&
     isset($json['date_fin']) &&
     isset($json['consommation']) &&
-    isset($json['equipement_id'])&&
+    isset($json['equipement_id']) &&
     isset($json['id'])
 ) {
     $dateDebut = $json['date_debut'];
     $dateFin = $json['date_fin'];
-    $consommation = intval($json['consommation']);
+    $consommationEquipement = intval($json['consommation']);
     $equipementId = intval($json['equipement_id']);
-    $id = intval($json['id']);
+    $habitatId = intval($json['id']);
 
     try {
         $bdd->beginTransaction();
 
         // Vérifier si le créneau existe déjà
-        $checkTimeSlot = $bdd->prepare("SELECT id, max_wattage FROM time_slot WHERE begin = :date_debut AND end = :date_fin");
+        $checkTimeSlot = $bdd->prepare("SELECT id FROM time_slot WHERE begin = :date_debut AND end = :date_fin");
         $checkTimeSlot->bindParam(':date_debut', $dateDebut);
         $checkTimeSlot->bindParam(':date_fin', $dateFin);
         $checkTimeSlot->execute();
-        $timeSlot = $checkTimeSlot->fetch(PDO::FETCH_ASSOC);
+        $timeSlotId = $checkTimeSlot->fetchColumn();
 
         // Si le créneau n'existe pas, le créer
-        if (!$timeSlot) {
+        if (!$timeSlotId) {
             $createSlot = $bdd->prepare("INSERT INTO time_slot (begin, end, max_wattage, wattage_used) VALUES (:date_debut, :date_fin, :maxWattage, 0)");
             $createSlot->bindParam(':date_debut', $dateDebut);
             $createSlot->bindParam(':date_fin', $dateFin);
@@ -39,14 +39,43 @@ if (
 
             // Récupérer l'ID du nouveau créneau
             $timeSlotId = $bdd->lastInsertId();
-        } else {
-            $timeSlotId = $timeSlot['id'];
-            $maxWattage = $timeSlot['max_wattage'];
         }
 
-        // Mise à jour du wattage utilisé dans le créneau
-        $updateWattage = $bdd->prepare("UPDATE time_slot SET wattage_used = wattage_used + :consommation WHERE id = :timeSlotId");
-        $updateWattage->bindParam(':consommation', $consommation);
+        // Obtenir la capacité de wattage utilisée dans le créneau horaire
+        $getMaxWattage = $bdd->prepare("SELECT max_wattage FROM time_slot WHERE id = :timeSlotId");
+        $getMaxWattage->bindParam(':timeSlotId', $timeSlotId);
+        $getMaxWattage->execute();
+        $maxWattage = $getMaxWattage->fetchColumn();
+
+        // Obtenir le nombre d'essais de l'habitat
+        $getEssai = $bdd->prepare("SELECT essai FROM habitat WHERE id = :habitatId");
+        $getEssai->bindParam(':habitatId', $habitatId);
+        $getEssai->execute();
+        $essai = $getEssai->fetchColumn();
+
+        // Vérifier si la consommation de l'équipement est plus grande que la capacité de wattage utilisée
+        if ($consommationEquipement >= $maxWattage) {
+            if ($essai >= 3) {
+                // Incrémenter le malus si le nombre d'essais est supérieur ou égal à 3
+                $incrementMalus = $bdd->prepare("UPDATE habitat SET malus = malus + 1 WHERE id = :habitatId");
+                $incrementMalus->bindParam(':habitatId', $habitatId);
+                $incrementMalus->execute();
+            } else {
+                // Incrémenter le nombre d'essais
+                $incrementEssai = $bdd->prepare("UPDATE habitat SET essai = essai + 1 WHERE id = :habitatId");
+                $incrementEssai->bindParam(':habitatId', $habitatId);
+                $incrementEssai->execute();
+            }
+        } elseif ($consommationEquipement < $wattageUsed) {
+            // Incrémenter le bonus si la consommation de l'équipement est inférieure à la capacité de wattage utilisée
+            $incrementBonus = $bdd->prepare("UPDATE habitat SET bonus = bonus + 1 WHERE id = :habitatId");
+            $incrementBonus->bindParam(':habitatId', $habitatId);
+            $incrementBonus->execute();
+        }
+
+        // Mise à jour du wattage utilisé dans le créneau horaire
+        $updateWattage = $bdd->prepare("UPDATE time_slot SET wattage_used = wattage_used + :consommationEquipement WHERE id = :timeSlotId");
+        $updateWattage->bindParam(':consommationEquipement', $consommationEquipement);
         $updateWattage->bindParam(':timeSlotId', $timeSlotId);
         $updateWattage->execute();
 
@@ -63,47 +92,6 @@ if (
         $insertApplianceTimeSlot = $bdd->prepare('INSERT INTO appliance_time_slot (appliance_id, time_slot_id, `order`, booked_at) 
                                                   VALUES (?, ?, ?, NOW())');
         $insertApplianceTimeSlot->execute(array($equipementId, $timeSlotId, $order));
-        
-
-        // Obtenir le wattage utilisé après la mise à jour
-        $getWattageUsed = $bdd->prepare("SELECT wattage_used FROM time_slot WHERE id = :timeSlotId");
-        $getWattageUsed->bindParam(':timeSlotId', $timeSlotId);
-        $getWattageUsed->execute();
-        $wattageUsed = $getWattageUsed->fetchColumn();
-
-        if ($wattageUsed > $maxWattage) {
-            // Vérifier le nombre d'essais
-            $checkHabitat = $bdd->prepare("SELECT essai, malus FROM habitat WHERE id = :habitatId");
-            $checkHabitat->bindParam(':habitatId', $id);
-            $checkHabitat->execute();
-            $habitat = $checkHabitat->fetch(PDO::FETCH_ASSOC);
-
-            if ($habitat) {
-                $essai = $habitat['essai'];
-                $malus = $habitat['malus'];
-
-                if ($essai >= 3) {
-                    // Atteint le maximum d'essais, incrémenter le malus
-                    $malus++;
-                    $updateHabitat = $bdd->prepare("UPDATE habitat SET malus = :malus WHERE id = :habitatId");
-                    $updateHabitat->bindParam(':malus', $malus);
-                    $updateHabitat->bindParam(':habitatId', $id);
-                    $updateHabitat->execute();
-                } else {
-                    // Incrémenter le nombre d'essais
-                    $essai++;
-                    $updateHabitat = $bdd->prepare("UPDATE habitat SET essai = :essai WHERE id = :habitatId");
-                    $updateHabitat->bindParam(':essai', $essai);
-                    $updateHabitat->bindParam(':habitatId', $id);
-                    $updateHabitat->execute();
-                }
-            }
-        } else {
-            // La wattageUsed est inférieure ou égale au maxWattage, incrémenter le bonus
-            $updateHabitat = $bdd->prepare("UPDATE habitat SET bonus = bonus + 1 WHERE id = :habitatId");
-            $updateHabitat->bindParam(':habitatId', $id);
-            $updateHabitat->execute();
-        }
 
         $bdd->commit();
 
