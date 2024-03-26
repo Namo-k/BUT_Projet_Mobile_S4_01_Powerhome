@@ -27,6 +27,7 @@ import java.util.Map;
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.Notification;
 
 public class WelcomeActivity extends AppCompatActivity {
     private Integer floor;
@@ -38,6 +39,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private Integer puissanceMAX = 10000;
     private Boolean ajout;
     private DatabaseManager databaseManager;
+
+    private Notification notif;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 floor = (Integer) floorSpinner.getSelectedItem();
                 area = (Integer) areaSpinner.getSelectedItem();
                 ajout = false;
+                notif = new Notification("Bienvenue", "Nous sommes ravie de vous accueillir dans votre nouveau logement", "notification");
+                ajouterNotification(notif);
                 updateHabitat();
             }
         });
@@ -110,6 +116,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
                 else {
                     ajout = true;
+                    notif = new Notification("Bienvenue", "Nous sommes ravie de vous accueillir dans votre nouveau logement", "notification");
+                    ajouterNotification(notif);
                     updateHabitat();
                 }
             }
@@ -146,6 +154,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
             if (success == true) {
                 if (ajout == true) {
+                    notif = new Notification("Ajout d'un équipement", "Vous avez ajouté un " + name + " Ref. " + reference +  " de "+ wattage+"W à votre logement.", "equipement");
+                    ajouterNotification(notif);
                     ajouterEquipement();
                 }
                 else {
@@ -199,6 +209,26 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 onApiResponseAjout(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+    public void ajouterNotification(Notification notif) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutNotification.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("title", notif.getTitle());
+        params.put("notification", notif.getNotification());
+        params.put("categorie", notif.getCategorie());
+        params.put("id", String.valueOf(id));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
             }
         }, new Response.ErrorListener() {
             @Override
