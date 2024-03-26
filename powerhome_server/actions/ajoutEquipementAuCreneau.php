@@ -18,7 +18,6 @@ if (
     try {
         $bdd->beginTransaction();
 
-        // Mise à jour du wattage utilisé dans la table time_slot
         $sqlUpdate = "UPDATE time_slot
                       SET wattage_used = wattage_used + :consommation
                       WHERE begin = :date_debut
@@ -30,7 +29,6 @@ if (
         $stmtUpdate->bindParam(':date_fin', $dateFin);
         $stmtUpdate->execute();
 
-        // Obtenir l'ordre actuel
         $getCurrentOrder = $bdd->prepare('SELECT MAX(`order`) AS max_order FROM appliance_time_slot 
                                                             INNER JOIN time_slot ON appliance_time_slot.time_slot_id = time_slot.id 
                                                             WHERE begin <= ? AND end > ?');
@@ -39,7 +37,6 @@ if (
 
         $order = $currentOrder + 1;
 
-        // Insérer dans la table appliance_time_slot
         $insertApplianceTimeSlot = $bdd->prepare('INSERT INTO appliance_time_slot (appliance_id, time_slot_id, `order`, booked_at) 
                                                   VALUES (?, (SELECT id FROM time_slot WHERE begin = ? AND end = ?), ?, NOW())');
         $insertApplianceTimeSlot->execute(array($equipementId, $dateDebut, $dateFin, $order));

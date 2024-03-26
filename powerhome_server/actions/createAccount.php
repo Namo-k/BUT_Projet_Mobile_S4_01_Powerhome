@@ -30,4 +30,4 @@ else {
     $result["error"] = "Erreur création compte"; 
 }
 
-echo json_encode($result); // on renvoie l'objet result
+echo json_encode($result);
