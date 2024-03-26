@@ -84,8 +84,11 @@ public class EquipementModifActivity extends AppCompatActivity {
                 String selectedItem = (String) parentView.getItemAtPosition(position);
 
                 if (!selectedItem.equals("Sélectionnez un équipement")) {
+                    String[] parts = selectedItem.split("\\.");
+                    String selectedId = parts[1]; // Récupère l'ID
+
                     for (EquipementPrincipaux equipement : equipementPrincipaux) {
-                        if (equipement.getName().equals(selectedItem)) {
+                        if (String.valueOf(equipement.getId()).equals(selectedId)) {
                             reference_.setText(equipement.getReference());
                             wattage_.setText(String.valueOf(equipement.getWattage()));
                             idEquipement_.setText(String.valueOf(equipement.getId()));
@@ -177,7 +180,7 @@ public class EquipementModifActivity extends AppCompatActivity {
                     String reference = applianceObject.getString("reference");
                     int wattage = applianceObject.getInt("wattage");
                     equipementPrincipaux.add(new EquipementPrincipaux(id, name, reference, wattage));
-                    maListe.add(name);
+                    maListe.add(name + "." + String.valueOf(id));
                 }
                 Spinner equipementSpinner = findViewById(R.id.nomET);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, maListe);
