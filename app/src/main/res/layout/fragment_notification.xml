@@ -61,7 +61,7 @@
                     android:layout_height="41dp"
                     android:layout_marginTop="22dp"
                     android:layout_marginRight="33dp"
-                    android:src="@drawable/equipement_logo"
+                    android:src="@drawable/cloche"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="MissingConstraints" />
 
