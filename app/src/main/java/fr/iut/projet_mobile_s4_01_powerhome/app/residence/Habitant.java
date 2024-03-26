@@ -9,11 +9,8 @@ public class Habitant {
 
     private int id;
     private String habitantName;
-
     private List<Appliance> appliances;
-
     private int ecoCoin;
-
     private int consoTotal;
 
     public Habitant(int id, String habitantName, List<Appliance> appliances, int ecoCoin, int consoTotal) {
@@ -30,17 +27,13 @@ public class Habitant {
     public String getHabitantName() {
         return habitantName;
     }
-
     public List<Appliance> getAppliances() {
         return appliances;
     }
-
     public int getEcoCoin() {
         return ecoCoin;
     }
-
     public int getConsoTotal() {
         return consoTotal;
     }
-
 }

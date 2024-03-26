@@ -196,7 +196,6 @@ public class EditProfileActivity extends AppCompatActivity {
         params.put("mail", mail);
         params.put("question", question);
         params.put("reponse", reponse);
-        //Toast.makeText(getApplicationContext(),String.valueOf(id) + prenom + naissance + mail + question + reponse, Toast.LENGTH_SHORT).show();
         JSONObject parameters = new JSONObject(params);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override

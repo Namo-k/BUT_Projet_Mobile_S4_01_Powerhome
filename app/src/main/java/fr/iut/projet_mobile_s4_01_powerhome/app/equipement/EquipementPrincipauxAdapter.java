@@ -1,4 +1,5 @@
 package fr.iut.projet_mobile_s4_01_powerhome.app.equipement;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

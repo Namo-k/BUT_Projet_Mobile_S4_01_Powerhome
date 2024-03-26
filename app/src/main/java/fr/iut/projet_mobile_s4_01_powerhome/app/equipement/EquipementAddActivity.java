@@ -29,7 +29,6 @@ import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.Notification;
-import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationAdapter;
 
 public class EquipementAddActivity extends AppCompatActivity {
     private Integer id;
@@ -78,7 +77,6 @@ public class EquipementAddActivity extends AppCompatActivity {
         btnAnnuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);

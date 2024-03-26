@@ -197,7 +197,6 @@ public class EquipementModifActivity extends AppCompatActivity {
         String url = "http://10.0.2.2:2000/powerhome_server/actions/getEquipements.php";
         Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(id));
-        //Toast.makeText(getApplicationContext(), name + reference + wattage + String.valueOf(id), Toast.LENGTH_SHORT).show();
         JSONObject parameters = new JSONObject(params);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
@@ -244,7 +243,6 @@ public class EquipementModifActivity extends AppCompatActivity {
         params.put("id", String.valueOf(id));
         params.put("reference", reference);
         params.put("wattage", wattage);
-        //Toast.makeText(getApplicationContext(), name + reference + wattage + String.valueOf(id), Toast.LENGTH_SHORT).show();
         JSONObject parameters = new JSONObject(params);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override

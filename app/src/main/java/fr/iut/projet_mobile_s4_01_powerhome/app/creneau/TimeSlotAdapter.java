@@ -1,6 +1,5 @@
-package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
+package fr.iut.projet_mobile_s4_01_powerhome.app.creneau;
 import android.content.Context;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import java.util.List;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 
 public class TimeSlotAdapter extends ArrayAdapter<TimeSlot> {
-
     private final LayoutInflater inflater;
     private final int layoutResourceId;
     public TimeSlotAdapter(Context context, List<TimeSlot> timeSlots, int layoutResourceId) {

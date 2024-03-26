@@ -1,8 +1,5 @@
 package fr.iut.projet_mobile_s4_01_powerhome.app.equipement;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Appliance {
     private int id;
     private String name;
@@ -13,7 +10,6 @@ public class Appliance {
         this.name = name;
         this.wattage = wattage;
     }
-
     public int getId() {
         return id;
     }
@@ -21,4 +17,6 @@ public class Appliance {
     public int getWattage() {
         return wattage;
     }
+
+    public String getName() { return name;}
 }

@@ -58,9 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         EditText mailET = findViewById(R.id.mailET);
         EditText mdpET = findViewById(R.id.mdpET);
 
-        mailET.setText("k@gmail.com");
-        mdpET.setText("Namodacane77!!");
-
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
 

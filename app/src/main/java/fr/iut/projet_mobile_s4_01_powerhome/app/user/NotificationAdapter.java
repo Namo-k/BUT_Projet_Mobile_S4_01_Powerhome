@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
-
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+
 public class NotificationAdapter extends ArrayAdapter<Notification> {
 
     private final LayoutInflater inflater;

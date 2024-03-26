@@ -2,7 +2,6 @@ package fr.iut.projet_mobile_s4_01_powerhome.app.user;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 
 public class Notification {

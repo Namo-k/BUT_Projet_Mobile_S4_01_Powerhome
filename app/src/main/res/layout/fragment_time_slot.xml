@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGreen"
-    tools:context=".app.residence.TimeSlotFragment">
+    tools:context=".app.creneau.TimeSlotFragment">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"

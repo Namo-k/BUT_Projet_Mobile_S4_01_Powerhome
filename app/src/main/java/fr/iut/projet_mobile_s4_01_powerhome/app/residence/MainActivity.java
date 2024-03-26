@@ -20,6 +20,8 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+import fr.iut.projet_mobile_s4_01_powerhome.app.creneau.CreneauFragment;
+import fr.iut.projet_mobile_s4_01_powerhome.app.creneau.TimeSlotFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.EditProfileActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.PreferenceFragment;

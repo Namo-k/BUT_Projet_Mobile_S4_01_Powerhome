@@ -58,7 +58,6 @@ public class PreferenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preference, container, false);
 
-
         switchMode = view.findViewById(R.id.switchMode);
         switchMode.setThumbResource(R.drawable.thumb);
         switchMode.setTrackResource(R.drawable.track);

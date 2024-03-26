@@ -1,13 +1,11 @@
-package fr.iut.projet_mobile_s4_01_powerhome.app.residence;
+package fr.iut.projet_mobile_s4_01_powerhome.app.creneau;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -22,15 +20,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
-import fr.iut.projet_mobile_s4_01_powerhome.app.user.Notification;
-import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationAdapter;
 
+//Fragment pour voir les créneaux
 public class TimeSlotFragment extends Fragment {
 
     private Integer id;
@@ -41,7 +36,6 @@ public class TimeSlotFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -82,7 +76,7 @@ public class TimeSlotFragment extends Fragment {
             id = intent.getIntExtra("id", 0);
         }
 
-       getTimeSlots();
+        getTimeSlots();
 
         return view;
     }
@@ -105,8 +99,10 @@ public class TimeSlotFragment extends Fragment {
                     TimeSlot timeSlot = new TimeSlot(id, begin, end, maxWattage, wattageUsed);
                     timeSlots.add(timeSlot);
                 }
+
                 TimeSlotAdapter adapter = new TimeSlotAdapter(requireContext(), timeSlots, R.layout.item_creneau);
                 listView.setAdapter(adapter);
+
             } else {
                 String error = response.getString("error");
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show();
@@ -117,13 +113,9 @@ public class TimeSlotFragment extends Fragment {
         }
     }
 
-
-
     public void getTimeSlots() {
         String url = "http://10.0.2.2:2000/powerhome_server/actions/getTimeSlots.php";
-
         JSONObject parameters = new JSONObject();
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -135,8 +127,6 @@ public class TimeSlotFragment extends Fragment {
                 Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-
         databaseManager.queue.add(jsonObjectRequest);
     }
-
 }

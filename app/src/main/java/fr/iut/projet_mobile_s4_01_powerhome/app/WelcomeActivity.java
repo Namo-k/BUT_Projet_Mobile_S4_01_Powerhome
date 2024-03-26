@@ -203,7 +203,6 @@ public class WelcomeActivity extends AppCompatActivity {
         params.put("reference", reference);
         params.put("wattage", wattage);
         params.put("id", String.valueOf(id));
-        //Toast.makeText(getApplicationContext(), name + reference + wattage + String.valueOf(id), Toast.LENGTH_SHORT).show();
         JSONObject parameters = new JSONObject(params);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override

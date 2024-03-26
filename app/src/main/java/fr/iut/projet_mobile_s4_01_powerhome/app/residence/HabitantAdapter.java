@@ -102,5 +102,4 @@ public class HabitantAdapter extends ArrayAdapter<Habitant> {
             }
         }
     }
-
 }

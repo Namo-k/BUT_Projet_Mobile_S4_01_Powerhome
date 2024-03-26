@@ -37,22 +37,20 @@ public class EquipementFragment extends Fragment {
     private List<EquipementPrincipaux> equipementPrincipaux;
     private ListView listView;
     private Integer puissance;
-
     private TextView puissance_;
     private TextView nbEquipements_;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     public EquipementFragment() {
         // Required empty public constructor
     }
 
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static EquipementFragment newInstance(String param1, String param2) {
+        EquipementFragment fragment = new EquipementFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,6 +66,7 @@ public class EquipementFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -29,6 +29,7 @@ import java.util.Map;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+import fr.iut.projet_mobile_s4_01_powerhome.app.creneau.CreneauFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementAddActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementFragment;
@@ -45,15 +46,14 @@ public class MonHabitatFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public MonHabitatFragment() {
 
     }
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static MonHabitatFragment newInstance(String param1, String param2) {
+        MonHabitatFragment fragment = new MonHabitatFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -38,7 +38,6 @@ public class ResidenceFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -46,8 +45,8 @@ public class ResidenceFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static ResidenceFragment newInstance(String param1, String param2) {
+        ResidenceFragment fragment = new ResidenceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
