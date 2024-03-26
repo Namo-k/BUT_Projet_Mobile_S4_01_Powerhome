@@ -139,7 +139,7 @@ public class EquipementFragment extends Fragment {
                 listView.setAdapter(adapter);
 
                 puissance_.setText(String.valueOf(puissanceCalculee) + "W");
-                nbEquipements_.setText("Vous avez " + String.valueOf(nbEquipements) + " équipements !");
+                nbEquipements_.setText("Vous avez " + nbEquipements + (nbEquipements > 1 ? " équipements !" : " équipement !"));
 
                 puissance = puissanceCalculee;
             }

@@ -44,6 +44,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText mail_;
     private EditText reponse_;
     private DatabaseManager databaseManager;
+    private Notification notif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Veuillez écrire la réponse à la question", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    notif = new Notification("Configuration", "Vous avez modifié votre profil.", "configuration");
                     updateInformations();
                 }
             }
@@ -199,6 +201,7 @@ public class EditProfileActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                ajouterNotification(notif);
                 onApiResponseUpdate(response);
             }
         }, new Response.ErrorListener() {
@@ -212,5 +215,25 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    public void ajouterNotification(Notification notif) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutNotification.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("title", notif.getTitle());
+        params.put("notification", notif.getNotification());
+        params.put("categorie", notif.getCategorie());
+        params.put("id", String.valueOf(id));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
     }
 }

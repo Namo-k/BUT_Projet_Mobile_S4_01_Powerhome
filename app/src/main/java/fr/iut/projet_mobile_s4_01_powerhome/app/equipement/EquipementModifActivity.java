@@ -31,6 +31,7 @@ import java.util.Map;
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.Notification;
 
 public class EquipementModifActivity extends AppCompatActivity {
     private Integer id;
@@ -43,6 +44,7 @@ public class EquipementModifActivity extends AppCompatActivity {
     private Integer puissance;
     private Integer puissanceMAX = 10000;
     private TextView errorTextView;
+    private Notification notif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,7 @@ public class EquipementModifActivity extends AppCompatActivity {
                 }
                 else {
                     idEquipement = idEquipement_.getText().toString();
+                    notif = new Notification("Modification d'un équipement", "Vous avez modifié : " + name + " Ref. " + reference +  " de "+ wattage+"W de votre logement.", "equipement");
                     modifEquipement();
                 }
             }
@@ -149,6 +152,7 @@ public class EquipementModifActivity extends AppCompatActivity {
                 }
                 else {
                     idEquipement = idEquipement_.getText().toString();
+                    notif = new Notification("Supression d'un équipement", "Vous avez supprimé : " + name + " de votre logement.", "equipement");
                     supprimerEquipement();
                 }
             }
@@ -242,6 +246,7 @@ public class EquipementModifActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                ajouterNotification(notif);
                 onApiResponseModif(response);
             }
         }, new Response.ErrorListener() {
@@ -287,7 +292,28 @@ public class EquipementModifActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                ajouterNotification(notif);
                 onApiResponseSupp(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+    public void ajouterNotification(Notification notif) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutNotification.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("title", notif.getTitle());
+        params.put("notification", notif.getNotification());
+        params.put("categorie", notif.getCategorie());
+        params.put("id", String.valueOf(id));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
             }
         }, new Response.ErrorListener() {
             @Override

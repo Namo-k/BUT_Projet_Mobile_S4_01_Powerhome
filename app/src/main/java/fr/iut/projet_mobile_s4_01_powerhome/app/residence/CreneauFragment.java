@@ -47,6 +47,7 @@ import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipaux;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipauxAdapter;
+import fr.iut.projet_mobile_s4_01_powerhome.app.user.Notification;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.PreferenceFragment;
 
 public class CreneauFragment extends Fragment {
@@ -64,6 +65,8 @@ public class CreneauFragment extends Fragment {
 
     private final Map<String, Integer> equipementConsoMap = new HashMap<>();
     private final List<TimeSlot> timeSlots = new ArrayList<>();
+
+    private Notification notif;
 
     public CreneauFragment() {
         // Required empty public constructor
@@ -360,6 +363,9 @@ public class CreneauFragment extends Fragment {
                             long duree = finDate.getTime() - debutDate.getTime();
                             long uneHeure = 3600000; // 1 heure en millisecondes
 
+                            notif = new Notification("Sélection d'un créneau", "Vous avez réservé le créneau de "+ debutTime+" à " + finTime + " pour votre "+ equipementName +".", "creneau");
+                            ajouterNotification(notif);
+
                             if (duree > uneHeure) {
                                 for (long currentTime = debutDate.getTime(); currentTime < finDate.getTime(); currentTime += uneHeure) {
                                     Date currentBeginTime = new Date(currentTime);
@@ -398,6 +404,8 @@ public class CreneauFragment extends Fragment {
                         long duree = finDate.getTime() - debutDate.getTime();
                         long uneHeure = 3600000; // 1 heure en millisecondes
 
+                        notif = new Notification("Sélection d'un créneau", "Vous avez réservé le créneau de "+ debutTime+" à " + finTime + " pour votre "+ equipementName +".", "creneau");
+                        ajouterNotification(notif);
                         if (duree > uneHeure) {
                             for (long currentTime = debutDate.getTime(); currentTime < finDate.getTime(); currentTime += uneHeure) {
                                 Date currentBeginTime = new Date(currentTime);
@@ -588,6 +596,26 @@ public class CreneauFragment extends Fragment {
             }
         }, error -> Toast.makeText(requireContext(), "Erreur de communication avec le serveur: " + error.toString(), Toast.LENGTH_SHORT).show());
 
+        databaseManager.queue.add(jsonObjectRequest);
+    }
+    public void ajouterNotification(Notification notif) {
+        String url = "http://10.0.2.2:2000/powerhome_server/actions/ajoutNotification.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("title", notif.getTitle());
+        params.put("notification", notif.getNotification());
+        params.put("categorie", notif.getCategorie());
+        params.put("id", String.valueOf(id));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
         databaseManager.queue.add(jsonObjectRequest);
     }
 }
