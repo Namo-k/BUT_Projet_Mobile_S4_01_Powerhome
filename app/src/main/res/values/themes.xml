@@ -6,4 +6,20 @@
     </style>
 
     <style name="Theme.Projet_Mobile_S4_01_Powerhome" parent="Base.Theme.Projet_Mobile_S4_01_Powerhome" />
+
+    <style name="CustomCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="android:background">@color/lightGreen</item>
+        <item name="android:backgroundTint">@color/lightGreen</item>
+    </style>
+
+    <style name="ScreenBackground"><item name="android:background">@color/white</item> </style>
+    <style name="CardBackground"><item name="android:background">@color/lightGreen</item> </style>
+    <style name="CardBackground2"><item name="android:background">@color/darkGreen</item> </style>
+    <style name="CardBackground3"><item name="android:background">@color/darkGreen</item> </style>
+    <style name="TextColor1"><item name="android:textColor">@color/darkGreen</item> </style>
+    <style name="TextColor2"><item name="android:textColor">@color/lightGreen</item> </style>
+    <style name="TextColor3"><item name="android:textColor">@color/darkGrey</item> </style>
+    <style name="TextColor4"><item name="android:textColor">@color/lightGrey</item> </style>
+    <style name="TextColor5"><item name="android:textColor">@color/white</item> </style>
+
 </resources>

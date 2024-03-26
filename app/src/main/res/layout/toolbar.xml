@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/toolbar_layout">
+    android:id="@+id/toolbar_layout"
+    android:theme="@style/ScreenBackground">
 
     <!-- ENTETE -->
     <androidx.cardview.widget.CardView
@@ -20,7 +21,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ovale_shape" />
+            android:src="@drawable/ovale_shape"
+            android:theme="@style/ScreenBackground"
+            />
 
        <!-- <ImageView
             android:id="@+id/menuD"
@@ -38,7 +41,8 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="147dp"
             android:layout_marginTop="55dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:backgroundTint="@color/darkGreen"/>
 
 
     </androidx.cardview.widget.CardView>

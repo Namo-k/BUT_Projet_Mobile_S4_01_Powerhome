@@ -4,4 +4,20 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="CustomCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="android:background">@color/darkGreen</item>
+        <item name="android:backgroundTint">@color/darkGreen</item>
+    </style>
+
+    <style name="ScreenBackground"><item name="android:background">@color/darkGrey</item> </style>
+    <style name="CardBackground"><item name="android:background">@color/darkGreen</item> </style>
+    <style name="CardBackground2"><item name="android:background">@color/darkGrey</item> </style>
+    <style name="CardBackground3"><item name="android:background">@color/white</item> </style>
+    <style name="TextColor1"><item name="android:textColor">@color/white</item> </style>
+    <style name="TextColor2"><item name="android:textColor">@color/lightGreen</item> </style>
+    <style name="TextColor3"><item name="android:textColor">@color/white</item> </style>
+    <style name="TextColor4"><item name="android:textColor">@color/lightGrey</item> </style>
+    <style name="TextColor5"><item name="android:textColor">@color/white</item> </style>
+
 </resources>

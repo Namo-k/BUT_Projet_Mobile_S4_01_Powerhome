@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightGreen"
     tools:context=".app.user.PreferenceFragment"
     >
     <FrameLayout
@@ -23,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:theme="@style/ScreenBackground"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,14 +36,13 @@
                     android:id="@+id/preferences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="40dp"
                     android:fontFamily="@font/sansita_regular"
                     android:text=" Mes préférences"
-                    android:textColor="@color/darkGreen"
+                    android:theme="@style/TextColor1"
                     android:textSize="22dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    tools:layout_editor_absoluteY="6dp" />
 
                 <TextView
                     android:id="@+id/ligne1"
@@ -51,18 +50,16 @@
                     android:layout_height="1dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="7dp"
-                    android:background="@color/grey"
+                    android:theme="@style/CardBackground3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/preferences" />
 
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/blocHabitat"
+                    android:theme="@style/CardBackground"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
                     android:layout_marginTop="28dp"
-                    app:cardBackgroundColor="@color/lightGreen"
                     app:cardCornerRadius="20dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
@@ -74,7 +71,8 @@
                         android:layout_height="match_parent"
                         android:paddingHorizontal="10dp"
                         android:paddingTop="8dp"
-                        android:paddingBottom="6dp">
+                        android:paddingBottom="6dp"
+                        >
 
                         <TextView
                             android:id="@+id/text"
@@ -87,7 +85,7 @@
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/inter_medium"
                             android:text="Vos préférences : "
-                            android:textColor="@color/grey"
+                            android:theme="@style/TextColor3"
                             android:textSize="18dp" />
 
                         <TextView
@@ -100,75 +98,105 @@
                             android:layout_below="@id/text"
                             android:fontFamily="@font/inter_medium"
                             android:text="Changer de langue :"
-                            android:textColor="@color/grey"
+                            android:theme="@style/TextColor3"
                             android:textSize="16dp" />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/btnAnglais"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_below="@id/langueTV"
-                            android:layout_centerHorizontal="true"
-                            app:cardBackgroundColor="@color/darkGreen"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="10dp"
-                            app:cardCornerRadius="10dp">
-
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="35dp"
-                                android:layout_alignParentRight="true"
-                                android:background="@color/darkGreen"
-                                android:fontFamily="@font/inter_medium"
-                                android:gravity="center"
-                                android:padding="3dp"
-                                android:text="En anglais"
-                                android:textColor="@color/white"
-                                android:textSize="14dp" />
-                        </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/btnFrancais"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_below="@id/btnAnglais"
-                            android:layout_centerHorizontal="true"
-                            app:cardBackgroundColor="@color/darkGreen"
+                            android:layout_below="@id/langueTV"
+                            android:theme="@style/CardBackground2"
                             android:layout_marginTop="15dp"
+                            android:layout_marginLeft="60dp"
                             android:layout_marginBottom="10dp"
                             app:cardCornerRadius="10dp">
 
 
                             <TextView
-                                android:layout_width="200dp"
+                                android:layout_width="180dp"
                                 android:layout_height="35dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@color/darkGreen"
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center"
                                 android:padding="3dp"
+                                android:theme="@style/TextColor5"
                                 android:text="En français"
-                                android:textColor="@color/white"
                                 android:textSize="14dp" />
                         </androidx.cardview.widget.CardView>
 
+                        <ImageView
+                            android:id="@+id/français"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginLeft="20dp"
+                            android:src="@drawable/francais"
+                            android:layout_below="@id/langueTV"
+                            android:layout_toRightOf="@id/btnFrancais"
+                            />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btnAnglais"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_below="@id/btnFrancais"
+                            android:theme="@style/CardBackground2"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="10dp">
+
+                            <TextView
+                                android:layout_width="180dp"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:fontFamily="@font/inter_medium"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="En anglais"
+                                android:theme="@style/TextColor5"
+                                android:textSize="14dp" />
+                        </androidx.cardview.widget.CardView>
+
+                        <ImageView
+                            android:id="@+id/anglais"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginLeft="20dp"
+                            android:src="@drawable/anglais"
+                            android:layout_below="@id/btnFrancais"
+                            android:layout_toRightOf="@id/btnAnglais"
+                            />
+
                         <TextView
-                            android:id="@+id/informations"
-                            android:layout_width="match_parent"
+                            android:id="@+id/colorTV"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="20dp"
-                            android:textAlignment="center"
+                            android:layout_marginTop="17dp"
                             android:layout_marginBottom="10dp"
-                            android:layout_below="@id/btnFrancais"
+                            android:layout_below="@id/btnAnglais"
                             android:fontFamily="@font/inter_medium"
-                            android:lineHeight="20dp"
-                            android:text="Attention, le changement de langue ne s'effectue que sur les pages d'authentificaiton pour le moment"
-                            android:textColor="@color/grey"
-                            android:textSize="14dp" />
+                            android:text="Changer de thème :"
+                            android:theme="@style/TextColor3"
+                            android:textSize="16dp" />
+
+
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/switchMode"
+                            android:thumb="@drawable/thumb"
+                            android:layout_marginTop="10dp"
+                            app:track="@drawable/track"
+                            android:layout_below="@id/colorTV"
+                            />
 
                     </RelativeLayout>
 

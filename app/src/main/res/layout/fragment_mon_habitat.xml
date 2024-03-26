@@ -4,19 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightGreen"
     tools:context=".app.residence.MonHabitatFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <!-- ========== PAGE =========== -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:theme="@style/ScreenBackground"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -34,7 +33,7 @@
                     android:paddingTop="10dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginLeft="70dp"
-                    android:backgroundTint="@color/darkGrey"
+                    android:theme="@style/TextColor3"
                     android:fontFamily="@font/inter"
                     android:text="Ravi de vous revoir "
                     android:textSize="17dp"
@@ -43,14 +42,14 @@
 
                 <TextView
                     android:id="@+id/prenom"
-                    android:text=""
+                    android:text="Alexandre"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="229.5dp"
                     android:paddingTop="10.2dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/inter_semibold"
-                    android:textColor="@color/darkGreen"
+                    android:theme="@style/TextColor1"
                     android:textSize="18.5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintRight_toRightOf="@id/accueil_phrase"
@@ -66,7 +65,7 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/sansita_regular"
                     android:text=" Mon Habitat"
-                    android:textColor="@color/darkGreen"
+                    android:theme="@style/TextColor1"
                     android:textSize="22dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/prenom" />
@@ -77,7 +76,7 @@
                     android:layout_height="1dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="7dp"
-                    android:background="@color/grey"
+                    android:theme="@style/CardBackground3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/habitat" />
 
@@ -97,10 +96,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginTop="28dp"
-                    app:cardBackgroundColor="@color/lightGreen"
                     app:cardCornerRadius="20dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="25dp"
+                    android:theme="@style/CardBackground"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/habitat">
 
@@ -121,7 +120,7 @@
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/inter_medium"
                             android:text="Ma résidence :"
-                            android:textColor="@color/grey"
+                            android:theme="@style/TextColor3"
                             android:textSize="14dp" />
 
                         <TextView
@@ -134,7 +133,7 @@
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
                             android:text="Rives de Seine"
-                            android:textColor="@color/darkGreen"
+                            android:theme="@style/TextColor1"
                             android:textSize="14dp" />
 
                         <TextView
@@ -148,7 +147,7 @@
                             android:layout_below="@id/residenceLabelTV"
                             android:fontFamily="@font/inter_medium"
                             android:text="Mon habitat :"
-                            android:textColor="@color/grey"
+                            android:theme="@style/TextColor3"
                             android:textSize="14dp" />
 
                         <TextView
@@ -161,7 +160,7 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
-                            android:textColor="@color/darkGreen"
+                            android:theme="@style/TextColor1"
                             android:textSize="14dp" />
 
                         <TextView
@@ -174,7 +173,7 @@
                             android:layout_below="@id/habitatLabelTV"
                             android:fontFamily="@font/inter_medium"
                             android:text="Ma puissance totale  : "
-                            android:textColor="@color/grey"
+                            android:theme="@style/TextColor3"
                             android:textSize="13.5dp" />
 
                         <TextView
@@ -187,7 +186,7 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
-                            android:textColor="@color/darkGreen"
+                            android:theme="@style/TextColor1"
                             android:textSize="13.7dp" />
 
                         <TextView
@@ -202,7 +201,7 @@
                             android:layout_toRightOf="@id/puissanceTV"
                             android:fontFamily="@font/inter_medium"
                             android:text="Max : "
-                            android:textColor="@color/grey"
+                            android:theme="@style/TextColor3"
                             android:textSize="13.5dp" />
 
                         <TextView
@@ -216,7 +215,7 @@
                             android:text="10000W"
                             android:layout_marginBottom="3dp"
                             android:fontFamily="@font/inter"
-                            android:textColor="@color/darkGreen"
+                            android:theme="@style/TextColor1"
                             android:textSize="13.7dp" />
 
                         <LinearLayout
@@ -261,7 +260,7 @@
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    app:cardBackgroundColor="@color/darkGreen"
+                                    android:theme="@style/CardBackground2"
                                     app:cardCornerRadius="10dp"
                                     android:layout_marginTop="14dp">
 
@@ -271,9 +270,8 @@
                                         android:layout_width="124dp"
                                         android:layout_height="45dp"
                                         android:text="Voir mes \néquipements"
-                                        android:textColor="@color/white"
+                                        android:theme="@style/TextColor5"
                                         android:fontFamily="@font/inter_medium"
-                                        android:background="@color/darkGreen"
                                         android:padding="3dp"
                                         android:gravity="center"
                                         android:textSize="12dp"
@@ -284,7 +282,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    app:cardBackgroundColor="@color/darkGreen"
+                                    android:theme="@style/CardBackground2"
                                     android:layout_marginTop="10dp"
                                     app:cardCornerRadius="10dp">
 
@@ -294,9 +292,8 @@
                                         android:layout_width="124dp"
                                         android:layout_height="45dp"
                                         android:text="Ajouter un \néquipement"
-                                        android:textColor="@color/white"
+                                        android:theme="@style/TextColor5"
                                         android:fontFamily="@font/inter_medium"
-                                        android:background="@color/darkGreen"
                                         android:padding="3dp"
                                         android:gravity="center"
                                         android:textSize="12dp"
@@ -310,39 +307,36 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:theme="@style/CardBackground2"
                             android:layout_below="@id/equipementSection"
                             android:layout_centerHorizontal="true"
-                            app:cardBackgroundColor="@color/darkGreen"
                             android:layout_marginTop="20dp"
                             app:cardCornerRadius="10dp">
-
 
                             <TextView
                                 android:id="@+id/btnModifierConsoTV"
                                 android:layout_width="200dp"
                                 android:layout_height="35dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@color/darkGreen"
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center"
                                 android:padding="3dp"
                                 android:text="Selectionner un créneau"
-                                android:textColor="@color/white"
+                                android:theme="@style/TextColor5"
                                 android:textSize="13dp" />
                         </androidx.cardview.widget.CardView>
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/blocAncienneAlerte"
                     android:layout_width="match_parent"
                     android:layout_height="119dp"
                     android:layout_marginStart="27dp"
+                    android:theme="@style/CustomCardViewStyle"
                     android:layout_marginEnd="27dp"
                     android:layout_marginTop="23dp"
-                    app:cardBackgroundColor="@color/lightGreen"
                     app:cardCornerRadius="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/blocHabitat">
@@ -356,7 +350,7 @@
                         android:textSize="14.5dp"
                         android:fontFamily="@font/inter_medium"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/darkGrey"
+                        android:theme="@style/TextColor3"
                         />
 
                     <LinearLayout
@@ -399,9 +393,8 @@
                                     android:id="@+id/bonusTV"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
                                     android:fontFamily="@font/inter_medium"
-                                    android:background="#D6E5E3"
+                                    android:theme="@style/TextColor3"
                                     android:gravity="center"
                                     android:textSize="15dp"
                                     />
@@ -441,9 +434,8 @@
                                     android:id="@+id/totalTV"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
                                     android:fontFamily="@font/inter_medium"
-                                    android:background="#D6E5E3"
+                                    android:theme="@style/TextColor3"
                                     android:gravity="center"
                                     android:textSize="15dp"
                                     />
@@ -482,15 +474,15 @@
                                     android:id="@+id/malusTV"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
+                                    android:theme="@style/TextColor3"
                                     android:fontFamily="@font/inter_medium"
-                                    android:background="#D6E5E3"
                                     android:gravity="center"
                                     android:textSize="15dp"
                                     />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <!-- ========== FIN ACCUEIL =========== -->
