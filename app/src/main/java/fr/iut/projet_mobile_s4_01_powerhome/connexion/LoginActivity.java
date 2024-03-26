@@ -16,6 +16,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     private String mail;
     private String password;
     private DatabaseManager databaseManager;
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient gsc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +58,18 @@ public class LoginActivity extends AppCompatActivity {
         EditText mailET = findViewById(R.id.mailET);
         EditText mdpET = findViewById(R.id.mdpET);
 
-        mailET.setText("k@gmail.com");
-        mdpET.setText("Namodacane77!!");
+        mailET.setText("ac@gmail.com");
+        mdpET.setText("Alexandre77!!");
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+
+        connexionGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +119,31 @@ public class LoginActivity extends AppCompatActivity {
                 connectUser();
             }
         });
+    }
+
+    public void signIn() {
+        Intent signInIntent = gsc.getSignInIntent();
+        startActivityForResult(signInIntent, 1000);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                task.getResult(ApiException.class);
+                navigateToSecondActivity();
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void navigateToSecondActivity() {
+        finish();
+        Intent intent = new Intent(LoginActivity.this, LoginGoogleActivity.class);
+        startActivity(intent);
     }
 
     public void onApiResponse(JSONObject response) {
