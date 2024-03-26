@@ -64,6 +64,8 @@ public class CreneauFragment extends Fragment {
     private final Map<String, Integer> equipementConsoMap = new HashMap<>();
     private final List<TimeSlot> timeSlots = new ArrayList<>();
 
+    private boolean toastDisplayed = false;
+
     private Notification notif;
 
     public CreneauFragment() {
@@ -583,12 +585,17 @@ public class CreneauFragment extends Fragment {
             try {
                 boolean success = response.getBoolean("success");
                 if (success) {
-                    Toast.makeText(requireContext(), "Équipement ajouté au créneau avec succès!", Toast.LENGTH_SHORT).show();
 
-                    MonHabitatFragment habitatFragment = new MonHabitatFragment();
-                    getParentFragmentManager().beginTransaction()
+                    if (!toastDisplayed) {
+                        Toast.makeText(requireContext(), "Équipement ajouté au créneau avec succès!", Toast.LENGTH_SHORT).show();
+
+                            MonHabitatFragment habitatFragment = new MonHabitatFragment();
+                            getParentFragmentManager().beginTransaction()
                             .replace(R.id.frame_layout, habitatFragment)
                             .commit();
+
+                        toastDisplayed = true;
+                    }
 
                 } else {
                     String errorMessage = response.has("error") ? response.getString("error") : "Une erreur s'est produite lors de l'ajout de l'équipement.";
@@ -623,4 +630,3 @@ public class CreneauFragment extends Fragment {
         databaseManager.queue.add(jsonObjectRequest);
     }
 }
-

@@ -30,7 +30,6 @@ import java.util.Map;
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.creneau.CreneauFragment;
-import fr.iut.projet_mobile_s4_01_powerhome.app.user.NotificationFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementAddActivity;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipaux;
