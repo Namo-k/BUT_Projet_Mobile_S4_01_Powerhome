@@ -89,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                     setTitle("");
                 }
+                else if (itemId == R.id.menu_tout_creneau) {
+                    fm.beginTransaction()
+                            .replace(R.id.frame_layout, new TimeSlotFragment())
+                            .commit();
+                    setTitle("");
+                }
                 else if (itemId == R.id.menu_notification) {
                     fm.beginTransaction()
                             .replace(R.id.frame_layout, new NotificationFragment())

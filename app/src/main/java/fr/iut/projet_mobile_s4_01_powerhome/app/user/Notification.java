@@ -50,8 +50,8 @@ public class Notification {
         return categorie;
     }
 
-    public static int getImageResourceIdByName(String equipementName) {
-        Integer resourceId = notificationImageMap.get(equipementName.toLowerCase());
+    public static int getImageResourceIdByName(String NotificationName) {
+        Integer resourceId = notificationImageMap.get(NotificationName.toLowerCase());
         return resourceId != null ? resourceId : 0;
     }
 }

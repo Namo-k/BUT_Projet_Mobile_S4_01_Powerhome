@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -45,6 +46,7 @@ import java.util.Locale;
 
 import fr.iut.projet_mobile_s4_01_powerhome.DatabaseManager;
 import fr.iut.projet_mobile_s4_01_powerhome.R;
+import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementFragment;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipaux;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementPrincipauxAdapter;
 import fr.iut.projet_mobile_s4_01_powerhome.app.user.Notification;
@@ -144,7 +146,7 @@ public class CreneauFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         debutdateJourET.setText(String.valueOf(day));
-                        debutdateMoisET.setText(String.valueOf(month));
+                        debutdateMoisET.setText(month < 10 ? "0" + month : String.valueOf(month));
                         debutdateAnneeET.setText(String.valueOf(year));
                     }
                 }, 2024, 03, 25);
@@ -245,10 +247,13 @@ public class CreneauFragment extends Fragment {
                             if (totalConso > slot.getMaxWattage()) {
                                 msgTV.setVisibility(View.VISIBLE);
                                 msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                                msgTV.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+                                consoCreneau.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
                             } else {
                                 msgTV.setVisibility(View.VISIBLE);
                                 msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
                                 msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                                consoCreneau.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                             }
 
                             consoCreneau.setText(slot.getWattageUsed() + "W");
@@ -352,10 +357,13 @@ public class CreneauFragment extends Fragment {
                             if (totalConso > slot.getMaxWattage()) {
                                 msgTV.setVisibility(View.VISIBLE);
                                 msgTV.setText("Ce créneau est saturé, vous pourrez avoir un malus pour avoir utilisé 3x le même créneau");
+                                msgTV.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+                                consoCreneau.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
                             } else {
                                 msgTV.setVisibility(View.VISIBLE);
                                 msgTV.setText("Vous pouvez réserver ce créneau sans soucis !");
                                 msgTV.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                                consoCreneau.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                             }
 
                             consoCreneau.setText(slot.getWattageUsed() + "W");
@@ -586,6 +594,12 @@ public class CreneauFragment extends Fragment {
                 boolean success = response.getBoolean("success");
                 if (success) {
                     Toast.makeText(requireContext(), "Équipement ajouté au créneau avec succès!", Toast.LENGTH_SHORT).show();
+
+                    MonHabitatFragment habitatFragment = new MonHabitatFragment();
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.frame_layout, habitatFragment)
+                            .commit();
+
                 } else {
                     String errorMessage = response.has("error") ? response.getString("error") : "Une erreur s'est produite lors de l'ajout de l'équipement.";
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();

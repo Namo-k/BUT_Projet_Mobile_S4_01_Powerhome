@@ -24,6 +24,11 @@
         android:icon="@drawable/baseline_settings_24"
         android:title="Choisir un créneau"
         />
+    <item
+        android:id="@+id/menu_tout_creneau"
+        android:icon="@drawable/creneau"
+        android:title="Voir les créneaux"
+        />
 
     <item
         android:title=""
