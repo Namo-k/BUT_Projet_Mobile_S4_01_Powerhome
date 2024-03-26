@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 14 Mars 2024 à 06:06
+-- Généré le :  Mar 26 Mars 2024 à 11:55
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -45,7 +45,12 @@ INSERT INTO `appliance` (`id`, `name`, `reference`, `wattage`, `habitat_id`) VAL
 (65, 'Radiateur électrique', '18317', 800, 38),
 (66, 'Four électrique', '9B273A', 900, 39),
 (67, 'Fer à repasser', '0D92E', 700, 39),
-(68, 'Aspirateur', 'D9283JD', 900, 39);
+(68, 'Aspirateur', 'D9283JD', 900, 39),
+(69, 'Aspirateur', 'MIELE827398', 900, 40),
+(70, 'Television', 'mziduz', 900, 40),
+(74, 'Aspirateur', 'FF', 500, 44),
+(77, 'Aspirateur', 'FFFF', 500, 39),
+(79, 'Climatiseur', '44kkDD', 500, 39);
 
 -- --------------------------------------------------------
 
@@ -83,7 +88,35 @@ INSERT INTO `appliance_time_slot` (`appliance_id`, `time_slot_id`, `order`, `boo
 (68, 22, 2, '2024-03-14 07:03:58'),
 (68, 26, 1, '2024-03-14 07:04:15'),
 (67, 27, 1, '2024-03-14 07:05:44'),
-(67, 28, 1, '2024-03-14 07:05:50');
+(67, 28, 1, '2024-03-14 07:05:50'),
+(70, 29, 1, '2024-03-15 12:05:53'),
+(74, 32, 1, '2024-03-25 11:23:14'),
+(66, 36, 1, '2024-03-25 11:58:26'),
+(67, 39, 1, '2024-03-25 14:12:12'),
+(67, 40, 1, '2024-03-25 14:12:45'),
+(67, 40, 2, '2024-03-25 14:12:45'),
+(66, 42, 1, '2024-03-25 14:22:14'),
+(66, 42, 2, '2024-03-25 14:22:14'),
+(66, 42, 3, '2024-03-25 14:22:14'),
+(67, 44, 1, '2024-03-25 14:36:45'),
+(67, 48, 1, '2024-03-25 15:41:16'),
+(68, 47, 1, '2024-03-25 15:43:29'),
+(67, 49, 1, '2024-03-25 15:55:49'),
+(67, 50, 1, '2024-03-25 15:55:49'),
+(67, 49, 2, '2024-03-25 16:03:45'),
+(66, 51, 1, '2024-03-25 16:08:18'),
+(66, 52, 1, '2024-03-25 16:08:18'),
+(66, 53, 1, '2024-03-25 16:08:18'),
+(66, 44, 2, '2024-03-25 16:08:18'),
+(66, 50, 2, '2024-03-25 17:25:19'),
+(66, 54, 1, '2024-03-25 17:25:19'),
+(66, 55, 1, '2024-03-26 12:32:13'),
+(66, 56, 1, '2024-03-26 12:32:13'),
+(66, 57, 1, '2024-03-26 12:32:13'),
+(66, 58, 1, '2024-03-26 12:32:13'),
+(66, 59, 1, '2024-03-26 12:32:13'),
+(66, 60, 1, '2024-03-26 12:34:31'),
+(66, 61, 1, '2024-03-26 12:34:31');
 
 -- --------------------------------------------------------
 
@@ -107,7 +140,42 @@ CREATE TABLE `habitat` (
 
 INSERT INTO `habitat` (`id`, `floor`, `area`, `bonus`, `malus`, `essai`, `consommation`) VALUES
 (38, 2, 3, 21, 0, 0, 4200),
-(39, 5, 5, 15, 0, 0, 2675);
+(39, 5, 5, 46, 0, 0, 3675),
+(40, 2, 2, 1, 0, 0, 1800),
+(42, 2, 2, 2, 0, 0, 1650),
+(43, 2, 4, 0, 0, 0, 0),
+(44, 2, 2, 1, 0, 0, 500),
+(45, 2, 2, 0, 0, 0, 500),
+(46, 1, 1, 0, 0, 0, 500);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
+  `notification_title` varchar(255) NOT NULL,
+  `notification` varchar(255) NOT NULL,
+  `notification_categorie` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `notification`
+--
+
+INSERT INTO `notification` (`id`, `notification_title`, `notification`, `notification_categorie`, `id_user`) VALUES
+(1, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 9h à 15h pour votre EQUIPEMENT. Vous avez gagné/écopé d’1 bonus/malus.', 'creneau', 39),
+(22, 'Ajout d\'un équipement', 'Vous avez ajouté un Aspirateur Ref. FFFF de 500W à votre logement.', 'equipement', 39),
+(23, 'Ajout d\'un équipement', 'Vous avez ajouté un Climatiseur Ref. HHHH de 500W à votre logement.', 'equipement', 39),
+(24, 'Modification d\'un équipement', 'Vous avez modifié : Climatiseur Ref. HHHHHHH de 500W de votre logement.', 'equipement', 39),
+(25, 'Supression d\'un équipement', 'Vous avez supprimé : Climatiseur de votre logement.', 'equipement', 39),
+(26, 'Ajout d\'un équipement', 'Vous avez ajouté un Climatiseur Ref. 44kkkk de 500W à votre logement.', 'equipement', 39),
+(32, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 02h à 04h pour votre 66 Four électrique.', 'creneau', 39),
+(33, 'Configuration', 'Vous avez modifié votre profil.', 'configuration', 39),
+(34, 'Modification d\'un équipement', 'Vous avez modifié : Climatiseur Ref. 44kkDD de 500W de votre logement.', 'equipement', 39);
 
 -- --------------------------------------------------------
 
@@ -155,7 +223,34 @@ INSERT INTO `time_slot` (`id`, `begin`, `end`, `max_wattage`, `wattage_used`) VA
 (25, '2024-03-16 21:00:00', '2024-03-16 22:00:00', 25000, 800),
 (26, '2024-03-15 21:00:00', '2024-03-15 22:00:00', 25000, 900),
 (27, '2024-03-17 21:00:00', '2024-03-17 22:00:00', 25000, 700),
-(28, '2024-03-17 16:00:00', '2024-03-17 17:00:00', 25000, 700);
+(28, '2024-03-17 16:00:00', '2024-03-17 17:00:00', 25000, 700),
+(29, '2024-03-16 06:00:00', '2024-03-16 07:00:00', 25000, 900),
+(30, '2024-03-22 16:00:00', '2024-03-22 17:00:00', 25000, 150),
+(31, '2024-03-22 17:00:00', '2024-03-22 18:00:00', 25000, 150),
+(32, '2024-03-25 12:00:00', '2024-03-25 13:00:00', 25000, 500),
+(36, '2024-03-25 17:00:00', '2024-03-25 18:00:00', 25000, 900),
+(39, '2024-03-26 19:00:00', '2024-03-26 20:00:00', 25000, 700),
+(40, '2024-03-26 20:00:00', '2024-03-26 22:00:00', 25000, 700),
+(42, '2024-03-26 00:00:00', '2024-03-26 03:00:00', 25000, 900),
+(43, '2024-03-26 04:00:00', '2024-03-26 08:00:00', 25000, 900),
+(44, '2024-03-26 04:00:00', '2024-03-26 05:00:00', 25000, 1600),
+(45, '2024-03-26 05:00:00', '2024-03-26 06:00:00', 25000, 0),
+(46, '2024-03-26 06:00:00', '2024-03-26 07:00:00', 25000, 0),
+(47, '2024-03-26 07:00:00', '2024-03-26 08:00:00', 25000, 900),
+(48, '2024-03-26 16:00:00', '2024-03-26 17:00:00', 25000, 700),
+(49, '2024-03-27 02:00:00', '2024-03-27 03:00:00', 25000, 1400),
+(50, '2024-03-27 03:00:00', '2024-03-27 04:00:00', 25000, 1600),
+(51, '2024-03-26 01:00:00', '2024-03-26 02:00:00', 25000, 900),
+(52, '2024-03-26 02:00:00', '2024-03-26 03:00:00', 25000, 900),
+(53, '2024-03-26 03:00:00', '2024-03-26 04:00:00', 25000, 900),
+(54, '2024-03-27 04:00:00', '2024-03-27 05:00:00', 25000, 900),
+(55, '2024-03-27 06:00:00', '2024-03-27 07:00:00', 25000, 900),
+(56, '2024-03-27 07:00:00', '2024-03-27 08:00:00', 25000, 900),
+(57, '2024-03-27 08:00:00', '2024-03-27 09:00:00', 25000, 900),
+(58, '2024-03-27 09:00:00', '2024-03-27 10:00:00', 25000, 900),
+(59, '2024-03-27 10:00:00', '2024-03-27 11:00:00', 25000, 900),
+(60, '2024-03-30 02:00:00', '2024-03-30 03:00:00', 25000, 900),
+(61, '2024-03-30 03:00:00', '2024-03-30 04:00:00', 25000, 900);
 
 -- --------------------------------------------------------
 
@@ -182,7 +277,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `birth`, `email`, `password`, `question`, `response`, `firstTime`, `habitat_id`) VALUES
 (38, 'Carounanithi', 'Alexandre', '17/12/2004', 'a@gmail.com', '$2y$10$cIf3HGBpUb.TvnftkntiauGxttbTTALl8TP34u7N2ptevCwdNyPPm', 'Quel est le premier livre lu ?', 'Hunger games', 'NO', 38),
-(39, 'Kaliamoorthy', 'Namodacane', '01/01/2000', 'k@gmail.com', '$2y$10$2EUuMKalUEH50kRaSgoEB.4tR4fz3oalo28Gv3U.5dgg2EfvGS8Q.', 'Quel est le nom de ma peluche ?', 'Teddy', 'NO', 39);
+(39, 'Kaliamoorthy', 'Namodacane', '01/01/2004', 'k@gmail.com', '$2y$10$2EUuMKalUEH50kRaSgoEB.4tR4fz3oalo28Gv3U.5dgg2EfvGS8Q.', 'Quel est le nom de ma peluche ?', 'Teddy', 'NO', 39),
+(40, 'Lambaret', 'Oum kaltoum', '12/02/2003', 'o@gmail.com', '$2y$10$N31eGiZOOKKihXKuuvPR1uvII/U8mBU7lQdE7OnuC2pfirr0XnkcW', 'Quel est le nom de ma peluche ?', 'Goj', 'NO', 40);
 
 --
 -- Index pour les tables exportées
@@ -209,6 +305,12 @@ ALTER TABLE `habitat`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `time_slot`
 --
 ALTER TABLE `time_slot`
@@ -229,22 +331,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `appliance`
 --
 ALTER TABLE `appliance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT pour la table `habitat`
 --
 ALTER TABLE `habitat`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+--
+-- AUTO_INCREMENT pour la table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT pour la table `time_slot`
 --
 ALTER TABLE `time_slot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- Contraintes pour les tables exportées
 --
