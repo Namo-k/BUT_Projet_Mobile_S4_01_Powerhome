@@ -5,7 +5,8 @@ include_once '../config/Database.php';
 $json = json_decode(file_get_contents('php://input'), true);
 $getTimesSlot = $bdd->prepare("SELECT t.id, t.begin, t.end, t.max_Wattage, t.wattage_used
                                 FROM time_slot t
-                                WHERE t.begin > NOW()");
+                                WHERE t.begin > NOW()
+                                ORDER BY t.begin ASC");
 $getTimesSlot->execute(array());
 
 if ($getTimesSlot->rowCount() > 0) {
