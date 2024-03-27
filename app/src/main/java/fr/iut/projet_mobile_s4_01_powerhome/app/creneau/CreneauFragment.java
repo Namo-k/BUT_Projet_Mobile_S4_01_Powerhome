@@ -140,6 +140,11 @@ public class CreneauFragment extends Fragment {
             }
 
             private void openDatePicker(){
+
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -147,7 +152,7 @@ public class CreneauFragment extends Fragment {
                         debutdateMoisET.setText(month < 10 ? "0" + month : String.valueOf(month));
                         debutdateAnneeET.setText(String.valueOf(year));
                     }
-                }, 2024, 03, 27);
+                }, year, month, day);
 
                 datePickerDialog.show();
             }
