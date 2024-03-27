@@ -33,4 +33,30 @@
 
     <string name="open">open !</string>
     <string name="close">close !</string>
+
+    <string name="habitat">Mon habitat</string>
+    <string name="residence">Ma résidence</string>
+    <string name="équipements">Mes équipements</string>
+    <string name="choisir">Choisir un créneau</string>
+    <string name="créneaux">Voir les créneaux</string>
+    <string name="notif">Notifications</string>
+    <string name="preferences">Préférences</string>
+    <string name="profil">Modifier le profil</string>
+    <string name="deco">Déconnexion</string>
+    <string name="propos">A propos</string>
+
+    <string name="ravi">Ravi de vous revoir</string>
+    <string name="maresidence">Ma résidence</string>
+    <string name="mapuissance">Ma puissance totale</string>
+    <string name="voir">Voir mes équipements</string>
+    <string name="ajouter">Ajouter un équipement</string>
+    <string name="selectionner">Sélectionner un créneau</string>
+    <string name="eco">Mes éco-points</string>
+
+    <string name="vos">Vos préférences</string>
+    <string name="changer">Changer de langue :</string>
+    <string name="franais">En français</string>
+    <string name="anglais">En anglais</string>
+    <string name="theme">Changer de thème :</string>
+
 </resources>

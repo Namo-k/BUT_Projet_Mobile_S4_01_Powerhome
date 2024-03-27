@@ -36,4 +36,29 @@
 
     <string name="open">open !</string>
     <string name="close">close !</string>
+
+    <string name="habitat">My habitat</string>
+    <string name="residence">My residence</string>
+    <string name="équipements">My equipment</string>
+    <string name="choisir">Choose a time slot</string>
+    <string name="créneaux">View time slots</string>
+    <string name="notif">Notifications</string>
+    <string name="preferences">Preferences</string>
+    <string name="profil">Edit profile</string>
+    <string name="deco">Log out</string>
+    <string name="propos">About</string>
+
+    <string name="ravi">  Delighted to see you</string>
+    <string name="maresidence">My residence</string>
+    <string name="mapuissance">My total power</string>
+    <string name="voir">View my equipment</string>
+    <string name="ajouter">Add equipment</string>
+    <string name="selectionner">Select a time slot</string>
+    <string name="eco">My eco-points</string>
+
+    <string name="vos">Your preferences</string>
+    <string name="changer">Change language :</string>
+    <string name="franais">In French</string>
+    <string name="anglais">In English</string>
+    <string name="theme">Change theme :</string>
 </resources>

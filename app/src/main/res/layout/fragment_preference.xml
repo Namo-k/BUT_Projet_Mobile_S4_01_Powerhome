@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:fontFamily="@font/sansita_regular"
-                    android:text=" Mes préférences"
+                    android:text="@string/preferences"
                     android:theme="@style/TextColor1"
                     android:textSize="22dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
                             android:textAlignment="center"
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Vos préférences : "
+                            android:text="@string/preferences"
                             android:theme="@style/TextColor3"
                             android:textSize="18dp" />
 
@@ -97,7 +97,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_below="@id/text"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Changer de langue :"
+                            android:text="@string/changer"
                             android:theme="@style/TextColor3"
                             android:textSize="16dp" />
 
@@ -123,7 +123,7 @@
                                 android:gravity="center"
                                 android:padding="3dp"
                                 android:theme="@style/TextColor5"
-                                android:text="En français"
+                                android:text="@string/franais"
                                 android:textSize="14dp" />
                         </androidx.cardview.widget.CardView>
 
@@ -157,7 +157,7 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center"
                                 android:padding="3dp"
-                                android:text="En anglais"
+                                android:text="@string/anglais"
                                 android:theme="@style/TextColor5"
                                 android:textSize="14dp" />
                         </androidx.cardview.widget.CardView>
@@ -182,7 +182,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_below="@id/btnAnglais"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Changer de thème :"
+                            android:text="@string/theme"
                             android:theme="@style/TextColor3"
                             android:textSize="16dp" />
 

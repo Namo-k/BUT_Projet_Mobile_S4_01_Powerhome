@@ -4,30 +4,30 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/home"
-        android:title="Mon Habitat"
+        android:title="@string/habitat"
         />
 
     <item
         android:id="@+id/menu_residence"
         android:icon="@drawable/baseline_add_location_alt_24"
-        android:title="Ma Résidence"
+        android:title="@string/residence"
         />
 
     <item
         android:id="@+id/menu_equipement"
         android:icon="@drawable/baseline_add_home_work_24"
-        android:title="Mes Équipements"
+        android:title="@string/équipements"
         />
 
     <item
         android:id="@+id/menu_creneau"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Choisir un créneau"
+        android:title="@string/choisir"
         />
     <item
         android:id="@+id/menu_tout_creneau"
         android:icon="@drawable/creneau"
-        android:title="Voir les créneaux"
+        android:title="@string/créneaux"
         />
 
     <item
@@ -37,14 +37,14 @@
     <item
         android:id="@+id/menu_notification"
         android:icon="@drawable/baseline_announcement_24"
-        android:title="Notifications"
+        android:title="@string/notif"
         />
 
 
     <item
         android:id="@+id/menu_preference"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Préférences"
+        android:title="@string/preferences"
         />
 
     <item
@@ -54,19 +54,19 @@
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/user"
-        android:title="Modifier le profil"
+        android:title="@string/profil"
         />
 
     <item
         android:id="@+id/menu_deconnexion"
         android:icon="@drawable/baseline_exit_to_app_24"
-        android:title="Déconnexion"
+        android:title="@string/deco"
         />
 
     <item
         android:id="@+id/menu_apropos"
         android:icon="@drawable/baseline_announcement_24"
-        android:title="A propos"
+        android:title="@string/propos"
         />
 
 </menu>

@@ -35,7 +35,7 @@
                     android:layout_marginLeft="70dp"
                     android:theme="@style/TextColor3"
                     android:fontFamily="@font/inter"
-                    android:text="Ravi de vous revoir "
+                    android:text="@string/ravi"
                     android:textSize="17dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +64,7 @@
                     android:layout_marginStart="38dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/sansita_regular"
-                    android:text=" Mon Habitat"
+                    android:text="@string/habitat"
                     android:theme="@style/TextColor1"
                     android:textSize="22dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +119,7 @@
                             android:layout_marginEnd="3dp"
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Ma résidence :"
+                            android:text="@string/maresidence"
                             android:theme="@style/TextColor3"
                             android:textSize="14dp" />
 
@@ -146,7 +146,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_below="@id/residenceLabelTV"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Mon habitat :"
+                            android:text="@string/habitat"
                             android:theme="@style/TextColor3"
                             android:textSize="14dp" />
 
@@ -172,7 +172,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_below="@id/habitatLabelTV"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Ma puissance totale  : "
+                            android:text="@string/mapuissance"
                             android:theme="@style/TextColor3"
                             android:textSize="13.5dp" />
 
@@ -269,10 +269,10 @@
                                         android:id="@+id/btnVoirEquipementTV"
                                         android:layout_width="124dp"
                                         android:layout_height="45dp"
-                                        android:text="Voir mes \néquipements"
+                                        android:text="@string/voir"
                                         android:theme="@style/TextColor5"
                                         android:fontFamily="@font/inter_medium"
-                                        android:padding="3dp"
+                                        android:padding="5dp"
                                         android:gravity="center"
                                         android:textSize="12dp"
                                         />
@@ -291,10 +291,10 @@
                                         android:id="@+id/btnAjouterEquipementTV"
                                         android:layout_width="124dp"
                                         android:layout_height="45dp"
-                                        android:text="Ajouter un \néquipement"
+                                        android:text="@string/ajouter"
                                         android:theme="@style/TextColor5"
                                         android:fontFamily="@font/inter_medium"
-                                        android:padding="3dp"
+                                        android:padding="4dp"
                                         android:gravity="center"
                                         android:textSize="12dp"
                                         />
@@ -321,7 +321,7 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center"
                                 android:padding="3dp"
-                                android:text="Selectionner un créneau"
+                                android:text="@string/selectionner"
                                 android:theme="@style/TextColor5"
                                 android:textSize="13dp" />
                         </androidx.cardview.widget.CardView>
@@ -345,7 +345,7 @@
                         android:id="@+id/subTitleEquipementTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mes éco-points :"
+                        android:text="@string/eco"
                         android:gravity="center"
                         android:textSize="14.5dp"
                         android:fontFamily="@font/inter_medium"

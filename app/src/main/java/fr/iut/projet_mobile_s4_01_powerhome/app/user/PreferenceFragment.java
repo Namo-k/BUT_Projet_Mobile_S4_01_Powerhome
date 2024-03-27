@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import java.util.Locale;
 import android.widget.Button;
+import android.content.res.Configuration;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import fr.iut.projet_mobile_s4_01_powerhome.R;
 import fr.iut.projet_mobile_s4_01_powerhome.app.equipement.EquipementAddActivity;
+import fr.iut.projet_mobile_s4_01_powerhome.app.residence.MainActivity;
 
 public class PreferenceFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +29,8 @@ public class PreferenceFragment extends Fragment {
     private String mParam2;
     SwitchCompat switchMode;
     boolean nightMode;
+    private CardView btnFrancais;
+    private CardView btnAnglais;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -58,6 +62,9 @@ public class PreferenceFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preference, container, false);
 
+        btnFrancais = view.findViewById(R.id.btnFrancais);
+        btnAnglais = view.findViewById(R.id.btnAnglais);
+
         switchMode = view.findViewById(R.id.switchMode);
         switchMode.setThumbResource(R.drawable.thumb);
         switchMode.setTrackResource(R.drawable.track);
@@ -85,6 +92,29 @@ public class PreferenceFragment extends Fragment {
                editor.apply();
             }
         });
+
+        btnFrancais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLocale("fr");
+                requireActivity().recreate();
+            }
+        });
+        btnAnglais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLocale("en");
+                requireActivity().recreate();
+            }
+        });
         return view;
+    }
+
+    public void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
     }
 }
