@@ -41,7 +41,7 @@ public class TimeSlotAdapter extends ArrayAdapter<TimeSlot> {
         maxWattageTV.setText("Max wattage : "+ currentTimeSlot.getMaxWattage() +" W");
 
         TextView usedWattageTV = itemView.findViewById(R.id.usedWattageTV);
-        usedWattageTV.setText("Consommation utilisée : : "+ currentTimeSlot.getWattageUsed() +" W");
+        usedWattageTV.setText("Consommation utilisée : "+ currentTimeSlot.getWattageUsed() +" W");
 
         ImageView timeSlotImage = itemView.findViewById(R.id.imageCreneau);
         timeSlotImage.setVisibility(View.VISIBLE);
