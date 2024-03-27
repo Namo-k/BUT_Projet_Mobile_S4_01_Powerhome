@@ -149,7 +149,7 @@ public class CreneauFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         debutdateJourET.setText(String.valueOf(day));
-                        debutdateMoisET.setText(month < 10 ? "0" + month : String.valueOf(month));
+                        debutdateMoisET.setText(month < 10 ? "0" + (month+1) : String.valueOf((month+1)));
                         debutdateAnneeET.setText(String.valueOf(year));
                     }
                 }, year, month, day);
