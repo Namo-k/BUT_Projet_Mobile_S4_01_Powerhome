@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 26 Mars 2024 à 11:55
+-- Généré le :  Mer 27 Mars 2024 à 14:37
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -39,18 +39,16 @@ CREATE TABLE `appliance` (
 --
 
 INSERT INTO `appliance` (`id`, `name`, `reference`, `wattage`, `habitat_id`) VALUES
-(62, 'Television', 'Samsung82729', 800, 38),
-(63, 'Aspirateur', 'Miele918012', 1200, 38),
-(64, 'Four électrique', 'SIEMENS28391', 1400, 38),
-(65, 'Radiateur électrique', '18317', 800, 38),
-(66, 'Four électrique', '9B273A', 900, 39),
-(67, 'Fer à repasser', '0D92E', 700, 39),
-(68, 'Aspirateur', 'D9283JD', 900, 39),
-(69, 'Aspirateur', 'MIELE827398', 900, 40),
-(70, 'Television', 'mziduz', 900, 40),
-(74, 'Aspirateur', 'FF', 500, 44),
-(77, 'Aspirateur', 'FFFF', 500, 39),
-(79, 'Climatiseur', '44kkDD', 500, 39);
+(88, 'Aspirateur', 'Bosh5800', 500, 39),
+(89, 'Television', 'Sony 8000', 800, 39),
+(90, 'Climatiseur', 'PanasonicV45', 1500, 39),
+(91, 'Fer à repasser', 'Philips J45', 150, 39),
+(92, 'Machine à laver', 'Whirpool45', 800, 39),
+(93, 'Four électrique', 'Electrolux G788', 755, 39),
+(94, 'Television', 'Sony 788', 800, 52),
+(95, 'Aspirateur', 'Bosh V78', 150, 52),
+(96, 'Radiateur électrique', 'Radiateur RM78', 780, 52),
+(97, 'Television', 'Samsung928382', 700, 53);
 
 -- --------------------------------------------------------
 
@@ -70,53 +68,21 @@ CREATE TABLE `appliance_time_slot` (
 --
 
 INSERT INTO `appliance_time_slot` (`appliance_id`, `time_slot_id`, `order`, `booked_at`) VALUES
-(65, 9, 1, '2024-03-14 06:59:46'),
-(65, 10, 1, '2024-03-14 06:59:52'),
-(65, 11, 1, '2024-03-14 06:59:57'),
-(62, 11, 2, '2024-03-14 07:00:05'),
-(62, 9, 2, '2024-03-14 07:00:12'),
-(64, 18, 1, '2024-03-14 07:01:21'),
-(63, 18, 2, '2024-03-14 07:01:26'),
-(63, 19, 1, '2024-03-14 07:01:32'),
-(65, 23, 1, '2024-03-14 07:01:42'),
-(65, 22, 1, '2024-03-14 07:01:47'),
-(65, 25, 1, '2024-03-14 07:02:32'),
-(66, 13, 1, '2024-03-14 07:03:25'),
-(66, 18, 3, '2024-03-14 07:03:31'),
-(67, 17, 1, '2024-03-14 07:03:39'),
-(68, 21, 1, '2024-03-14 07:03:52'),
-(68, 22, 2, '2024-03-14 07:03:58'),
-(68, 26, 1, '2024-03-14 07:04:15'),
-(67, 27, 1, '2024-03-14 07:05:44'),
-(67, 28, 1, '2024-03-14 07:05:50'),
-(70, 29, 1, '2024-03-15 12:05:53'),
-(74, 32, 1, '2024-03-25 11:23:14'),
-(66, 36, 1, '2024-03-25 11:58:26'),
-(67, 39, 1, '2024-03-25 14:12:12'),
-(67, 40, 1, '2024-03-25 14:12:45'),
-(67, 40, 2, '2024-03-25 14:12:45'),
-(66, 42, 1, '2024-03-25 14:22:14'),
-(66, 42, 2, '2024-03-25 14:22:14'),
-(66, 42, 3, '2024-03-25 14:22:14'),
-(67, 44, 1, '2024-03-25 14:36:45'),
-(67, 48, 1, '2024-03-25 15:41:16'),
-(68, 47, 1, '2024-03-25 15:43:29'),
-(67, 49, 1, '2024-03-25 15:55:49'),
-(67, 50, 1, '2024-03-25 15:55:49'),
-(67, 49, 2, '2024-03-25 16:03:45'),
-(66, 51, 1, '2024-03-25 16:08:18'),
-(66, 52, 1, '2024-03-25 16:08:18'),
-(66, 53, 1, '2024-03-25 16:08:18'),
-(66, 44, 2, '2024-03-25 16:08:18'),
-(66, 50, 2, '2024-03-25 17:25:19'),
-(66, 54, 1, '2024-03-25 17:25:19'),
-(66, 55, 1, '2024-03-26 12:32:13'),
-(66, 56, 1, '2024-03-26 12:32:13'),
-(66, 57, 1, '2024-03-26 12:32:13'),
-(66, 58, 1, '2024-03-26 12:32:13'),
-(66, 59, 1, '2024-03-26 12:32:13'),
-(66, 60, 1, '2024-03-26 12:34:31'),
-(66, 61, 1, '2024-03-26 12:34:31');
+(93, 5, 1, '2024-03-27 11:49:04'),
+(93, 6, 1, '2024-03-27 11:49:04'),
+(93, 7, 1, '2024-03-27 11:49:04'),
+(93, 8, 1, '2024-03-27 11:49:04'),
+(93, 19, 1, '2024-03-27 11:49:28'),
+(93, 20, 1, '2024-03-27 11:49:28'),
+(93, 21, 1, '2024-03-27 11:49:28'),
+(93, 22, 1, '2024-03-27 11:49:28'),
+(96, 17, 1, '2024-03-27 11:54:52'),
+(96, 18, 1, '2024-03-27 11:54:52'),
+(96, 19, 2, '2024-03-27 11:54:52'),
+(95, 20, 2, '2024-03-27 11:55:36'),
+(95, 25, 1, '2024-03-27 15:18:05'),
+(95, 26, 1, '2024-03-27 15:18:05'),
+(95, 27, 1, '2024-03-27 15:18:05');
 
 -- --------------------------------------------------------
 
@@ -139,14 +105,11 @@ CREATE TABLE `habitat` (
 --
 
 INSERT INTO `habitat` (`id`, `floor`, `area`, `bonus`, `malus`, `essai`, `consommation`) VALUES
-(38, 2, 3, 21, 0, 0, 4200),
-(39, 5, 5, 46, 0, 0, 3675),
-(40, 2, 2, 1, 0, 0, 1800),
-(42, 2, 2, 2, 0, 0, 1650),
-(43, 2, 4, 0, 0, 0, 0),
-(44, 2, 2, 1, 0, 0, 500),
-(45, 2, 2, 0, 0, 0, 500),
-(46, 1, 1, 0, 0, 0, 500);
+(39, 5, 5, 8, 0, 0, 4505),
+(40, 2, 2, 0, 0, 0, 0),
+(51, 1, 2, 0, 0, 0, 0),
+(52, 2, 2, 7, 0, 0, 1730),
+(53, 4, 5, 0, 0, 0, 700);
 
 -- --------------------------------------------------------
 
@@ -167,15 +130,29 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`id`, `notification_title`, `notification`, `notification_categorie`, `id_user`) VALUES
-(1, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 9h à 15h pour votre EQUIPEMENT. Vous avez gagné/écopé d’1 bonus/malus.', 'creneau', 39),
-(22, 'Ajout d\'un équipement', 'Vous avez ajouté un Aspirateur Ref. FFFF de 500W à votre logement.', 'equipement', 39),
-(23, 'Ajout d\'un équipement', 'Vous avez ajouté un Climatiseur Ref. HHHH de 500W à votre logement.', 'equipement', 39),
-(24, 'Modification d\'un équipement', 'Vous avez modifié : Climatiseur Ref. HHHHHHH de 500W de votre logement.', 'equipement', 39),
-(25, 'Supression d\'un équipement', 'Vous avez supprimé : Climatiseur de votre logement.', 'equipement', 39),
-(26, 'Ajout d\'un équipement', 'Vous avez ajouté un Climatiseur Ref. 44kkkk de 500W à votre logement.', 'equipement', 39),
-(32, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 02h à 04h pour votre 66 Four électrique.', 'creneau', 39),
-(33, 'Configuration', 'Vous avez modifié votre profil.', 'configuration', 39),
-(34, 'Modification d\'un équipement', 'Vous avez modifié : Climatiseur Ref. 44kkDD de 500W de votre logement.', 'equipement', 39);
+(80, 'Ajout d\'un équipement', 'Vous avez ajouté un Aspirateur Ref. Bosh5800 de 500W à votre logement.', 'equipement', 39),
+(81, 'Ajout d\'un équipement', 'Vous avez ajouté un Television Ref. Sony 8000 de 800W à votre logement.', 'equipement', 39),
+(82, 'Ajout d\'un équipement', 'Vous avez ajouté un Climatiseur Ref. PanasonicV45 de 1500W à votre logement.', 'equipement', 39),
+(83, 'Ajout d\'un équipement', 'Vous avez ajouté un Fer à repasser Ref. Philips J45 de 150W à votre logement.', 'equipement', 39),
+(84, 'Ajout d\'un équipement', 'Vous avez ajouté un Machine à laver Ref. Whirpool45 de 800W à votre logement.', 'equipement', 39),
+(85, 'Ajout d\'un équipement', 'Vous avez ajouté un Four électrique Ref. Electrolux G788 de 750W à votre logement.', 'equipement', 39),
+(86, 'Modification d\'un équipement', 'Vous avez modifié : Four électrique.93 Ref. Electrolux G788 de 755W de votre logement.', 'equipement', 39),
+(87, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 04h à 08h pour votre 93 Four électrique.', 'creneau', 39),
+(88, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 18h à 22h pour votre 93 Four électrique.', 'creneau', 39),
+(89, 'Bienvenue', 'Nous sommes ravie de vous accueillir dans votre nouveau logement', 'notification', 52),
+(90, 'Ajout d\'un équipement', 'Vous avez ajouté un Television Ref. Sony 788 de 800W à votre logement.', 'equipement', 52),
+(91, 'Ajout d\'un équipement', 'Vous avez ajouté un Aspirateur Ref. Bosh V78 de 150W à votre logement.', 'equipement', 52),
+(92, 'Ajout d\'un équipement', 'Vous avez ajouté un Radiateur électrique Ref. RadiateurMM78 de 780W à votre logement.', 'equipement', 52),
+(93, 'Modification d\'un équipement', 'Vous avez modifié : Radiateur électrique.96 Ref. Radiateur RM78 de 780W de votre logement.', 'equipement', 52),
+(94, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 16h à 19h pour votre 96 Radiateur électrique.', 'creneau', 52),
+(95, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 19h à 20h pour votre 95 Aspirateur.', 'creneau', 52),
+(96, 'Bienvenue', 'Nous sommes ravie de vous accueillir dans votre nouveau logement', 'notification', 53),
+(97, 'Ajout d\'un équipement', 'Vous avez ajouté un Television Ref. Samsung817219 de 900W à votre logement.', 'equipement', 53),
+(98, 'Ajout d\'un équipement', 'Vous avez ajouté un Fer à repasser Ref. 2I8E8H278E de 500W à votre logement.', 'equipement', 53),
+(99, 'Modification d\'un équipement', 'Vous avez modifié : Television.97 Ref. Samsung928382 de 700W de votre logement.', 'equipement', 53),
+(100, 'Supression d\'un équipement', 'Vous avez supprimé : Fer à repasser.98 de votre logement.', 'equipement', 53),
+(101, 'Sélection d\'un créneau', 'Vous avez réservé le créneau de 11h à 14h pour votre 95 Aspirateur.', 'creneau', 52),
+(102, 'Configuration', 'Vous avez modifié votre profil.', 'configuration', 52);
 
 -- --------------------------------------------------------
 
@@ -196,61 +173,33 @@ CREATE TABLE `time_slot` (
 --
 
 INSERT INTO `time_slot` (`id`, `begin`, `end`, `max_wattage`, `wattage_used`) VALUES
-(1, '2024-03-14 00:00:00', '2024-03-14 01:00:00', 25000, 0),
-(2, '2024-03-14 01:00:00', '2024-03-14 02:00:00', 25000, 0),
-(3, '2024-03-14 02:00:00', '2024-03-14 03:00:00', 25000, 0),
-(4, '2024-03-14 03:00:00', '2024-03-14 04:00:00', 25000, 0),
-(5, '2024-03-14 04:00:00', '2024-03-14 05:00:00', 25000, 0),
-(6, '2024-03-14 05:00:00', '2024-03-14 06:00:00', 25000, 0),
-(7, '2024-03-14 06:00:00', '2024-03-14 07:00:00', 25000, 0),
-(8, '2024-03-14 07:00:00', '2024-03-14 08:00:00', 25000, 0),
-(9, '2024-03-14 08:00:00', '2024-03-14 09:00:00', 25000, 1600),
-(10, '2024-03-14 09:00:00', '2024-03-14 10:00:00', 25000, 800),
-(11, '2024-03-14 10:00:00', '2024-03-14 11:00:00', 25000, 1600),
-(12, '2024-03-14 11:00:00', '2024-03-14 12:00:00', 25000, 0),
-(13, '2024-03-14 12:00:00', '2024-03-14 13:00:00', 25000, 900),
-(14, '2024-03-14 13:00:00', '2024-03-14 14:00:00', 25000, 0),
-(15, '2024-03-14 14:00:00', '2024-03-14 15:00:00', 25000, 0),
-(16, '2024-03-14 15:00:00', '2024-03-14 16:00:00', 25000, 0),
-(17, '2024-03-14 16:00:00', '2024-03-14 17:00:00', 25000, 700),
-(18, '2024-03-14 17:00:00', '2024-03-14 18:00:00', 25000, 3500),
-(19, '2024-03-14 18:00:00', '2024-03-14 19:00:00', 25000, 1200),
-(20, '2024-03-14 19:00:00', '2024-03-14 20:00:00', 25000, 0),
-(21, '2024-03-14 20:00:00', '2024-03-14 21:00:00', 25000, 900),
-(22, '2024-03-14 21:00:00', '2024-03-14 22:00:00', 25000, 1700),
-(23, '2024-03-14 22:00:00', '2024-03-14 23:00:00', 25000, 800),
-(24, '2024-03-14 23:00:00', '2024-03-15 00:00:00', 25000, 0),
-(25, '2024-03-16 21:00:00', '2024-03-16 22:00:00', 25000, 800),
-(26, '2024-03-15 21:00:00', '2024-03-15 22:00:00', 25000, 900),
-(27, '2024-03-17 21:00:00', '2024-03-17 22:00:00', 25000, 700),
-(28, '2024-03-17 16:00:00', '2024-03-17 17:00:00', 25000, 700),
-(29, '2024-03-16 06:00:00', '2024-03-16 07:00:00', 25000, 900),
-(30, '2024-03-22 16:00:00', '2024-03-22 17:00:00', 25000, 150),
-(31, '2024-03-22 17:00:00', '2024-03-22 18:00:00', 25000, 150),
-(32, '2024-03-25 12:00:00', '2024-03-25 13:00:00', 25000, 500),
-(36, '2024-03-25 17:00:00', '2024-03-25 18:00:00', 25000, 900),
-(39, '2024-03-26 19:00:00', '2024-03-26 20:00:00', 25000, 700),
-(40, '2024-03-26 20:00:00', '2024-03-26 22:00:00', 25000, 700),
-(42, '2024-03-26 00:00:00', '2024-03-26 03:00:00', 25000, 900),
-(43, '2024-03-26 04:00:00', '2024-03-26 08:00:00', 25000, 900),
-(44, '2024-03-26 04:00:00', '2024-03-26 05:00:00', 25000, 1600),
-(45, '2024-03-26 05:00:00', '2024-03-26 06:00:00', 25000, 0),
-(46, '2024-03-26 06:00:00', '2024-03-26 07:00:00', 25000, 0),
-(47, '2024-03-26 07:00:00', '2024-03-26 08:00:00', 25000, 900),
-(48, '2024-03-26 16:00:00', '2024-03-26 17:00:00', 25000, 700),
-(49, '2024-03-27 02:00:00', '2024-03-27 03:00:00', 25000, 1400),
-(50, '2024-03-27 03:00:00', '2024-03-27 04:00:00', 25000, 1600),
-(51, '2024-03-26 01:00:00', '2024-03-26 02:00:00', 25000, 900),
-(52, '2024-03-26 02:00:00', '2024-03-26 03:00:00', 25000, 900),
-(53, '2024-03-26 03:00:00', '2024-03-26 04:00:00', 25000, 900),
-(54, '2024-03-27 04:00:00', '2024-03-27 05:00:00', 25000, 900),
-(55, '2024-03-27 06:00:00', '2024-03-27 07:00:00', 25000, 900),
-(56, '2024-03-27 07:00:00', '2024-03-27 08:00:00', 25000, 900),
-(57, '2024-03-27 08:00:00', '2024-03-27 09:00:00', 25000, 900),
-(58, '2024-03-27 09:00:00', '2024-03-27 10:00:00', 25000, 900),
-(59, '2024-03-27 10:00:00', '2024-03-27 11:00:00', 25000, 900),
-(60, '2024-03-30 02:00:00', '2024-03-30 03:00:00', 25000, 900),
-(61, '2024-03-30 03:00:00', '2024-03-30 04:00:00', 25000, 900);
+(1, '2024-03-27 00:00:00', '2024-03-27 01:00:00', 25000, 0),
+(2, '2024-03-27 01:00:00', '2024-03-27 02:00:00', 25000, 0),
+(3, '2024-03-27 02:00:00', '2024-03-27 03:00:00', 25000, 0),
+(4, '2024-03-27 03:00:00', '2024-03-27 04:00:00', 25000, 0),
+(5, '2024-03-27 04:00:00', '2024-03-27 05:00:00', 25000, 755),
+(6, '2024-03-27 05:00:00', '2024-03-27 06:00:00', 25000, 755),
+(7, '2024-03-27 06:00:00', '2024-03-27 07:00:00', 25000, 755),
+(8, '2024-03-27 07:00:00', '2024-03-27 08:00:00', 25000, 755),
+(9, '2024-03-27 08:00:00', '2024-03-27 09:00:00', 25000, 0),
+(10, '2024-03-27 09:00:00', '2024-03-27 10:00:00', 25000, 0),
+(11, '2024-03-27 10:00:00', '2024-03-27 11:00:00', 25000, 0),
+(12, '2024-03-27 11:00:00', '2024-03-27 12:00:00', 25000, 0),
+(13, '2024-03-27 12:00:00', '2024-03-27 13:00:00', 25000, 0),
+(14, '2024-03-27 13:00:00', '2024-03-27 14:00:00', 25000, 5400),
+(15, '2024-03-27 14:00:00', '2024-03-27 15:00:00', 25000, 0),
+(16, '2024-03-27 15:00:00', '2024-03-27 16:00:00', 25000, 0),
+(17, '2024-03-27 16:00:00', '2024-03-27 17:00:00', 25000, 780),
+(18, '2024-03-27 17:00:00', '2024-03-27 18:00:00', 25000, 10000),
+(19, '2024-03-27 18:00:00', '2024-03-27 19:00:00', 25000, 26000),
+(20, '2024-03-27 19:00:00', '2024-03-27 20:00:00', 25000, 10000),
+(21, '2024-03-27 20:00:00', '2024-03-27 21:00:00', 25000, 755),
+(22, '2024-03-27 21:00:00', '2024-03-27 22:00:00', 25000, 860),
+(23, '2024-03-27 22:00:00', '2024-03-27 23:00:00', 25000, 0),
+(24, '2024-03-27 23:00:00', '2024-03-28 00:00:00', 25000, 0),
+(25, '2024-03-28 11:00:00', '2024-03-28 12:00:00', 25000, 150),
+(26, '2024-03-28 12:00:00', '2024-03-28 13:00:00', 25000, 150),
+(27, '2024-03-28 13:00:00', '2024-03-28 14:00:00', 25000, 150);
 
 -- --------------------------------------------------------
 
@@ -276,9 +225,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `birth`, `email`, `password`, `question`, `response`, `firstTime`, `habitat_id`) VALUES
-(38, 'Carounanithi', 'Alexandre', '17/12/2004', 'a@gmail.com', '$2y$10$cIf3HGBpUb.TvnftkntiauGxttbTTALl8TP34u7N2ptevCwdNyPPm', 'Quel est le premier livre lu ?', 'Hunger games', 'NO', 38),
-(39, 'Kaliamoorthy', 'Namodacane', '01/01/2004', 'k@gmail.com', '$2y$10$2EUuMKalUEH50kRaSgoEB.4tR4fz3oalo28Gv3U.5dgg2EfvGS8Q.', 'Quel est le nom de ma peluche ?', 'Teddy', 'NO', 39),
-(40, 'Lambaret', 'Oum kaltoum', '12/02/2003', 'o@gmail.com', '$2y$10$N31eGiZOOKKihXKuuvPR1uvII/U8mBU7lQdE7OnuC2pfirr0XnkcW', 'Quel est le nom de ma peluche ?', 'Goj', 'NO', 40);
+(39, 'Kaliamoorthy', 'Namodacane', '30/01/2004', 'k@gmail.com', '$2y$10$2EUuMKalUEH50kRaSgoEB.4tR4fz3oalo28Gv3U.5dgg2EfvGS8Q.', 'Quel est le nom de ma peluche ?', 'Teddy', 'NO', 39),
+(40, 'Lambaret', 'Oum kaltoum', '12/02/2003', 'o@gmail.com', '$2y$10$N31eGiZOOKKihXKuuvPR1uvII/U8mBU7lQdE7OnuC2pfirr0XnkcW', 'Quel est le nom de ma peluche ?', 'Goj', 'NO', 40),
+(51, 'Lutete', 'Junior', '01/03/2004', 'j@gmail.com', '$2y$10$sAovSPGYgUNa0uTwdhkMA.f0jMTjgrKxQr3zC2haMLx/alK2DybAe', 'Quel serait mon rêve ?', 'Avoir 2 femmes', 'NO', 51),
+(52, 'Carou', 'Alex', '17/12/2004', 'a@gmail.com', '$2y$10$U6fuiJNvmmzIu8CPK/ZVUOZyWbXK6sE0KXDynWFBQtgaASYHArxO6', 'Quel est le premier livre lu ?', 'Hunger Games', 'NO', 52),
+(53, 'CAROUNANITHI', 'Alexandre', '17/12/2004', 'c@gmail.com', '$2y$10$6XHgTnS/cXXPS624WPeAqO5Z60kUidKrLAgRVqZ/CWAPuYuPx40W.', 'Quel est le premier livre lu ?', 'Odyssee', 'NO', 53);
 
 --
 -- Index pour les tables exportées
@@ -331,27 +282,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `appliance`
 --
 ALTER TABLE `appliance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 --
 -- AUTO_INCREMENT pour la table `habitat`
 --
 ALTER TABLE `habitat`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT pour la table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT pour la table `time_slot`
 --
 ALTER TABLE `time_slot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- Contraintes pour les tables exportées
 --
